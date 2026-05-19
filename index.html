@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Under Bordeaux — Média indépendant</title>
+  <!-- Feuille de styles -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <div class="ub-redline"></div>
+
+  <!-- NAV -->
+  <nav class="ub-nav">
+    <!-- ✏️ LOGO : remplace le texte par <img src="images/logo.png" alt="Under Bordeaux" /> quand ton logo est prêt -->
+       <div class="ub-logo"><img src="images/logo.png" alt="Under Bordeaux" style="height: 52px; width: auto;" /></div>
+    <div class="ub-nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="enquetes.html">Enquêtes</a>
+      <a href="podcasts.html">Podcasts</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button class="ub-hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="ub-hero">
+    <div class="ub-eyebrow">
+      <div class="ub-eyebrow-dot"></div>
+      <span>Bordeaux · Média indépendant · 2026</span>
+    </div>
+    <!-- ✏️ MODIFIER LE SLOGAN ICI -->
+    <h1>On creuse.<br>On parle.<br><em>On laisse parler.</em></h1>
+    <!-- ✏️ MODIFIER LA DESCRIPTION ICI -->
+    <p class="ub-hero-sub">Articles, podcasts, micros-trottoirs et reportages, proches de tous depuis Bordeaux. Notre objectif : rétablir une visibilité équitable et mettre en lumière les violences que notre société étouffe.</p>
+    <div class="ub-hero-actions">
+      <a href="enquetes.html"><button class="ub-btn-primary">Nos enquêtes</button></a>
+      <a href="podcasts.html"><button class="ub-btn-secondary">Écouter le podcast →</button></a>
+    </div>
+
+    <!-- ENCART -->
+    <div style="border-top:0.5px solid #1e1e1e;padding-top:40px;display:flex;align-items:stretch;gap:24px;">
+      <!-- Barre rouge -->
+      <div style="width:2px;background:#E8000F;flex-shrink:0;"></div>
+      <!-- Texte -->
+      <div style="display:flex;flex-direction:column;gap:10px;flex-shrink:0;width:280px;justify-content:center;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#E8000F;">Notre engagement</div>
+        <div style="font-family:Impact,Arial Black,sans-serif;font-size:clamp(15px,2vw,22px);text-transform:uppercase;color:#fff;line-height:1.15;">La parole appartient à tout le monde.<br>On est juste là pour la porter.</div>
+        <div style="font-size:12px;color:#444;line-height:1.6;">Ici, personne n'a plus de crédit qu'un autre. Under Bordeaux, c'est votre voix autant que la nôtre.</div>
+      </div>
+      <!-- Carousel pleine largeur -->
+      <div id="carousel-wrapper" style="flex:1;overflow:hidden;min-width:0;position:relative;height:180px;">
+        <div id="carousel-track" style="display:flex;height:100%;transition:transform 0.5s ease;will-change:transform;">
+          <!-- ✏️ Mets tes photos dans images/ nommées photo1.jpg à photo5.jpg -->
+          <img src="images/photo1.jpg" class="c-slide" alt="" style="flex-shrink:0;height:100%;object-fit:cover;" />
+          <img src="images/photo2.jpg" class="c-slide" alt="" style="flex-shrink:0;height:100%;object-fit:cover;" />
+          <img src="images/photo3.jpg" class="c-slide" alt="" style="flex-shrink:0;height:100%;object-fit:cover;" />
+          <img src="images/photo4.jpg" class="c-slide" alt="" style="flex-shrink:0;height:100%;object-fit:cover;" />
+          <img src="images/photo5.jpg" class="c-slide" alt="" style="flex-shrink:0;height:100%;object-fit:cover;" />
+        </div>
+        <!-- Flèches superposées sur les photos -->
+        <button id="prev-btn" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.5);border:0.5px solid #555;color:#fff;width:30px;height:30px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;z-index:2;">&#8592;</button>
+        <button id="next-btn" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.5);border:0.5px solid #555;color:#fff;width:30px;height:30px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;z-index:2;">&#8594;</button>
+      </div>
+      <!-- Logo -->
+      <img src="images/logo.png" alt="Under Bordeaux" style="height:180px;width:auto;opacity:0.95;flex-shrink:0;" />
+    </div>
+  </section>
+
+  <!-- ENQUÊTES À LA UNE -->
+  <section class="ub-section">
+    <div class="ub-section-head">
+      <div class="ub-section-name">À la une</div>
+      <a class="ub-section-all" href="enquetes.html">Tout voir →</a>
+    </div>
+    <!--
+    ✏️ AJOUTER VOS ARTICLES ICI
+    Dupliquez un bloc .ub-card-art pour chaque nouvel article.
+    Remplacez :
+      - href         : lien vers l'article (ex: 'article2.html')
+      - img src      : photo de l'article (ex: 'images/photo-article.jpg')
+      - ub-card-tag  : catégorie
+      - ub-card-title: titre
+      - ub-card-desc : résumé court
+      - ub-card-meta : auteur · date
+    -->
+    <div class="ub-cards-grid">
+
+      <!-- ARTICLE 1 — À LA UNE -->
+      <a href="article1.html" class="ub-card-art featured">
+        <div class="ub-card-img">
+          <img src="images/capucins.jpg" alt="Op coup de poing aux Capus" />
+          <div class="ub-card-overlay"></div>
+          <div class="ub-card-badge">À la une</div>
+        </div>
+        <div class="ub-card-body">
+          <div class="ub-card-tag">Enquête</div>
+          <div class="ub-card-title">Op coup de poing aux Capus, 1 mois après.</div>
+          <div class="ub-card-desc">Les "nouvelles" méthodes de Cazenave sont-elles réellement impactantes pour les habitants des Capucins ?</div>
+          <div class="ub-card-meta">Under Bordeaux · Mai 2026</div>
+        </div>
+      </a>
+
+      <!-- ✏️ ARTICLE 2 -->
+      <a href="enquetes.html" class="ub-card-art">
+        <div class="ub-card-img placeholder"></div>
+        <div class="ub-card-body">
+          <div class="ub-card-tag">Investigation</div>
+          <div class="ub-card-title">Prochain article à venir</div>
+          <div class="ub-card-desc">Description courte de l'article.</div>
+          <div class="ub-card-meta">Under Bordeaux · 2026</div>
+        </div>
+      </a>
+
+      <!-- ✏️ ARTICLE 3 -->
+      <a href="enquetes.html" class="ub-card-art">
+        <div class="ub-card-img placeholder"></div>
+        <div class="ub-card-body">
+          <div class="ub-card-tag">Analyse</div>
+          <div class="ub-card-title">Prochain article à venir</div>
+          <div class="ub-card-desc">Description courte de l'article.</div>
+          <div class="ub-card-meta">Under Bordeaux · 2026</div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- PODCASTS À LA UNE -->
+  <section class="ub-section">
+    <div class="ub-section-head">
+      <div class="ub-section-name">Podcasts</div>
+      <a class="ub-section-all" href="podcasts.html">Tout écouter →</a>
+    </div>
+    <!--
+    ✏️ AJOUTER VOS PODCASTS ICI
+    Quand vous avez des épisodes, dupliquez un bloc .ub-pod-card.
+    Remplacez :
+      - href            : lien vers la page podcasts
+      - ub-pod-card-tag : catégorie (Audio / Vidéo)
+      - ub-pod-card-ep  : numéro d'épisode
+      - ub-pod-card-title : titre
+      - ub-pod-card-desc  : description courte
+      - ub-pod-card-dur   : durée
+    -->
+    <div class="ub-pods-grid">
+
+      <!-- ✏️ ÉPISODE 1 -->
+      <a href="podcasts.html" class="ub-pod-card">
+        <div class="ub-pod-card-left">
+          <div class="ub-pod-card-num">01</div>
+          <div class="ub-pod-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+          </div>
+        </div>
+        <div class="ub-pod-card-info">
+          <div class="ub-pod-card-tag">Audio · À venir</div>
+          <div class="ub-pod-card-title">Premier épisode bientôt disponible</div>
+          <div class="ub-pod-card-desc">Restez connectés — notre premier podcast arrive prochainement.</div>
+        </div>
+        <div class="ub-pod-card-right">
+          <div class="ub-pod-card-dur">—</div>
+          <div class="ub-pod-card-btn">
+            <svg viewBox="0 0 10 12"><polygon points="1,0 10,6 1,12"/></svg>
+          </div>
+        </div>
+      </a>
+
+      <!-- ✏️ ÉPISODE 2 -->
+      <a href="podcasts.html" class="ub-pod-card">
+        <div class="ub-pod-card-left">
+          <div class="ub-pod-card-num">02</div>
+          <div class="ub-pod-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+          </div>
+        </div>
+        <div class="ub-pod-card-info">
+          <div class="ub-pod-card-tag">Audio · À venir</div>
+          <div class="ub-pod-card-title">Deuxième épisode bientôt disponible</div>
+          <div class="ub-pod-card-desc">Description courte de l'épisode à venir.</div>
+        </div>
+        <div class="ub-pod-card-right">
+          <div class="ub-pod-card-dur">—</div>
+          <div class="ub-pod-card-btn">
+            <svg viewBox="0 0 10 12"><polygon points="1,0 10,6 1,12"/></svg>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <div class="ub-contact" id="contact">
+    <div class="ub-contact-l">
+      <h2>Nous<br><em>écrire</em></h2>
+      <!-- ✏️ MODIFIER LE TEXTE CONTACT ICI -->
+      <p>Un témoignage, une info à nous transmettre, une idée de collaboration ? On lit tout. Under Bordeaux c'est aussi vos voix.</p>
+      <div class="ub-contact-socials">
+        <!-- ✏️ REMPLACER PAR VOS VRAIS LIENS -->
+        <a class="ub-social" href="https://www.instagram.com/underbordeaux" target="_blank">Instagram</a>
+        <a class="ub-social" href="https://www.tiktok.com/@under_bordeaux" target="_blank">TikTok</a>
+        <a class="ub-social" href="mailto:underbordeaux@gmail.com">underbordeaux@gmail.com</a>
+      </div>
+    </div>
+    <form class="ub-form" action="https://formspree.io/f/mgodqyge" method="POST">
+      <input class="ub-field" type="text" name="nom" placeholder="Votre nom" required />
+      <input class="ub-field" type="email" name="email" placeholder="Votre email" required />
+      <textarea class="ub-field" name="message" placeholder="Votre message..." required></textarea>
+      <button class="ub-submit" type="submit">Envoyer →</button>
+    </form>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="ub-footer">
+    <div class="ub-footer-logo">UNDER BORDEAUX</div>
+    <p>Média indépendant · Bordeaux · 2026</p>
+  </footer>
+
+  <div class="ub-redline"></div>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script>
+    const wrapper = document.getElementById('carousel-wrapper');
+    const track   = document.getElementById('carousel-track');
+    const slides  = document.querySelectorAll('.c-slide');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    let current = 0;
+
+    function setSlideWidths() {
+      const w = Math.floor(wrapper.offsetWidth / 2.5);
+      slides.forEach(s => { s.style.width = w + 'px'; });
+    }
+
+    function maxIdx() { return slides.length - 2; }
+    function getStep() { return slides[0].offsetWidth; }
+
+    function go(index) {
+      current = Math.max(0, Math.min(index, maxIdx()));
+      track.style.transform = `translateX(-${current * getStep()}px)`;
+    }
+
+    nextBtn.addEventListener('click', () => go(current >= maxIdx() ? 0 : current + 1));
+    prevBtn.addEventListener('click', () => go(current <= 0 ? maxIdx() : current - 1));
+    setInterval(() => go(current >= maxIdx() ? 0 : current + 1), 3000);
+
+    setSlideWidths();
+    window.addEventListener('resize', () => { setSlideWidths(); go(current); });
+  </script>
+</body>
+</html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Op coup de poing aux Capus, 1 mois après, Under Bordeaux</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root { --red: #E8000F; --bg: #0e0e0e; --border: #1a1a1a; --muted: #4a4a4a; --surface: #121212; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: #fff; font-family: 'Inter', sans-serif; }
+
+    /* HERO */
+    .hero { position: relative; height: 88vh; min-height: 520px; display: flex; align-items: flex-end; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(8,8,8,0.1) 0%, rgba(8,8,8,0.98) 100%), url('images/capucins-hero.jpg') center/cover no-repeat; }
+    .hero-content { position: relative; z-index: 2; padding: 0 48px 52px; max-width: 860px; }
+    .hero-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+    .hero-tag::before { content: ''; width: 20px; height: 1.5px; background: var(--red); display: block; }
+    .hero-title { font-family: 'Bebas Neue', Impact, sans-serif; font-size: clamp(52px, 9vw, 100px); line-height: 0.93; color: #fff; margin-bottom: 18px; }
+    .hero-title span { color: var(--red); }
+    .hero-sub { font-size: 14px; color: #777; line-height: 1.65; max-width: 500px; margin-bottom: 24px; }
+    .hero-meta { display: flex; align-items: center; gap: 14px; font-size: 10px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+    .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--red); }
+
+    /* ARTICLE BODY */
+    .art { max-width: 720px; margin: 0 auto; padding: 0 48px 100px; }
+
+    /* INTRO */
+    .art-intro { padding: 52px 0 44px; border-bottom: 0.5px solid var(--border); }
+    .art-intro p { font-size: 17px; line-height: 1.9; color: #888; font-weight: 300; margin-bottom: 16px; }
+    .art-intro p:last-child { margin: 0; }
+    .art-intro strong { color: #ddd; font-weight: 600; }
+    .art-intro .accroche { font-size: 19px; font-weight: 600; color: #ccc; line-height: 1.5; padding-top: 20px; margin-top: 4px; border-top: 0.5px solid var(--border); }
+
+    /* SECTION */
+    .s { padding: 44px 0; border-bottom: 0.5px solid var(--border); }
+    .s:last-child { border-bottom: none; }
+    .s-label { font-size: 9px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--red); margin-bottom: 22px; display: flex; align-items: center; gap: 10px; }
+    .s-label::before { content: ''; width: 14px; height: 1.5px; background: var(--red); display: block; }
+    .s p { font-size: 15px; line-height: 1.9; color: #888; margin-bottom: 16px; }
+    .s p:last-child { margin: 0; }
+    .s strong { color: #ccc; font-weight: 600; }
+
+    /* PHRASE CLÉ, juste du texte, pas d'encadrement */
+    .key { margin: 32px 0; padding-left: 18px; border-left: 2px solid var(--red); }
+    .key p { font-size: 19px; font-weight: 600; color: #ddd; line-height: 1.5; margin: 0; }
+
+    /* FRISE CHRONOLOGIQUE */
+    .timeline { margin: 36px 0; }
+    .tl-head { font-size: 9px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
+    .tl-item { display: grid; grid-template-columns: 76px 1fr; position: relative; }
+    .tl-item::after { content: ''; position: absolute; left: 75.5px; top: 0; bottom: 0; width: 0.5px; background: var(--border); }
+    .tl-date { font-size: 10px; font-weight: 700; color: var(--red); padding: 13px 12px 13px 0; text-align: right; line-height: 1.3; }
+    .tl-body { padding: 11px 0 11px 22px; border-bottom: 0.5px solid var(--border); position: relative; }
+    .tl-body::before { content: ''; position: absolute; left: -4px; top: 17px; width: 8px; height: 8px; border-radius: 50%; background: var(--red); z-index: 1; }
+    .tl-item:last-child .tl-body { border-bottom: none; }
+    .tl-body strong { font-size: 13px; color: #ccc; display: block; margin-bottom: 3px; font-weight: 600; }
+    .tl-body p { font-size: 12px; color: var(--muted); line-height: 1.55; margin: 0; }
+
+    /* SCREENSHOT */
+    .src { margin: 32px 0; }
+    .src img { width: 100%; display: block; border: 0.5px solid var(--border); }
+    .src-cap { padding: 7px 0; font-size: 10px; color: var(--muted); letter-spacing: 0.06em; display: flex; align-items: center; gap: 8px; }
+    .src-cap::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--red); flex-shrink: 0; }
+
+    /* STAT */
+    .stat { margin: 36px 0; display: flex; align-items: center; gap: 28px; padding: 28px 0; border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); }
+    .stat-n { font-family: 'Bebas Neue', Impact, sans-serif; font-size: 80px; color: var(--red); line-height: 1; flex-shrink: 0; }
+    .stat-t strong { font-size: 14px; color: #ccc; display: block; margin-bottom: 6px; font-weight: 600; }
+    .stat-t p { font-size: 12px; color: var(--muted); line-height: 1.6; margin: 0; }
+
+    /* CITATIONS OPPOSITION, sans encart, juste du style */
+    .cite { margin: 28px 0 20px; padding-left: 16px; border-left: 0.5px solid var(--border); }
+    .cite blockquote { font-size: 14px; color: #999; line-height: 1.7; margin-bottom: 7px; font-style: normal; }
+    .cite cite { font-size: 10px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; font-style: normal; }
+
+    /* CONCLUSION */
+    .conclu { padding: 44px 0 0; }
+    .conclu-title { font-family: 'Bebas Neue', Impact, sans-serif; font-size: clamp(38px, 6vw, 58px); line-height: 1; color: #fff; margin-bottom: 28px; }
+    .conclu-title span { color: var(--red); }
+    .conclu p { font-size: 15px; line-height: 1.9; color: #888; margin-bottom: 16px; }
+    .conclu strong { color: #ccc; }
+    .conclu-close { margin-top: 36px; padding-top: 24px; border-top: 0.5px solid var(--border); }
+    .conclu-close strong { font-size: 14px; color: #ccc; display: block; margin-bottom: 8px; font-weight: 600; }
+    .conclu-close p { font-size: 13px; color: var(--muted); margin: 0; }
+
+    /* FOOTER */
+    .art-ft { max-width: 720px; margin: 0 auto; padding: 28px 48px 60px; border-top: 0.5px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+    .art-ft-logo { font-family: 'Bebas Neue', Impact, sans-serif; font-size: 15px; letter-spacing: 2px; color: #222; }
+    .art-ft-logo span { color: var(--red); }
+    .art-ft a { font-size: 10px; color: var(--muted); text-decoration: none; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.15s; }
+    .art-ft a:hover { color: #fff; }
+
+    @media (max-width: 640px) {
+      .hero-content { padding: 0 20px 40px; }
+      .art { padding: 0 20px 80px; }
+      .stat { flex-direction: column; gap: 12px; align-items: flex-start; }
+      .art-ft { padding: 24px 20px 40px; flex-direction: column; gap: 14px; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="ub-redline"></div>
+  <nav class="ub-nav">
+    <div class="ub-logo"><img src="images/logo.png" alt="Under Bordeaux" style="height:52px;width:auto;" /></div>
+    <div class="ub-nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="enquetes.html" style="color:#fff;">Enquêtes</a>
+      <a href="podcasts.html">Podcasts</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <button class="ub-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-tag">Enquête · Capucins · Sécurité</div>
+      <h1 class="hero-title">Op coup de poing<br>aux Capus,<br><span>1 mois après.</span></h1>
+      <p class="hero-sub">130 policiers, le maire, le préfet, le procureur. Un dispositif spectaculaire. Mais pour qui ? Et surtout, déjà vu ?</p>
+      <div class="hero-meta">
+        <span>Under Bordeaux</span><div class="dot"></div>
+        <span>Mai 2026</span><div class="dot"></div>
+        <span>Under Bordeaux</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="art">
+
+    <!-- INTRO -->
+    <div class="art-intro">
+      <p><strong>27 avril 2026, 14h.</strong> Rue Élie-Gintrac, quartier des Capucins. Plus de 130 policiers quadrillent le quartier, à pied, à cheval, à VTT, à moto. Le préfet Étienne Guyot est là. Le procureur Renaud Gaudeul aussi. Thomas Cazenave, tout juste élu maire, en première ligne.</p>
+      <p>Le message est clair : la nouvelle équipe frappe fort, frappe vite. Un "véritable signal envoyé", selon ses propres mots.</p>
+      <p class="accroche">Mais un signal à qui ? Et surtout, est-ce vraiment nouveau ? On est allés voir.</p>
+    </div>
+
+    <!-- SÉQUENCE POLITIQUE -->
+    <div class="s">
+      <div class="s-label">La séquence politique</div>
+      <div class="timeline">
+        <div class="tl-head">Chronologie, Bordeaux, printemps 2026</div>
+        <div class="tl-item">
+          <div class="tl-date">Début avril</div>
+          <div class="tl-body">
+            <strong>Le Premier ministre à Bordeaux</strong>
+            <p>Lecornu et Nuñez annoncent un commissariat mixte aux Capucins. Cazenave s'empare de la séquence.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">9 avril</div>
+          <div class="tl-body">
+            <strong>Conférence de presse, Halle des Douves</strong>
+            <p>Treize jours après son investiture. Caméras nomades, présence renforcée, lutte contre les vélos débridés. Des annonces.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">27 avril</div>
+          <div class="tl-body">
+            <strong>L'opération "coup de poing"</strong>
+            <p>130 policiers déployés. L'opération avait fuité en amont via Révolution Permanente Bordeaux. Les dealers étaient prévenus avant les journalistes.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">Aujourd'hui</div>
+          <div class="tl-body">
+            <strong>La rue ressemble à ce qu'elle était avant.</strong>
+            <p>Les trafics n'ont pas disparu. Les habitants n'ont pas changé de discours.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHAPITRE I -->
+    <div class="s">
+      <div class="s-label">I. Le quartier, tel qu'il est vraiment</div>
+      <p>Le quartier des Capucins, c'est d'abord un marché populaire, des petits restaurateurs, une mixité sociale rare dans un centre-ville de plus en plus gentrifié. Un quartier vivant, bruyant, imparfait.</p>
+      <p>Mais depuis des années, la rue Élie-Gintrac concentre les tensions. <strong>En 2024, 400 contrôles dans cette seule rue</strong>, 266 interpellations, 5 kg de cocaïne saisis, selon le blog "Bouger à Bordeaux".</p>
+
+      <div class="src">
+        <img src="images/BougeraBDXchiffre.png" alt="Chiffres Bouger à Bordeaux 2024" />
+        <div class="src-cap">Source : Bouger à Bordeaux, 2024</div>
+      </div>
+
+      <p>Face à ça, des habitants se sont organisés <strong>dès 2020 au sein du collectif "Élie Ta Rue"</strong>, dénonçant un commissariat fermé le week-end, une présence policière aux abonnés absents aux heures creuses.</p>
+
+      <div class="key">
+        <p>Sur le terrain, le sentiment est unanime : l'insécurité existe, mais elle est grossie par les discours politiques.</p>
+      </div>
+    </div>
+
+    <!-- CHAPITRE II -->
+    <div class="s">
+      <div class="s-label">II. La parole aux habitants</div>
+      <p>On est allés à la rencontre des gens du quartier. Pas les élus. Les gens.</p>
+      <p>Oui, il se passe des choses. Oui, les trafics existent. Mais le quartier n'est pas une zone de guerre. Certains veulent plus d'opérations, mais <strong>quotidiennement, dans la durée</strong>, pas pour l'effet d'annonce.</p>
+      <p>La demande qui revient, unanime : <strong>moins de répression, plus d'accompagnement.</strong> Éducateurs, associations, présence sociale. Ce que 130 policiers à cheval ne peuvent pas remplacer.</p>
+
+      <div class="key">
+        <p>Cazenave a voulu frapper vite et fort. Une réactivité qui forcerait le respect si elle s'accompagnait d'une réflexion de fond. Ce dont on n'a pas encore vu la couleur.</p>
+      </div>
+
+      <!-- ✏️ AUDIO, décommenter quand disponible
+      <div style="margin:28px 0;">
+        <div style="font-size:9px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--red);margin-bottom:10px;">Témoignage · Habitant du quartier</div>
+        <audio controls style="width:100%;"><source src="audio/temoignage1.mp3" type="audio/mpeg" /></audio>
+      </div>
+      -->
+    </div>
+
+    <!-- CHAPITRE III -->
+    <div class="s">
+      <div class="s-label">III. Déjà vu — Hurmic faisait pareil</div>
+      <p>Avant Cazenave, il y avait Hurmic. Le GLTD existait déjà. Les partenariats entre police nationale et municipale, la rhétorique de la fermeté, tout ça préexistait.</p>
+
+      <div class="key">
+        <p>Hurmic faisait pareil. En silence.</p>
+      </div>
+
+      <p>La preuve vient du préfet lui-même. Étienne Guyot, le 27 avril en marge de l'opération :</p>
+
+      <div class="src">
+        <img src="images/284OPGUYOT.png" alt="Citation Guyot, 284 opérations en 2025" />
+        <div class="src-cap">Source : Rue89 Bordeaux, 27 avril 2026</div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-n">284</div>
+        <div class="stat-t">
+          <strong>Opérations menées sous Hurmic en 2025</strong>
+          <p>Chiffre confirmé par le préfet Guyot lui-même. La situation n'a pas fondamentalement changé. Qu'est-ce qui nous dit que la 285ème changera quelque chose ?</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHAPITRE IV -->
+    <div class="s">
+      <div class="s-label">IV. Ce qu'il faudrait vraiment</div>
+      <p>Ce qui frappe, c'est la convergence. Habitants et opposition disent la même chose : la répression seule ne règle rien.</p>
+
+      <div class="cite">
+        <blockquote>"Thomas Cazenave n'a utilisé qu'une fois le mot rénovation. Si on veut résoudre les problèmes, c'est par la rénovation, pas par des opérations policières."</blockquote>
+        <cite>Stéphane Pfeiffer, conseiller municipal d'opposition</cite>
+      </div>
+
+      <div class="cite">
+        <blockquote>"Quels postes budgétaires seront sacrifiés pour financer tout ça ?"</blockquote>
+        <cite>Harmonie Lecerf Meunier, opposition municipale</cite>
+      </div>
+
+      <p>Pourtant Cazenave continue. Commissariat mixte, contrat de sécurité intégré, armement des policiers municipaux en discussion. Les annonces s'accumulent, les résultats restent à prouver.</p>
+
+      <p>Ce qui interroge, c'est l'obstination. Quand les habitants demandent de l'accompagnement, quand l'opposition demande de la rénovation, quand le terrain dit autre chose que ce que racontent les conférences de presse — continuer dans la même direction, c'est un choix. Politique, assumé, et qui ne s'adresse pas à tout le monde.</p>
+
+      <p>C'est le symptôme d'une politique à la macroniste : on sait ce qui est bon pour vous, mieux que vous. On frappe fort, on communique, et on passe à autre chose. Rallumer les lumières la nuit, c'est bien. Mais encore faut-il les rallumer à tous les étages. <strong>On connaît cette méthode.</strong></p>
+
+      <div class="key">
+        <p>La répression sans accompagnement, ça a un nom : ça s'appelle du recyclage.</p>
+      </div>
+    </div>
+
+    <!-- CONCLUSION -->
+    <div class="conclu">
+      <h2 class="conclu-title">Pour qui<br><span>gouverne-t-il ?</span></h2>
+      <p>La question n'est pas de savoir si Thomas Cazenave veut le bien du quartier. La question est de savoir à qui s'adresse réellement ce type d'opération.</p>
+      <p>Car ceux qui réclament plus de sécurité et de fermeté ne sont pas nécessairement ceux qui vivent rue Élie-Gintrac. Et ceux qui subissent les contrôles, les fouilles, la présence policière au quotidien : <strong>ce sont les habitants des Capucins. Pas les autres.</strong></p>
+      <p>C'est peut-être là que réside le vrai problème. Pas dans les intentions, mais dans l'angle mort de toute politique sécuritaire qui parle du quartier sans vraiment lui parler.</p>
+      <div class="conclu-close">
+        <strong>284 opérations sous Hurmic. Une sous Cazenave. Le compteur tourne.</strong>
+        <p>Et si la meilleure façon de comprendre ce qui se passe aux Capucins, c'était simplement d'y aller ? Pas pour poser des questions avec un micro, pas pour cocher des cases. Juste pour être là. Sentir l'ambiance d'un mardi matin au marché, croiser les mêmes visages, écouter sans agenda. Ce quartier se raconte mieux dans ses ruelles qu'à la tribune d'une conférence de presse.</p>
+        <p>C'est ça, la mission d'Under Bordeaux. Aller là où les discours officiels ne vont pas. Se faire sa propre idée. Et vous donner les moyens de vous faire la vôtre.</p>
+        <p style="margin-top:16px;color:#E8000F;font-weight:600;">À suivre. De près.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="art-ft">
+    <div class="art-ft-logo">UNDER <span>BDX</span></div>
+    <a href="enquetes.html">← Retour aux enquêtes</a>
+  </div>
+
+  <div class="ub-redline"></div>
+  <script src="js/main.js"></script>
+
+</body>
+</html>

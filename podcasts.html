@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Podcasts — Under Bordeaux</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root { --red: #E8000F; --bg: #050505; --surface: #141414; --surface2: #141414; --border: #1a1a1a; --border2: #242424; --muted: #555; --sub: #2a2a2a; }
+    body { background: #141414; font-family: 'Inter', Arial, sans-serif; margin: 0; color: #fff; }
+
+    /* HERO */
+    .ub-hero { padding: 36px 40px 32px; background: linear-gradient(180deg, #120000 0%, var(--bg) 100%); border-bottom: 0.5px solid var(--border); display: flex; align-items: flex-end; gap: 32px; }
+    .ub-hero-artwork { width: 140px; height: 140px; border-radius: 6px; background: #1a1a1a; border: 0.5px solid #2a2a2a; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+    .ub-hero-artwork svg { width: 52px; height: 52px; fill: #E8000F; }
+    .ub-hero-info { flex: 1; }
+    .ub-hero-type { font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+    .ub-hero-title { font-family: Impact, Arial Black, sans-serif; font-size: clamp(36px, 5vw, 64px); text-transform: uppercase; line-height: 0.95; letter-spacing: -1px; margin-bottom: 14px; }
+    .ub-hero-title em { color: var(--red); font-style: normal; }
+    .ub-hero-desc { font-size: 13px; color: var(--muted); line-height: 1.65; max-width: 420px; margin-bottom: 20px; }
+    .ub-hero-stats { display: flex; gap: 24px; }
+    .ub-hero-stat { font-size: 11px; color: var(--muted); }
+    .ub-hero-stat b { color: #ccc; font-weight: 600; }
+
+    /* LAYOUT */
+    .ub-layout { display: grid; grid-template-columns: 1fr 1fr; }
+    .ub-col { border-right: 0.5px solid var(--border); }
+    .ub-col:last-child { border-right: none; }
+    .ub-col-head { padding: 20px 28px; border-bottom: 0.5px solid var(--border); background: var(--surface); display: flex; align-items: center; justify-content: space-between; }
+    .ub-col-label { display: flex; align-items: center; gap: 10px; }
+    .ub-col-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--red); }
+    .ub-col-name { font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+    .ub-col-count { font-size: 11px; color: var(--muted); }
+
+    /* DOSSIER */
+    .ub-folder { border-bottom: 0.5px solid var(--border); }
+    .ub-folder:last-child { border-bottom: none; }
+    .ub-folder-head { padding: 16px 28px; display: flex; align-items: center; gap: 16px; cursor: pointer; transition: background 0.15s; }
+    .ub-folder-head:hover { background: var(--surface2); }
+    .ub-folder-artwork { width: 44px; height: 44px; border-radius: 4px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; background: #1e1e1e; border: 0.5px solid #2a2a2a; }
+    .ub-folder-artwork-bg { display: none; }
+    .ub-folder-artwork svg { width: 20px; height: 20px; fill: #E8000F; position: relative; z-index: 1; }
+    .ub-folder-head:hover .ub-folder-artwork { border-color: #E8000F; background: #1a0000; }
+    .ub-folder-info { flex: 1; }
+    .ub-folder-tag { font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--red); margin-bottom: 3px; }
+    .ub-folder-name { font-size: 14px; font-weight: 600; color: #bbb; letter-spacing: -0.1px; margin-bottom: 1px; transition: color 0.15s; }
+    .ub-folder-head:hover .ub-folder-name { color: #fff; }
+    .ub-folder-meta { font-size: 11px; color: var(--muted); }
+    .ub-folder-right { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+    .ub-folder-count-txt { font-size: 11px; color: var(--sub); }
+    .ub-chev { color: var(--sub); font-size: 9px; transition: transform 0.22s, color 0.15s; }
+    .ub-chev.open { transform: rotate(90deg); color: var(--red); }
+
+    /* TRACKS */
+    .ub-tracks { display: none; background: #0e0e0e; border-top: 0.5px solid var(--border); }
+    .ub-tracks.open { display: block; }
+
+    /*
+    ✏️ INTÉGRATION SPOTIFY
+    Pour chaque épisode, tu peux soit :
+    1. Utiliser un fichier MP3 direct (src: 'chemin/vers/episode.mp3')
+    2. Intégrer un lecteur Spotify avec un iframe embed
+
+    Pour Spotify :
+    - Va sur open.spotify.com, trouve ton épisode
+    - Clique sur les ... > Partager > Intégrer
+    - Copie l'URL du iframe (ex: https://open.spotify.com/embed/episode/XXXX)
+    - Remplace spotifyEmbed: null par spotifyEmbed: 'https://open.spotify.com/embed/episode/XXXX'
+    
+    Le lecteur Spotify s'affichera directement dans la page.
+    */
+    .ub-spotify-embed { padding: 12px 28px 12px 86px; background: #070707; border-bottom: 0.5px solid var(--border); }
+    .ub-spotify-embed iframe { width: 100%; border-radius: 12px; border: none; }
+
+    .ub-track { padding: 12px 28px 12px 86px; display: flex; align-items: center; gap: 14px; border-bottom: 0.5px solid #121212; cursor: pointer; transition: background 0.12s; position: relative; }
+    .ub-track:last-child { border-bottom: none; }
+    .ub-track:hover { background: #121212; }
+    .ub-track.active { background: #0e0e0e; }
+    .ub-track-num { position: absolute; left: 28px; font-size: 12px; color: var(--sub); min-width: 24px; font-variant-numeric: tabular-nums; transition: opacity 0.15s; }
+    .ub-track.active .ub-track-num { color: var(--red); }
+    .ub-track-play-ico { position: absolute; left: 28px; opacity: 0; transition: opacity 0.15s; }
+    .ub-track:hover .ub-track-num { opacity: 0; }
+    .ub-track:hover .ub-track-play-ico { opacity: 1; }
+    .ub-track-play-ico svg { width: 14px; height: 14px; fill: #fff; }
+    .ub-track-info { flex: 1; }
+    .ub-track-title { font-size: 13px; font-weight: 500; color: #888; margin-bottom: 2px; transition: color 0.12s; }
+    .ub-track:hover .ub-track-title, .ub-track.active .ub-track-title { color: #fff; }
+    .ub-track-sub { font-size: 11px; color: var(--muted); }
+    .ub-track-right { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+    .ub-track-dur { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+    .ub-play-btn { width: 30px; height: 30px; border-radius: 50%; border: none; background: var(--red); display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: 0; transition: all 0.15s; flex-shrink: 0; transform: scale(0.8); }
+    .ub-track:hover .ub-play-btn { opacity: 1; transform: scale(1); }
+    .ub-track.active .ub-play-btn { opacity: 1; transform: scale(1); }
+    .ub-play-btn svg { width: 10px; height: 10px; fill: #fff; margin-left: 1px; }
+
+    /* VIDÉOS */
+    .ub-videos { display: none; background: #0e0e0e; border-top: 0.5px solid var(--border); padding: 16px 20px; }
+    .ub-videos.open { display: block; }
+    .ub-vgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .ub-vcard { background: var(--surface); border: 0.5px solid var(--border); border-radius: 8px; overflow: hidden; cursor: pointer; transition: all 0.2s; }
+    .ub-vcard:hover { background: var(--surface2); border-color: var(--border2); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0,0,0,0.6); }
+    .ub-vthumb { width: 100%; aspect-ratio: 16/9; background: #111; position: relative; overflow: hidden; }
+    .ub-vthumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s; }
+    .ub-vcard:hover .ub-vthumb img { transform: scale(1.04); }
+    .ub-voverlay { position: absolute; inset: 0; background: rgba(0,0,0,0.45); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s; }
+    .ub-vcard:hover .ub-voverlay { opacity: 1; }
+    .ub-vplay { width: 40px; height: 40px; border-radius: 50%; background: var(--red); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(232,0,15,0.4); }
+    .ub-vplay svg { width: 14px; height: 14px; fill: #fff; margin-left: 2px; }
+    .ub-vinfo { padding: 12px 14px; }
+    .ub-vtitle { font-size: 12px; font-weight: 500; color: #aaa; line-height: 1.4; margin-bottom: 4px; }
+    .ub-vcard:hover .ub-vtitle { color: #fff; }
+    .ub-vmeta { font-size: 10px; color: var(--muted); }
+
+    /* STATUS */
+    .ub-status { background: #040404; border-top: 0.5px solid var(--border); padding: 8px 40px; display: flex; justify-content: space-between; font-size: 10px; color: var(--sub); letter-spacing: 0.08em; text-transform: uppercase; }
+
+    /* PLAYER */
+    .ub-player { position: fixed; bottom: 0; left: 0; right: 0; height: 72px; background: rgba(10,10,10,0.98); backdrop-filter: blur(30px); border-top: 1px solid var(--red); display: flex; align-items: center; gap: 24px; padding: 0 40px; z-index: 50; transform: translateY(100%); transition: transform 0.3s cubic-bezier(0.4,0,0.2,1); }
+    .ub-player.visible { transform: translateY(0); }
+    .ub-player-art { width: 44px; height: 44px; border-radius: 5px; background: linear-gradient(135deg, #1a0000, #2a0505); flex-shrink: 0; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.5); }
+    .ub-player-art svg { width: 18px; height: 18px; fill: rgba(232,0,15,0.7); }
+    .ub-player-info { flex: 1; min-width: 0; }
+    .ub-player-title { font-size: 13px; font-weight: 600; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 2px; }
+    .ub-player-sub { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+    .ub-player-btn { width: 38px; height: 38px; border-radius: 50%; background: var(--red); border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; transition: all 0.18s; box-shadow: 0 4px 14px rgba(232,0,15,0.35); }
+    .ub-player-btn:hover { background: #c5000c; transform: scale(1.06); }
+    .ub-player-btn svg { width: 13px; height: 13px; fill: #fff; }
+    .ub-player-prog { flex: 1; max-width: 320px; }
+    .ub-player-bar { width: 100%; height: 3px; background: var(--border2); cursor: pointer; border-radius: 2px; margin-bottom: 5px; }
+    .ub-player-fill { height: 100%; background: var(--red); border-radius: 2px; width: 0%; transition: width 0.1s; }
+    .ub-player-times { display: flex; justify-content: space-between; font-size: 10px; color: var(--muted); font-variant-numeric: tabular-nums; }
+    .ub-player-close { background: none; border: none; color: var(--muted); font-size: 18px; cursor: pointer; transition: color 0.15s; padding: 4px; }
+    .ub-player-close:hover { color: #fff; }
+
+    /* MODAL VIDÉO */
+    .ub-vmodal-bg { position: fixed; inset: 0; background: rgba(0,0,0,0.96); display: flex; align-items: center; justify-content: center; z-index: 100; padding: 20px; backdrop-filter: blur(8px); }
+    .ub-vmodal-bg.hidden { display: none; }
+    .ub-vmodal { width: 720px; max-width: 100%; }
+    .ub-vmodal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+    .ub-vmodal-title { font-size: 14px; font-weight: 600; color: #fff; }
+    .ub-vmodal-close { background: none; border: none; color: var(--muted); font-size: 22px; cursor: pointer; transition: color 0.15s; }
+    .ub-vmodal-close:hover { color: #fff; }
+    .ub-vmodal iframe { width: 100%; aspect-ratio: 16/9; border: none; display: block; border-radius: 6px; }
+
+    @media (max-width: 640px) {
+      .ub-layout { grid-template-columns: 1fr; }
+      .ub-col { border-right: none; border-bottom: 0.5px solid var(--border); }
+      .ub-hero { flex-direction: column; padding: 32px 20px; }
+      .ub-hero-artwork { width: 120px; height: 120px; }
+      .ub-track { padding: 12px 16px 12px 48px; }
+      .ub-player { padding: 0 20px; gap: 12px; }
+      .ub-player-prog { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="ub-redline"></div>
+
+  <nav class="ub-nav">
+    <div class="ub-logo"><img src="images/logo.png" alt="Under Bordeaux" style="height:52px;width:auto;" /></div>
+    <div class="ub-nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="enquetes.html">Enquêtes</a>
+      <a href="podcasts.html" style="color:#fff;">Podcasts</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <button class="ub-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+
+  <div class="ub-hero">
+    <div class="ub-hero-artwork">
+      <svg viewBox="0 0 24 24" fill="none"><rect x="9" y="2" width="6" height="11" rx="3" fill="#E8000F"/><path d="M5 10a7 7 0 0 0 14 0" stroke="#E8000F" stroke-width="1.5" stroke-linecap="round"/><line x1="12" y1="17" x2="12" y2="21" stroke="#E8000F" stroke-width="1.5" stroke-linecap="round"/><line x1="9" y1="21" x2="15" y2="21" stroke="#E8000F" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </div>
+    <div class="ub-hero-info">
+      <div class="ub-hero-type">Bibliothèque · Under Bordeaux</div>
+      <h1 class="ub-hero-title">Nos <em>Podcasts</em></h1>
+      <p class="ub-hero-desc">Audio et vidéo — classés par sujet, du plus récent au plus ancien. Ouvre un dossier pour écouter ou regarder.</p>
+      <div class="ub-hero-stats">
+        <div class="ub-hero-stat"><b id="h-ep">0</b> épisodes</div>
+        <div class="ub-hero-stat"><b id="h-sub">0</b> sujets</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ub-layout">
+    <div class="ub-col">
+      <div class="ub-col-head">
+        <div class="ub-col-label"><div class="ub-col-dot"></div><div class="ub-col-name">Audio</div></div>
+        <div class="ub-col-count" id="audio-count">—</div>
+      </div>
+      <div id="audio-folders"></div>
+    </div>
+    <div class="ub-col">
+      <div class="ub-col-head">
+        <div class="ub-col-label"><div class="ub-col-dot"></div><div class="ub-col-name">Vidéo</div></div>
+        <div class="ub-col-count" id="video-count">—</div>
+      </div>
+      <div id="video-folders"></div>
+    </div>
+  </div>
+
+  <div class="ub-status">
+    <span id="status-count">—</span>
+    <span>Under Bordeaux · 2026</span>
+  </div>
+  <div class="ub-redline"></div>
+
+  <!-- PLAYER AUDIO (pour fichiers MP3 directs) -->
+  <div class="ub-player" id="player">
+    <div class="ub-player-art"><svg viewBox="0 0 24 24" fill="none"><rect x="9" y="2" width="6" height="11" rx="3" fill="#E8000F"/><path d="M5 10a7 7 0 0 0 14 0" stroke="#E8000F" stroke-width="1.5" stroke-linecap="round"/><line x1="12" y1="17" x2="12" y2="21" stroke="#E8000F" stroke-width="1.5" stroke-linecap="round"/><line x1="9" y1="21" x2="15" y2="21" stroke="#E8000F" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+    <div class="ub-player-info">
+      <div class="ub-player-title" id="ptitle">—</div>
+      <div class="ub-player-sub" id="psub">Under Bordeaux · Audio</div>
+    </div>
+    <button class="ub-player-btn" onclick="togglePlay()"><svg viewBox="0 0 10 12" id="picon"><polygon points="1,0 10,6 1,12"/></svg></button>
+    <div class="ub-player-prog">
+      <div class="ub-player-bar" onclick="seek(event)"><div class="ub-player-fill" id="pfill"></div></div>
+      <div class="ub-player-times"><span id="pcur">0:00</span><span id="pdur">0:00</span></div>
+    </div>
+    <button class="ub-player-close" onclick="stopPlayer()">✕</button>
+  </div>
+
+  <!-- MODAL VIDÉO YOUTUBE -->
+  <div class="ub-vmodal-bg hidden" id="vmodal">
+    <div class="ub-vmodal">
+      <div class="ub-vmodal-head">
+        <div class="ub-vmodal-title" id="vtitle">—</div>
+        <button class="ub-vmodal-close" onclick="closeVid()">✕</button>
+      </div>
+      <iframe id="viframe" src="" allowfullscreen allow="autoplay"></iframe>
+    </div>
+  </div>
+
+  <audio id="aud"></audio>
+  <script src="js/main.js"></script>
+  <script>
+    /*
+    ════════════════════════════════════════════════════════
+    ✏️ GUIDE D'INTÉGRATION — UNDER BORDEAUX PODCASTS
+    ════════════════════════════════════════════════════════
+
+    ── AUDIO (audioSubjects) ──────────────────────────────
+    Chaque sujet a un tableau episodes[]. Pour chaque épisode :
+
+    Option A — Fichier MP3 direct :
+      src: 'audio/episode1.mp3'   ← place ton fichier dans un dossier audio/
+      spotifyEmbed: null
+
+    Option B — Lecteur Spotify intégré :
+      src: null
+      spotifyEmbed: 'https://open.spotify.com/embed/episode/XXXXXXXXXXXX'
+      → Sur Spotify : ouvre l'épisode > ··· > Partager > Intégrer l'épisode
+      → Copie uniquement l'URL du src de l'iframe
+
+    ── VIDÉO (videoSubjects) ──────────────────────────────
+    Pour chaque vidéo :
+      youtubeId: 'XXXXXXXXXXX'
+      → Sur YouTube : dans l'URL youtube.com/watch?v=XXXXXXXXXXX
+        prendre la partie après v=
+
+    ════════════════════════════════════════════════════════
+    */
+
+    const audioSubjects = [
+      {
+        id: 'a1',
+        tag: 'Enquête',
+        name: 'Logement à Bordeaux',
+        meta: 'Prochainement',
+        icon: '<path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/>',
+        episodes: [
+          {
+            id: 't1',
+            title: "Le prix de l'immobilier explose à Bordeaux",
+            sub: 'Prochainement',
+            dur: '28:14',
+            src: null,
+            spotifyEmbed: null
+            // ✏️ Exemple Spotify : spotifyEmbed: 'https://open.spotify.com/embed/episode/XXXX'
+            // ✏️ Exemple MP3    : src: 'audio/episode1.mp3'
+          },
+          {
+            id: 't2',
+            title: "Témoignages — étudiants sans logement",
+            sub: 'Prochainement',
+            dur: '34:02',
+            src: null,
+            spotifyEmbed: null
+          },
+        ]
+      },
+      {
+        id: 'a2',
+        tag: 'Analyse',
+        name: 'Inégalités scolaires',
+        meta: 'Prochainement',
+        icon: '<path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/>',
+        episodes: [
+          {
+            id: 't3',
+            title: "L'école à deux vitesses à Bordeaux",
+            sub: 'Prochainement',
+            dur: '22:45',
+            src: null,
+            spotifyEmbed: null
+          },
+          {
+            id: 't4',
+            title: "Parole à des profs de lycée",
+            sub: 'Prochainement',
+            dur: '41:30',
+            src: null,
+            spotifyEmbed: null
+          },
+        ]
+      },
+      // ✏️ AJOUTER UN NOUVEAU SUJET AUDIO :
+      // {
+      //   id: 'a3',
+      //   tag: 'Micro-trottoir',
+      //   name: 'Nom du sujet',
+      //   meta: 'date',
+      //   icon: '<path d="..."/>',
+      //   episodes: [
+      //     { id: 't5', title: 'Titre', sub: 'date · auteur', dur: '00:00', src: null, spotifyEmbed: null },
+      //   ]
+      // },
+    ];
+
+    const videoSubjects = [
+      {
+        id: 'v1',
+        tag: 'Terrain',
+        name: 'Micros-trottoir',
+        meta: 'Prochainement',
+        icon: '<path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.91-3c-.49 0-.9.36-.98.85C16.52 14.2 14.47 16 12 16s-4.52-1.8-4.93-4.15c-.08-.49-.49-.85-.98-.85-.61 0-1.09.54-1 1.14.49 3 2.89 5.35 5.91 5.78V20c0 .55.45 1 1 1s1-.45 1-1v-2.08c3.02-.43 5.42-2.78 5.91-5.78.1-.6-.39-1.14-1-1.14z"/>',
+        videos: [
+          { title: 'Micro-trottoir — Le logement', date: 'Prochainement', youtubeId: 'VOTRE_ID_YOUTUBE' },
+          { title: "Micro-trottoir — L'école", date: 'Prochainement', youtubeId: 'VOTRE_ID_YOUTUBE' },
+        ]
+      },
+      {
+        id: 'v2',
+        tag: 'Interview',
+        name: 'Interviews',
+        meta: 'Prochainement',
+        icon: '<path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/>',
+        videos: [
+          { title: 'Interview — Un prof de lycée', date: 'Prochainement', youtubeId: 'VOTRE_ID_YOUTUBE' },
+          { title: 'Interview — Une étudiante sans logement', date: 'Prochainement', youtubeId: 'VOTRE_ID_YOUTUBE' },
+        ]
+      },
+      // ✏️ AJOUTER UN NOUVEAU SUJET VIDÉO :
+      // {
+      //   id: 'v3',
+      //   tag: 'Reportage',
+      //   name: 'Nom du sujet',
+      //   meta: 'date',
+      //   icon: '<path d="..."/>',
+      //   videos: [
+      //     { title: 'Titre', date: 'date', youtubeId: 'XXXXXXXXXXXX' },
+      //   ]
+      // },
+    ];
+
+    // ── RENDU ────────────────────────────────────────────
+
+    function renderAudio() {
+      const total = audioSubjects.reduce((a, s) => a + s.episodes.length, 0);
+      document.getElementById('audio-count').textContent = total + ' épisodes · ' + audioSubjects.length + ' sujets';
+      document.getElementById('audio-folders').innerHTML = audioSubjects.map(s => `
+        <div class="ub-folder">
+          <div class="ub-folder-head" onclick="toggle('${s.id}')">
+            <div class="ub-folder-artwork"><div class="ub-folder-artwork-bg"></div><svg viewBox="0 0 24 24">${s.icon}</svg></div>
+            <div class="ub-folder-info">
+              <div class="ub-folder-tag">${s.tag}</div>
+              <div class="ub-folder-name">${s.name}</div>
+              <div class="ub-folder-meta">${s.episodes.length} épisode${s.episodes.length > 1 ? 's' : ''} · ${s.meta}</div>
+            </div>
+            <div class="ub-folder-right">
+              <div class="ub-folder-count-txt">${s.episodes.length} ép.</div>
+              <div class="ub-chev" id="chev-${s.id}">▶</div>
+            </div>
+          </div>
+          <div class="ub-tracks" id="body-${s.id}">
+            ${s.episodes.map((e, i) => `
+              <div class="ub-track" id="tr-${e.id}" onclick="play('${e.id}')">
+                <div class="ub-track-num" id="num-${e.id}">${String(i + 1).padStart(2, '0')}</div>
+                <div class="ub-track-play-ico"><svg viewBox="0 0 10 12"><polygon points="1,0 10,6 1,12"/></svg></div>
+                <div class="ub-track-info">
+                  <div class="ub-track-title">${e.title}</div>
+                  <div class="ub-track-sub">${e.sub}</div>
+                </div>
+                <div class="ub-track-right">
+                  <div class="ub-track-dur">${e.dur}</div>
+                  <button class="ub-play-btn" id="btn-${e.id}" onclick="event.stopPropagation();play('${e.id}')">
+                    <svg viewBox="0 0 10 12"><polygon points="1,0 10,6 1,12"/></svg>
+                  </button>
+                </div>
+              </div>
+              ${e.spotifyEmbed ? `
+              <div class="ub-spotify-embed" id="spotify-${e.id}" style="display:none;">
+                <iframe src="${e.spotifyEmbed}" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+              </div>` : ''}
+            `).join('')}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderVideo() {
+      const total = videoSubjects.reduce((a, s) => a + s.videos.length, 0);
+      document.getElementById('video-count').textContent = total + ' vidéos · ' + videoSubjects.length + ' sujets';
+      document.getElementById('video-folders').innerHTML = videoSubjects.map(s => `
+        <div class="ub-folder">
+          <div class="ub-folder-head" onclick="toggle('${s.id}')">
+            <div class="ub-folder-artwork"><div class="ub-folder-artwork-bg"></div><svg viewBox="0 0 24 24">${s.icon}</svg></div>
+            <div class="ub-folder-info">
+              <div class="ub-folder-tag">${s.tag}</div>
+              <div class="ub-folder-name">${s.name}</div>
+              <div class="ub-folder-meta">${s.videos.length} vidéo${s.videos.length > 1 ? 's' : ''} · ${s.meta}</div>
+            </div>
+            <div class="ub-folder-right">
+              <div class="ub-folder-count-txt">${s.videos.length} vid.</div>
+              <div class="ub-chev" id="chev-${s.id}">▶</div>
+            </div>
+          </div>
+          <div class="ub-videos" id="body-${s.id}">
+            <div class="ub-vgrid">
+              ${s.videos.map(v => `
+                <div class="ub-vcard" onclick="openVid('${v.youtubeId}', '${v.title.replace(/'/g, "\\'")}')">
+                  <div class="ub-vthumb">
+                    <img src="https://img.youtube.com/vi/${v.youtubeId}/hqdefault.jpg" alt="${v.title}" onerror="this.style.display='none'" />
+                    <div class="ub-voverlay"><div class="ub-vplay"><svg viewBox="0 0 10 12"><polygon points="1,0 10,6 1,12"/></svg></div></div>
+                  </div>
+                  <div class="ub-vinfo">
+                    <div class="ub-vtitle">${v.title}</div>
+                    <div class="ub-vmeta">${v.date}</div>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function updateStats() {
+      const totalEp = audioSubjects.reduce((a, s) => a + s.episodes.length, 0);
+      const totalVid = videoSubjects.reduce((a, s) => a + s.videos.length, 0);
+      const totalSub = audioSubjects.length + videoSubjects.length;
+      document.getElementById('h-ep').textContent = totalEp + totalVid;
+      document.getElementById('h-sub').textContent = totalSub;
+      document.getElementById('status-count').textContent = (totalEp + totalVid) + ' contenus · ' + totalSub + ' sujets';
+    }
+
+    function toggle(id) {
+      const body = document.getElementById('body-' + id);
+      const chev = document.getElementById('chev-' + id);
+      body.classList.toggle('open');
+      chev.classList.toggle('open', body.classList.contains('open'));
+    }
+
+    // ── AUDIO PLAYER ─────────────────────────────────────
+    const aud = document.getElementById('aud');
+    let cur = null, playing = false;
+    function getAllEp() { const all = {}; audioSubjects.forEach(s => s.episodes.forEach(e => { all[e.id] = e; })); return all; }
+
+    function play(id) {
+      const ep = getAllEp()[id];
+      document.querySelectorAll('.ub-track').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.ub-play-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('[id^="spotify-"]').forEach(el => el.style.display = 'none');
+      document.getElementById('tr-' + id).classList.add('active');
+      document.getElementById('btn-' + id).classList.add('active');
+      cur = id;
+      document.getElementById('ptitle').textContent = ep.title;
+      document.getElementById('psub').textContent = ep.sub;
+
+      if (ep.spotifyEmbed) {
+        // Afficher le lecteur Spotify sous la piste
+        const spotifyEl = document.getElementById('spotify-' + id);
+        if (spotifyEl) spotifyEl.style.display = 'block';
+        document.getElementById('player').classList.remove('visible');
+      } else if (ep.src) {
+        // Fichier MP3 direct
+        aud.src = ep.src;
+        aud.play();
+        playing = true;
+        icon(true);
+        document.getElementById('player').classList.add('visible');
+      } else {
+        // Pas encore disponible
+        playing = false;
+        icon(false);
+        document.getElementById('player').classList.add('visible');
+      }
+    }
+
+    function togglePlay() {
+      if (!cur) return;
+      playing ? (aud.pause(), playing = false) : (aud.play(), playing = true);
+      icon(playing);
+    }
+
+    function stopPlayer() {
+      aud.pause(); playing = false; cur = null;
+      document.getElementById('player').classList.remove('visible');
+      document.querySelectorAll('.ub-track').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.ub-play-btn').forEach(b => b.classList.remove('active'));
+    }
+
+    function icon(p) {
+      document.getElementById('picon').innerHTML = p
+        ? '<rect x="1" y="0" width="3" height="12"/><rect x="6" y="0" width="3" height="12"/>'
+        : '<polygon points="1,0 10,6 1,12"/>';
+    }
+
+    function seek(e) { if (!aud.duration) return; aud.currentTime = (e.offsetX / e.currentTarget.offsetWidth) * aud.duration; }
+    function fmt(s) { return Math.floor(s / 60) + ':' + String(Math.floor(s % 60)).padStart(2, '0'); }
+    aud.addEventListener('timeupdate', () => {
+      if (!aud.duration) return;
+      document.getElementById('pfill').style.width = (aud.currentTime / aud.duration * 100) + '%';
+      document.getElementById('pcur').textContent = fmt(aud.currentTime);
+      document.getElementById('pdur').textContent = fmt(aud.duration);
+    });
+
+    // ── VIDÉO YOUTUBE ─────────────────────────────────────
+    function openVid(ytId, title) {
+      document.getElementById('vtitle').textContent = title;
+      document.getElementById('viframe').src = 'https://www.youtube.com/embed/' + ytId + '?autoplay=1';
+      document.getElementById('vmodal').classList.remove('hidden');
+    }
+    function closeVid() {
+      document.getElementById('viframe').src = '';
+      document.getElementById('vmodal').classList.add('hidden');
+    }
+    document.getElementById('vmodal').addEventListener('click', e => { if (e.target.id === 'vmodal') closeVid(); });
+
+    // ── INIT ──────────────────────────────────────────────
+    renderAudio();
+    renderVideo();
+    updateStats();
+    setTimeout(() => {
+      document.querySelectorAll('.ub-tracks, .ub-videos').forEach(b => b.classList.add('open'));
+      document.querySelectorAll('.ub-chev').forEach(c => c.classList.add('open'));
+    }, 50);
+  </script>
+
+</body>
+</html>
