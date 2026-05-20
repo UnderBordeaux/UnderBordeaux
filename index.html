@@ -27,7 +27,9 @@
   </nav>
 
   <!-- HERO -->
-  <section class="ub-hero">
+  <section class="ub-hero" style="position:relative;overflow:hidden;">
+    <div style="position:absolute;inset:0;background:linear-gradient(to bottom, rgba(8,8,8,0.5) 0%, rgba(20,20,20,0.9) 60%, #141414 100%), url('images/mairie.jpg') center/cover no-repeat;z-index:0;"></div>
+    <div style="position:relative;z-index:1;">
     <div class="ub-eyebrow">
       <div class="ub-eyebrow-dot"></div>
       <span>Bordeaux · Média indépendant · 2026</span>
@@ -52,22 +54,23 @@
         <div style="font-size:12px;color:#444;line-height:1.6;">Ici, personne n'a plus de crédit qu'un autre. Under Bordeaux, c'est votre voix autant que la nôtre.</div>
       </div>
       <!-- Carousel pleine largeur -->
-      <div id="carousel-wrapper" style="flex:1;overflow:hidden;min-width:0;position:relative;height:180px;">
+      <div id="carousel-wrapper" style="flex:1;overflow:hidden;min-width:0;position:relative;height:240px;">
         <div id="carousel-track" style="display:flex;height:100%;transition:transform 0.5s ease;will-change:transform;">
           <!-- ✏️ Mets tes photos dans images/ nommées photo1.jpg à photo5.jpg -->
-          <img src="images/tram-victoire.jpg" class="c-slide" alt="" style="flex-shrink:0;height:100%;object-fit:cover;" />
-          <img src="images/porte-victoire.jpg" class="c-slide" alt="" style="flex-shrink:0;height:100%;object-fit:cover;" />
-          <img src="images/logo-podcast.jpg" class="c-slide" alt="" style="flex-shrink:0;height:100%;object-fit:cover;" />
-          <img src="images/terrasse-victoire1.jpg" class="c-slide" alt="" style="flex-shrink:0;height:100%;object-fit:cover;" />
-          <img src="images/fac-victoire.png" class="c-slide" alt="" style="flex-shrink:0;height:100%;object-fit:cover;" />
+          <img src="images/tram-victoire.jpg" class="c-slide" alt="" style="flex-shrink:0;width:100%;height:240px;object-fit:cover;" />
+          <img src="images/porte-victoire.jpg" class="c-slide" alt="" style="flex-shrink:0;width:100%;height:240px;object-fit:cover;" />
+          <img src="images/logo-podcast.jpg" class="c-slide" alt="" style="flex-shrink:0;width:100%;height:240px;object-fit:cover;" />
+          <img src="images/terrasse-victoire1.jpg" class="c-slide" alt="" style="flex-shrink:0;width:100%;height:240px;object-fit:cover;" />
+          <img src="images/fac-victoire.png" class="c-slide" alt="" style="flex-shrink:0;width:100%;height:240px;object-fit:cover;" />
         </div>
         <!-- Flèches superposées sur les photos -->
         <button id="prev-btn" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.5);border:0.5px solid #555;color:#fff;width:30px;height:30px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;z-index:2;">&#8592;</button>
         <button id="next-btn" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.5);border:0.5px solid #555;color:#fff;width:30px;height:30px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;z-index:2;">&#8594;</button>
       </div>
       <!-- Logo -->
-      <img src="images/logo.png" alt="Under Bordeaux" style="height:180px;width:auto;opacity:0.95;flex-shrink:0;" />
+      <img src="images/logo.png" alt="Under Bordeaux" style="height:240px;width:auto;opacity:0.95;flex-shrink:0;" />
     </div>
+      </div>
   </section>
 
   <!-- ENQUÊTES À LA UNE -->
