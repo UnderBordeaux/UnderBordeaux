@@ -107,8 +107,8 @@
     .profil-play-btn svg { width: 8px; height: 8px; fill: #fff; margin-left: 1px; }
     .profil-play-label { font-size: 10px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
     .profil-card.active .profil-play-label { color: var(--red); }
-    .profil-audio-bar { height: 3px; background: var(--border); margin-top: 6px; border-radius: 2px; overflow: hidden; display: none; }
-    .profil-card.active .profil-audio-bar { display: block; }
+    .profil-audio-bar { height: 3px; background: var(--border); margin-top: 6px; border-radius: 2px; overflow: hidden; display: block; cursor: pointer; }
+    .profil-audio-bar:hover { height: 4px; }
     .profil-audio-fill { height: 100%; background: var(--red); width: 0%; transition: width 0.1s; border-radius: 2px; }
     @media (max-width: 640px) { .profils-grid { grid-template-columns: repeat(2, 1fr); } }
 
@@ -260,7 +260,7 @@
                 <button class="profil-play-btn" id="btn-karine"><svg viewBox="0 0 10 12"><polygon points="1,0 10,6 1,12"/></svg></button>
                 <div class="profil-play-label">Écouter l'interview</div>
               </div>
-              <div class="profil-audio-bar"><div class="profil-audio-fill" id="fill-karine"></div></div>
+              <div class="profil-audio-bar" onclick="event.stopPropagation();seekProfil(event,'karine')"><div class="profil-audio-fill" id="fill-karine"></div></div>
             </div>
           </div>
 
@@ -273,7 +273,7 @@
                 <button class="profil-play-btn" id="btn-mila"><svg viewBox="0 0 10 12"><polygon points="1,0 10,6 1,12"/></svg></button>
                 <div class="profil-play-label">Écouter l'interview</div>
               </div>
-              <div class="profil-audio-bar"><div class="profil-audio-fill" id="fill-mila"></div></div>
+              <div class="profil-audio-bar" onclick="event.stopPropagation();seekProfil(event,'mila')"><div class="profil-audio-fill" id="fill-mila"></div></div>
             </div>
           </div>
 
@@ -286,7 +286,7 @@
                 <button class="profil-play-btn" id="btn-ben"><svg viewBox="0 0 10 12"><polygon points="1,0 10,6 1,12"/></svg></button>
                 <div class="profil-play-label">Écouter l'interview</div>
               </div>
-              <div class="profil-audio-bar"><div class="profil-audio-fill" id="fill-ben"></div></div>
+              <div class="profil-audio-bar" onclick="event.stopPropagation();seekProfil(event,'ben')"><div class="profil-audio-fill" id="fill-ben"></div></div>
             </div>
           </div>
 
@@ -299,7 +299,7 @@
                 <button class="profil-play-btn" id="btn-unai"><svg viewBox="0 0 10 12"><polygon points="1,0 10,6 1,12"/></svg></button>
                 <div class="profil-play-label">Écouter l'interview</div>
               </div>
-              <div class="profil-audio-bar"><div class="profil-audio-fill" id="fill-unai"></div></div>
+              <div class="profil-audio-bar" onclick="event.stopPropagation();seekProfil(event,'unai')"><div class="profil-audio-fill" id="fill-unai"></div></div>
             </div>
           </div>
 
@@ -534,6 +534,13 @@
       document.getElementById('art-player').classList.remove('visible');
     }
 
+    function seekProfil(e, id) {
+      const aud = document.getElementById('aud-' + id);
+      if (!aud.duration) return;
+      const rect = e.currentTarget.getBoundingClientRect();
+      const ratio = (e.clientX - rect.left) / rect.width;
+      aud.currentTime = Math.max(0, Math.min(1, ratio)) * aud.duration;
+    }
     function fmtTime(s) { return Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0'); }
 </script>
 </body>
