@@ -18,7 +18,7 @@
     <div class="ub-nav-links">
       <a href="index.html">Accueil</a>
       <a href="enquetes.html">Enquêtes</a>
-      <a href="podcasts.html">Multimédia</a>
+      <a href="podcasts.html">Podcasts</a>
       <a href="#contact">Contact</a>
     </div>
     <button class="ub-hamburger" aria-label="Menu">
@@ -27,20 +27,18 @@
   </nav>
 
   <!-- HERO -->
-  <section class="ub-hero" style="position:relative;overflow:hidden;text-shadow:0 2px 8px rgba(0,0,0,0.8);">
-    <div style="position:absolute;inset:0;background:linear-gradient(to bottom, rgba(8,8,8,0.35) 0%, rgba(20,20,20,0.85) 65%, #141414 100%), url('images/rue-élie-gintrac.jpg') center/cover no-repeat;z-index:0;"></div>
-    <div style="position:relative;z-index:1;">
+  <section class="ub-hero">
     <div class="ub-eyebrow">
       <div class="ub-eyebrow-dot"></div>
-      <span style="color:#fff;">Bordeaux · Média indépendant · 2026</span>
+      <span>Bordeaux · Média indépendant · 2026</span>
     </div>
     <!-- ✏️ MODIFIER LE SLOGAN ICI -->
     <h1>On creuse.<br>On parle.<br><em>On laisse parler.</em></h1>
     <!-- ✏️ MODIFIER LA DESCRIPTION ICI -->
-    <p class="ub-hero-sub" style="color:#fff;">Articles, podcasts, micros-trottoirs et reportages, proches de tous depuis Bordeaux. Notre objectif : rétablir une visibilité équitable et mettre en lumière les violences que notre société étouffe.</p>
+    <p class="ub-hero-sub">Articles, podcasts, micros-trottoirs et reportages, proches de tous depuis Bordeaux. Notre objectif : rétablir une visibilité équitable et mettre en lumière les violences que notre société étouffe.</p>
     <div class="ub-hero-actions">
       <a href="enquetes.html"><button class="ub-btn-primary">Nos enquêtes</button></a>
-      <a href="podcasts.html"><button class="ub-btn-secondary" style="color:#fff;border-color:#fff;">Nos multimédia →</button></a>
+      <a href="podcasts.html"><button class="ub-btn-secondary">Écouter le podcast →</button></a>
     </div>
 
     <!-- ENCART -->
@@ -51,26 +49,25 @@
       <div style="display:flex;flex-direction:column;gap:10px;flex-shrink:0;width:280px;justify-content:center;">
         <div style="font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#E8000F;">Notre engagement</div>
         <div style="font-family:Impact,Arial Black,sans-serif;font-size:clamp(15px,2vw,22px);text-transform:uppercase;color:#fff;line-height:1.15;">La parole appartient à tout le monde.<br>On est juste là pour la porter.</div>
-        <div style="font-size:12px;color:#fff;line-height:1.6;">Ici, personne n'a plus de crédit qu'un autre. Under Bordeaux, c'est votre voix autant que la nôtre.</div>
+        <div style="font-size:12px;color:#444;line-height:1.6;">Ici, personne n'a plus de crédit qu'un autre. Under Bordeaux, c'est votre voix autant que la nôtre.</div>
       </div>
       <!-- Carousel pleine largeur -->
-      <div id="carousel-wrapper" style="flex:1;overflow:hidden;min-width:0;position:relative;height:380px;">
+      <div id="carousel-wrapper" style="flex:1;overflow:hidden;min-width:0;position:relative;height:180px;">
         <div id="carousel-track" style="display:flex;height:100%;transition:transform 0.5s ease;will-change:transform;">
           <!-- ✏️ Mets tes photos dans images/ nommées photo1.jpg à photo5.jpg -->
-          <img src="images/tram-victoire.jpg" class="c-slide" alt="" style="flex-shrink:0;width:260px;height:380px;object-fit:cover;margin-right:8px;" />
-          <img src="images/porte-victoire.jpg" class="c-slide" alt="" style="flex-shrink:0;width:260px;height:380px;object-fit:cover;margin-right:8px;" />
-          <img src="images/logo-podcast.jpg" class="c-slide" alt="" style="flex-shrink:0;width:260px;height:380px;object-fit:cover;margin-right:8px;" />
-          <img src="images/terrasse-victoire1.jpg" class="c-slide" alt="" style="flex-shrink:0;width:260px;height:380px;object-fit:cover;margin-right:8px;" />
-          <img src="images/fac-victoire2.jpg" class="c-slide" alt="" style="flex-shrink:0;width:260px;height:380px;object-fit:cover;margin-right:8px;" />
+          <img src="images/tram-victoire.jpg" class="c-slide" alt="" style="flex-shrink:0;height:100%;object-fit:cover;" />
+          <img src="images/porte-victoire.jpg" class="c-slide" alt="" style="flex-shrink:0;height:100%;object-fit:cover;" />
+          <img src="images/logo-podcast.jpg" class="c-slide" alt="" style="flex-shrink:0;height:100%;object-fit:cover;" />
+          <img src="images/terrasse-victoire1.jpg" class="c-slide" alt="" style="flex-shrink:0;height:100%;object-fit:cover;" />
+          <img src="images/fac-victoire.png" class="c-slide" alt="" style="flex-shrink:0;height:100%;object-fit:cover;" />
         </div>
         <!-- Flèches superposées sur les photos -->
         <button id="prev-btn" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.5);border:0.5px solid #555;color:#fff;width:30px;height:30px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;z-index:2;">&#8592;</button>
         <button id="next-btn" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.5);border:0.5px solid #555;color:#fff;width:30px;height:30px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;z-index:2;">&#8594;</button>
       </div>
       <!-- Logo -->
-      <img src="images/logo.png" alt="Under Bordeaux" style="height:380px;width:auto;opacity:0.95;flex-shrink:0;" />
+      <img src="images/logo.png" alt="Under Bordeaux" style="height:180px;width:auto;opacity:0.95;flex-shrink:0;" />
     </div>
-      </div>
   </section>
 
   <!-- ENQUÊTES À LA UNE -->
@@ -112,8 +109,8 @@
         <div class="ub-card-img placeholder"></div>
         <div class="ub-card-body">
           <div class="ub-card-tag">Investigation</div>
-          <div class="ub-card-title">Bientôt</div>
-          <div class="ub-card-desc">...</div>
+          <div class="ub-card-title">Prochain article à venir</div>
+          <div class="ub-card-desc">Description courte de l'article.</div>
           <div class="ub-card-meta">Under Bordeaux · 2026</div>
         </div>
       </a>
@@ -123,8 +120,8 @@
         <div class="ub-card-img placeholder"></div>
         <div class="ub-card-body">
           <div class="ub-card-tag">Analyse</div>
-          <div class="ub-card-title">Bientôt</div>
-          <div class="ub-card-desc">...</div>
+          <div class="ub-card-title">Prochain article à venir</div>
+          <div class="ub-card-desc">Description courte de l'article.</div>
           <div class="ub-card-meta">Under Bordeaux · 2026</div>
         </div>
       </a>
@@ -132,10 +129,10 @@
     </div>
   </section>
 
-  <!-- Multimédia À LA UNE -->
+  <!-- PODCASTS À LA UNE -->
   <section class="ub-section">
     <div class="ub-section-head">
-      <div class="ub-section-name">Multimédia à la une</div>
+      <div class="ub-section-name">Podcasts</div>
       <a class="ub-section-all" href="podcasts.html">Tout écouter →</a>
     </div>
     <!--
@@ -162,7 +159,7 @@
         <div class="ub-pod-card-info">
           <div class="ub-pod-card-tag">Audio · À venir</div>
           <div class="ub-pod-card-title">Premier épisode bientôt disponible</div>
-          <div class="ub-pod-card-desc">Restez branchés — notre premier podcast arrive prochainement.</div>
+          <div class="ub-pod-card-desc">Restez connectés — notre premier podcast arrive prochainement.</div>
         </div>
         <div class="ub-pod-card-right">
           <div class="ub-pod-card-dur">—</div>
@@ -183,7 +180,7 @@
         <div class="ub-pod-card-info">
           <div class="ub-pod-card-tag">Audio · À venir</div>
           <div class="ub-pod-card-title">Deuxième épisode bientôt disponible</div>
-          <div class="ub-pod-card-desc">Restez branchés — nos premiers podcasts arrivent prochainement.</div>
+          <div class="ub-pod-card-desc">Description courte de l'épisode à venir.</div>
         </div>
         <div class="ub-pod-card-right">
           <div class="ub-pod-card-dur">—</div>
