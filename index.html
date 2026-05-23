@@ -6,6 +6,24 @@
   <title>Under Bordeaux — Média indépendant</title>
   <!-- Feuille de styles -->
   <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .ub-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.88); display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
+    .ub-overlay.hidden { display: none; }
+    .ub-modal { background: #111; border: 0.5px solid #333; width: 420px; max-width: 100%; }
+    .ub-modal-head { background: #121212; border-bottom: 0.5px solid #222; padding: 10px 14px; display: flex; align-items: center; justify-content: space-between; }
+    .ub-modal-head-title { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #E8000F; }
+    .ub-modal-close { background: none; border: none; color: #555; font-size: 16px; cursor: pointer; }
+    .ub-modal-close:hover { color: #fff; }
+    .ub-modal-body { padding: 16px; }
+    .ub-modal-title { font-family: Impact, Arial Black, sans-serif; font-size: 18px; text-transform: uppercase; color: #fff; line-height: 1.15; margin-bottom: 6px; }
+    .ub-modal-meta { font-size: 11px; color: #444; margin-bottom: 10px; }
+    .ub-modal-desc { font-size: 13px; color: #666; line-height: 1.65; }
+    .ub-modal-foot { display: flex; gap: 8px; padding: 12px 16px; border-top: 0.5px solid #1e1e1e; }
+    .ub-modal-open { flex: 1; background: #E8000F; border: none; color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 10px; cursor: pointer; transition: background 0.15s; }
+    .ub-modal-open:hover { background: #c5000c; }
+    .ub-modal-cancel { background: none; border: 0.5px solid #2a2a2a; color: #555; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 10px 14px; cursor: pointer; transition: all 0.15s; }
+    .ub-modal-cancel:hover { border-color: #555; color: #fff; }
+  </style>
 </head>
 <body>
 
@@ -92,7 +110,7 @@
     <div class="ub-cards-grid">
 
       <!-- ARTICLE 1 — À LA UNE -->
-      <a href="article1.html" class="ub-card-art featured">
+      <div class="ub-card-art featured" onclick="openModal(1)" style="cursor:pointer;">
         <div class="ub-card-img">
           <img src="images/capucins.jpg" alt="Op coup de poing aux Capus" />
           <div class="ub-card-overlay"></div>
@@ -104,10 +122,10 @@
           <div class="ub-card-desc">Les "nouvelles" méthodes de Cazenave sont-elles réellement impactantes pour les habitants des Capucins ?</div>
           <div class="ub-card-meta">Under Bordeaux · Mai 2026</div>
         </div>
-      </a>
+      </div>
 
       <!-- ✏️ ARTICLE 2 -->
-      <a href="enquetes.html" class="ub-card-art">
+      <div class="ub-card-art" onclick="openModal(2)" style="cursor:pointer;">
         <div class="ub-card-img placeholder"></div>
         <div class="ub-card-body">
           <div class="ub-card-tag">Investigation</div>
@@ -115,10 +133,10 @@
           <div class="ub-card-desc">Description courte de l'article.</div>
           <div class="ub-card-meta">Under Bordeaux · 2026</div>
         </div>
-      </a>
+      </div>
 
       <!-- ✏️ ARTICLE 3 -->
-      <a href="enquetes.html" class="ub-card-art">
+      <div class="ub-card-art" onclick="openModal(3)" style="cursor:pointer;">
         <div class="ub-card-img placeholder"></div>
         <div class="ub-card-body">
           <div class="ub-card-tag">Analyse</div>
@@ -126,7 +144,7 @@
           <div class="ub-card-desc">Description courte de l'article.</div>
           <div class="ub-card-meta">Under Bordeaux · 2026</div>
         </div>
-      </a>
+      </div>
 
     </div>
   </section>
@@ -253,6 +271,55 @@
 
     setSlideWidths();
     window.addEventListener('resize', () => { setSlideWidths(); go(current); });
+  </script>
+
+  <!-- MODAL À LA UNE -->
+  <div class="ub-overlay hidden" id="overlay">
+    <div class="ub-modal">
+      <div class="ub-modal-head">
+        <div class="ub-modal-head-title" id="m-tag">—</div>
+        <button class="ub-modal-close" onclick="closeModal()">✕</button>
+      </div>
+      <div id="m-img" style="width:100%;height:180px;background:#1a1a1a;display:flex;align-items:center;justify-content:center;font-size:48px;">📁</div>
+      <div class="ub-modal-body">
+        <div class="ub-modal-title" id="m-title">—</div>
+        <div class="ub-modal-meta" id="m-meta">—</div>
+        <div class="ub-modal-desc" id="m-desc">—</div>
+      </div>
+      <div class="ub-modal-foot">
+        <button class="ub-modal-open" id="m-open-btn">Ouvrir l'article →</button>
+        <button class="ub-modal-cancel" onclick="closeModal()">Fermer</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const articlesUne = [
+      { id:1, tag:"Enquête", title:"Opération coup de poing aux Capucins, 1 mois après.", date:"24 mai 2026", auteur:"Under Bordeaux", desc:"Investigations sur les méthodes répressives des équipes municipales à Bordeaux, au sein du quartier des Capucins.", img:"images/capucins.jpg", href:"article1.html" },
+      { id:2, tag:"Investigation", title:"Prochain article à venir", date:"???", auteur:"Under Bordeaux", desc:"Prochainement.", img:null, href:"enquetes.html" },
+      { id:3, tag:"Analyse", title:"Prochain article à venir", date:"???", auteur:"Under Bordeaux", desc:"Prochainement.", img:null, href:"enquetes.html" },
+    ];
+
+    function openModal(id) {
+      const a = articlesUne.find(x => x.id === id);
+      document.getElementById("m-tag").textContent = a.tag;
+      document.getElementById("m-title").textContent = a.title;
+      document.getElementById("m-meta").textContent = a.date + " · " + a.auteur;
+      document.getElementById("m-desc").textContent = a.desc;
+      document.getElementById("m-img").innerHTML = a.img
+        ? `<img src="${a.img}" alt="${a.title}" style="width:100%;height:180px;object-fit:cover;display:block;" />`
+        : `<div style="width:100%;height:180px;background:#1a1a1a;display:flex;align-items:center;justify-content:center;font-size:48px;">📁</div>`;
+      document.getElementById("m-open-btn").onclick = () => { window.location.href = a.href; };
+      document.getElementById("overlay").classList.remove("hidden");
+    }
+
+    function closeModal() {
+      document.getElementById("overlay").classList.add("hidden");
+    }
+
+    document.getElementById("overlay").addEventListener("click", e => {
+      if (e.target.id === "overlay") closeModal();
+    });
   </script>
 </body>
 </html>
