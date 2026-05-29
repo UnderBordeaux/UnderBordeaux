@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="fr">
 <head>
 <meta charset="utf-8"/>
@@ -7,17 +6,16 @@
 <title>Op coup de poing aux Capus, 1 mois après, Under Bordeaux</title>
 <link href="css/style.css" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
     :root { --red: #E8000F; --bg: #0e0e0e; --border: #1a1a1a; --muted: #4a4a4a; --surface: #121212; }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { background: var(--bg); color: #fff; font-family: 'Inter', sans-serif; }
 
-    /* HERO */
     .hero { position: relative; height: 88vh; min-height: 520px; display: flex; align-items: flex-end; overflow: hidden; }
     .hero-bg { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(8,8,8,0.1) 0%, rgba(8,8,8,0.98) 100%), url('images/capucins-hero.jpg') center/cover no-repeat; }
     .hero-content { position: relative; z-index: 2; padding: 0 48px 52px; max-width: 860px; }
-    .hero-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #fff; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; background: rgba(232,0,15,0.85); padding: 4px 10px; display: inline-flex; }
+    .hero-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #fff; margin-bottom: 14px; background: rgba(232,0,15,0.85); padding: 4px 10px; display: inline-flex; align-items: center; gap: 10px; }
     .hero-tag::before { content: ''; width: 20px; height: 1.5px; background: var(--red); display: block; }
     .hero-title { font-family: 'Bebas Neue', Impact, sans-serif; font-size: clamp(52px, 9vw, 100px); line-height: 0.93; color: #fff; margin-bottom: 18px; }
     .hero-title span { color: var(--red); }
@@ -25,17 +23,14 @@
     .hero-meta { display: flex; align-items: center; gap: 14px; font-size: 11px; color: #fff; letter-spacing: 0.1em; text-transform: uppercase; }
     .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--red); }
 
-    /* ARTICLE BODY */
     .art { max-width: 720px; margin: 0 auto; padding: 0 48px 100px; }
 
-    /* INTRO */
     .art-intro { padding: 52px 0 44px; border-bottom: 0.5px solid var(--border); }
     .art-intro p { font-size: 17px; line-height: 1.9; color: #888; font-weight: 300; margin-bottom: 16px; }
     .art-intro p:last-child { margin: 0; }
     .art-intro strong { color: #ddd; font-weight: 600; }
     .art-intro .accroche { font-size: 19px; font-weight: 600; color: #ccc; line-height: 1.5; padding-top: 20px; margin-top: 4px; border-top: 0.5px solid var(--border); }
 
-    /* SECTION */
     .s { padding: 44px 0; border-bottom: 0.5px solid var(--border); }
     .s:last-child { border-bottom: none; }
     .s-label { font-size: 9px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--red); margin-bottom: 22px; display: flex; align-items: center; gap: 10px; }
@@ -44,11 +39,9 @@
     .s p:last-child { margin: 0; }
     .s strong { color: #ccc; font-weight: 600; }
 
-    /* PHRASE CLÉ, juste du texte, pas d'encadrement */
     .key { margin: 32px 0; padding-left: 18px; border-left: 2px solid var(--red); }
     .key p { font-size: 19px; font-weight: 600; color: #ddd; line-height: 1.5; margin: 0; }
 
-    /* FRISE CHRONOLOGIQUE */
     .timeline { margin: 36px 0; }
     .tl-head { font-size: 9px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
     .tl-item { display: grid; grid-template-columns: 76px 1fr; position: relative; }
@@ -60,24 +53,20 @@
     .tl-body strong { font-size: 13px; color: #ccc; display: block; margin-bottom: 3px; font-weight: 600; }
     .tl-body p { font-size: 12px; color: var(--muted); line-height: 1.55; margin: 0; }
 
-    /* SCREENSHOT */
     .src { margin: 32px 0; }
     .src img { width: 100%; display: block; border: 0.5px solid var(--border); }
     .src-cap { padding: 7px 0; font-size: 10px; color: var(--muted); letter-spacing: 0.06em; display: flex; align-items: center; gap: 8px; }
     .src-cap::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--red); flex-shrink: 0; }
 
-    /* STAT */
     .stat { margin: 36px 0; display: flex; align-items: center; gap: 28px; padding: 28px 0; border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); }
     .stat-n { font-family: 'Bebas Neue', Impact, sans-serif; font-size: 80px; color: var(--red); line-height: 1; flex-shrink: 0; }
     .stat-t strong { font-size: 14px; color: #ccc; display: block; margin-bottom: 6px; font-weight: 600; }
     .stat-t p { font-size: 12px; color: var(--muted); line-height: 1.6; margin: 0; }
 
-    /* CITATIONS OPPOSITION, sans encart, juste du style */
     .cite { margin: 28px 0 20px; padding-left: 16px; border-left: 0.5px solid var(--border); }
     .cite blockquote { font-size: 14px; color: #999; line-height: 1.7; margin-bottom: 7px; font-style: normal; }
     .cite cite { font-size: 10px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; font-style: normal; }
 
-    /* CONCLUSION */
     .conclu { padding: 44px 0 0; }
     .conclu-title { font-family: 'Bebas Neue', Impact, sans-serif; font-size: clamp(38px, 6vw, 58px); line-height: 1; color: #fff; margin-bottom: 28px; }
     .conclu-title span { color: var(--red); }
@@ -87,8 +76,6 @@
     .conclu-close strong { font-size: 14px; color: #ccc; display: block; margin-bottom: 8px; font-weight: 600; }
     .conclu-close p { font-size: 14px; color: #fff; line-height: 1.8; margin-bottom: 10px; }
 
-
-    /* ── BLOC PROFILS ── */
     .profils { margin: 40px 0; }
     .profils-label { font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
     .profils-label::before { content: ''; width: 14px; height: 1.5px; background: var(--red); display: block; }
@@ -113,8 +100,6 @@
     .profil-audio-fill { height: 100%; background: var(--red); width: 0%; transition: width 0.1s; border-radius: 2px; }
     @media (max-width: 640px) { .profils-grid { grid-template-columns: repeat(2, 1fr); } }
 
-
-    /* ── PLAYER FIXE ── */
     .art-player { position: fixed; bottom: 0; left: 0; right: 0; height: 72px; background: rgba(8,8,8,0.98); backdrop-filter: blur(30px); border-top: 1px solid var(--red); display: flex; align-items: center; gap: 16px; padding: 0 32px; z-index: 100; transform: translateY(100%); transition: transform 0.3s cubic-bezier(0.4,0,0.2,1); }
     .art-player.visible { transform: translateY(0); }
     .art-player-avatar { width: 44px; height: 44px; border-radius: 4px; overflow: hidden; flex-shrink: 0; border: 0.5px solid var(--border); }
@@ -133,7 +118,6 @@
     .art-player-close { background: none; border: none; color: var(--muted); font-size: 18px; cursor: pointer; transition: color 0.15s; padding: 4px; flex-shrink: 0; }
     .art-player-close:hover { color: #fff; }
 
-    /* FOOTER */
     .art-ft { max-width: 720px; margin: 0 auto; padding: 28px 48px 60px; border-top: 0.5px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
     .art-ft-logo { font-family: 'Bebas Neue', Impact, sans-serif; font-size: 15px; letter-spacing: 2px; color: #fff; }
     .art-ft-logo span { color: var(--red); }
@@ -146,7 +130,7 @@
       .stat { flex-direction: column; gap: 12px; align-items: flex-start; }
       .art-ft { padding: 24px 20px 40px; flex-direction: column; gap: 14px; align-items: flex-start; }
     }
-  </style>
+</style>
 </head>
 <body>
 <div class="ub-redline"></div>
@@ -160,6 +144,7 @@
 </div>
 <button aria-label="Menu" class="ub-hamburger"><span></span><span></span><span></span></button>
 </nav>
+
 <!-- HERO -->
 <div class="hero">
 <div class="hero-bg"></div>
@@ -174,7 +159,9 @@
 </div>
 </div>
 </div>
+
 <div class="art">
+
 <!-- INTRO -->
 <div class="art-intro">
 <p><strong>27 avril 2026, 14h.</strong> Rue Élie-Gintrac, quartier des Capucins. Plus de 130 policiers quadrillent le quartier, à pied, à cheval, à VTT, à moto. Le préfet Étienne Guyot est là. Le procureur Renaud Gaudeul aussi. Thomas Cazenave, tout juste élu maire, en première ligne.</p>
@@ -185,6 +172,7 @@
 <p>Le message est clair : la nouvelle équipe frappe fort, frappe vite. Un "véritable signal envoyé", selon ses propres mots.</p>
 <p class="accroche">Mais un signal à qui ? Et surtout, est-ce vraiment nouveau ? On est allés voir.</p>
 </div>
+
 <!-- SÉQUENCE POLITIQUE -->
 <div class="s">
 <div class="s-label">La séquence politique</div>
@@ -220,10 +208,11 @@
 </div>
 </div>
 </div>
+
 <!-- CHAPITRE I -->
 <div class="s">
 <div class="s-label">I. Le quartier, tel qu'il est vraiment</div>
-<p>Le quartier des Capucins, c'est d'abord un marché populaire, des petits restaurateurs, une mixité sociale rare dans un centre-ville de plus en plus gentrifié. Un quartier vivant, bruyant, imparfait.</p>
+<p>Le quartier des Capucins, c'est d'abord un marché populaire, des petits restaurateurs, une mixité sociale rare dans un centre-ville de plus en plus gentrifié. Antonio et Lucho, qui fréquentent les lieux depuis des années, parlent carrément de melting pot. Karine, elle, décrit un quartier "cosmopolite, hors-normes pour Bordeaux, avec son humanité." Mila, barwoman au café depuis trois ans, dit simplement : un beau mélange de cultures et de classes sociales. Un quartier vivant, bruyant, imparfait.</p>
 <p>Mais depuis des années, la rue Élie-Gintrac concentre les tensions. <strong>En 2024, 400 contrôles dans cette seule rue</strong>, 266 interpellations, 5 kg de cocaïne saisis, selon le blog "Bouger à Bordeaux".</p>
 <div class="src">
 <img alt="Chiffres Bouger à Bordeaux 2024" src="images/BougeraBDXchiffre.png"/>
@@ -233,108 +222,99 @@
 <div class="key">
 <p>Sur le terrain, le sentiment est unanime : l'insécurité existe, mais elle est grossie par les discours politiques.</p>
 </div>
+<p>Ben, cinq ans dans le quartier, ne s'est "jamais senti agressé ou en menace." Mila non plus — même si elle comprend que la nuit, c'est une autre ambiance. Unai va plus loin : pour lui, la mauvaise réputation du quartier tient davantage à la stigmatisation de ses habitants qu'aux faits réels. La délinquance existe — Antonio ne le nie pas, lui qui voit passer tout depuis sa terrasse depuis dix ans — mais elle découle, disent-ils tous, de la précarité. Pas d'une nature particulière du quartier.</p>
 </div>
+
 <!-- CHAPITRE II -->
 <div class="s">
-<div class="s-label">II. La parole aux habitants</div>
-<p>On est allés à la rencontre des gens du quartier. Pas les élus. Les gens.</p>
-<p>Oui, il se passe des choses. Oui, les trafics existent. Mais le quartier n'est pas une zone de guerre. Certains veulent plus d'opérations, mais <strong>quotidiennement, dans la durée</strong>, pas pour l'effet d'annonce.</p>
-<p>La demande qui revient, unanime : <strong>moins de répression, plus d'accompagnement.</strong> Éducateurs, associations, présence sociale. Ce que 130 policiers à cheval ne peuvent pas remplacer.</p>
+<div class="s-label">II. L'opération, vue de l'intérieur</div>
+<p>Le 27 avril, 130 policiers débarquent. Karine les a vus depuis le marché — des agents qui se baladaient à l'intérieur, là où d'habitude il n'y en a pas. Inhabituel. Mais pour elle, difficile de voir autre chose qu'un coup de com', mis en scène, sans réel impact factuel.</p>
+<p>Lucho dit la même chose : utile, peut-être, si c'était non-stop. Une fois, ça ne sert à rien. Unai, lui, n'était pas là ce jour-là mais a vu les images. Ce qu'il y a vu, c'est surtout des contrôles au faciès, ciblant en priorité les personnes racisées d'un quartier qui l'est majoritairement. Un biais qui, selon lui, annule d'emblée tout impact réel.</p>
+<p>Sur le terrain, un mois après, personne ne constate de changement. Antonio résume : <strong>"Avec les caméras, c'était bien mis en scène."</strong></p>
+
 <div class="profils">
 <div class="profils-label">Ils nous ont parlé</div>
-<div class="profils-grid"><div class="profil-card" id="profil-karine" onclick="toggleProfil('karine')">
+<div class="profils-grid">
+<div class="profil-card" id="profil-karine" onclick="toggleProfil('karine')">
 <div class="profil-avatar"><img alt="Karine" src="images/interview-karine.jpg"/></div>
 <div class="profil-info">
 <div class="profil-name">Karine</div>
-<div class="profil-desc">Habitante du quartier, terrasse du café des Capucins</div>
+<div class="profil-desc">Habitante du quartier · Terrasse du café des Capucins</div>
 <div class="profil-play">
-<button class="profil-play-btn" id="btn-karine"><svg viewbox="0 0 10 12"><polygon points="1,0 10,6 1,12"></polygon></svg></button>
+<button class="profil-play-btn" id="btn-karine"><svg viewBox="0 0 10 12"><polygon points="1,0 10,6 1,12"></polygon></svg></button>
 <div class="profil-play-label">Écouter l'interview</div>
 </div>
 <div class="profil-audio-bar" onclick="event.stopPropagation();seekProfil(event,'karine')"><div class="profil-audio-fill" id="fill-karine"></div></div>
 </div>
-</div><div class="profil-card" id="profil-lucho" onclick="toggleProfil('lucho')">
-<div class="profil-avatar">
-<img alt="Lucho" src="images/interview-lucho.png"/>
 </div>
+<div class="profil-card" id="profil-lucho" onclick="toggleProfil('lucho')">
+<div class="profil-avatar"><img alt="Lucho" src="images/interview-lucho.png"/></div>
 <div class="profil-info">
 <div class="profil-name">Lucho</div>
 <div class="profil-desc">Habitué du quartier · Devant le Marché des Capucins</div>
 <div class="profil-play">
-<button class="profil-play-btn" id="btn-lucho" onclick="event.stopPropagation();toggleProfil('lucho')">
-<svg viewbox="0 0 10 12"><polygon points="1,0 10,6 1,12"></polygon></svg>
-</button>
+<button class="profil-play-btn" id="btn-lucho" onclick="event.stopPropagation();toggleProfil('lucho')"><svg viewBox="0 0 10 12"><polygon points="1,0 10,6 1,12"></polygon></svg></button>
 <span class="profil-play-label">Écouter</span>
 </div>
 <div class="profil-audio-bar" onclick="event.stopPropagation();seekProfil(event,'lucho')"><div class="profil-audio-fill" id="fill-lucho"></div></div>
 </div>
-</div><div class="profil-card" id="profil-mila" onclick="toggleProfil('mila')">
+</div>
+<div class="profil-card" id="profil-mila" onclick="toggleProfil('mila')">
 <div class="profil-avatar"><img alt="Mila" src="images/interview-mila.jpg"/></div>
 <div class="profil-info">
 <div class="profil-name">Mila</div>
 <div class="profil-desc">Barwoman au Café des Capucins</div>
 <div class="profil-play">
-<button class="profil-play-btn" id="btn-mila"><svg viewbox="0 0 10 12"><polygon points="1,0 10,6 1,12"></polygon></svg></button>
+<button class="profil-play-btn" id="btn-mila"><svg viewBox="0 0 10 12"><polygon points="1,0 10,6 1,12"></polygon></svg></button>
 <div class="profil-play-label">Écouter l'interview</div>
 </div>
 <div class="profil-audio-bar" onclick="event.stopPropagation();seekProfil(event,'mila')"><div class="profil-audio-fill" id="fill-mila"></div></div>
 </div>
-</div><div class="profil-card" id="profil-antonio" onclick="toggleProfil('antonio')">
-<div class="profil-avatar">
-<img alt="Antonio" src="images/interview-antonio.png"/>
 </div>
+<div class="profil-card" id="profil-antonio" onclick="toggleProfil('antonio')">
+<div class="profil-avatar"><img alt="Antonio" src="images/interview-antonio.png"/></div>
 <div class="profil-info">
 <div class="profil-name">Antonio</div>
 <div class="profil-desc">Chef · Restaurant Boccaccia</div>
 <div class="profil-play">
-<button class="profil-play-btn" id="btn-antonio" onclick="event.stopPropagation();toggleProfil('antonio')">
-<svg viewbox="0 0 10 12"><polygon points="1,0 10,6 1,12"></polygon></svg>
-</button>
+<button class="profil-play-btn" id="btn-antonio" onclick="event.stopPropagation();toggleProfil('antonio')"><svg viewBox="0 0 10 12"><polygon points="1,0 10,6 1,12"></polygon></svg></button>
 <span class="profil-play-label">Écouter</span>
 </div>
 <div class="profil-audio-bar" onclick="event.stopPropagation();seekProfil(event,'antonio')"><div class="profil-audio-fill" id="fill-antonio"></div></div>
 </div>
-</div><div class="profil-card" id="profil-ben" onclick="toggleProfil('ben')">
+</div>
+<div class="profil-card" id="profil-ben" onclick="toggleProfil('ben')">
 <div class="profil-avatar"><img alt="Ben" src="images/interview-ben.jpg"/></div>
 <div class="profil-info">
 <div class="profil-name">Ben</div>
-<div class="profil-desc">Habitué du marché, rencontré devant l'entrée</div>
+<div class="profil-desc">Habitué du marché · Devant l'entrée</div>
 <div class="profil-play">
-<button class="profil-play-btn" id="btn-ben"><svg viewbox="0 0 10 12"><polygon points="1,0 10,6 1,12"></polygon></svg></button>
+<button class="profil-play-btn" id="btn-ben"><svg viewBox="0 0 10 12"><polygon points="1,0 10,6 1,12"></polygon></svg></button>
 <div class="profil-play-label">Écouter l'interview</div>
 </div>
 <div class="profil-audio-bar" onclick="event.stopPropagation();seekProfil(event,'ben')"><div class="profil-audio-fill" id="fill-ben"></div></div>
 </div>
-</div><div class="profil-card" id="profil-unai" onclick="toggleProfil('unai')">
+</div>
+<div class="profil-card" id="profil-unai" onclick="toggleProfil('unai')">
 <div class="profil-avatar"><img alt="Unai" src="images/interview-unai.jpg"/></div>
 <div class="profil-info">
 <div class="profil-name">Unai</div>
-<div class="profil-desc">Passant rencontré côté marché des Capucins</div>
+<div class="profil-desc">Passant · Côté marché des Capucins</div>
 <div class="profil-play">
-<button class="profil-play-btn" id="btn-unai"><svg viewbox="0 0 10 12"><polygon points="1,0 10,6 1,12"></polygon></svg></button>
+<button class="profil-play-btn" id="btn-unai"><svg viewBox="0 0 10 12"><polygon points="1,0 10,6 1,12"></polygon></svg></button>
 <div class="profil-play-label">Écouter l'interview</div>
 </div>
 <div class="profil-audio-bar" onclick="event.stopPropagation();seekProfil(event,'unai')"><div class="profil-audio-fill" id="fill-unai"></div></div>
 </div>
-</div></div>
 </div>
-<!-- AUDIO HIDDEN -->
-<audio id="aud-antonio"><source src="https://res.cloudinary.com/dvezrm3ds/video/upload/v1779972014/Interview-antonio_ljffy5.mp3" type="audio/mpeg"/></audio>
-<audio id="aud-lucho"><source src="https://res.cloudinary.com/dvezrm3ds/video/upload/v1779972014/Interview-lucho_z4sm9v.mp3" type="audio/mpeg"/></audio>
-<audio id="aud-karine"><source src="https://res.cloudinary.com/dvezrm3ds/video/upload/Interview_Karine.mp3.lnk_mmddtc" type="audio/mpeg"/></audio>
-<audio id="aud-mila"><source src="https://res.cloudinary.com/dvezrm3ds/video/upload/Interview_Mila_xbaxbt" type="audio/mpeg"/></audio>
-<audio id="aud-ben"><source src="https://res.cloudinary.com/dvezrm3ds/video/upload/Interview_Ben_vtupho" type="audio/mpeg"/></audio>
-<audio id="aud-unai"><source src="https://res.cloudinary.com/dvezrm3ds/video/upload/Interview-unai_qqdc1w" type="audio/mpeg"/></audio>
+</div>
+</div>
+
 <div class="key">
 <p>Cazenave a voulu frapper vite et fort. Une réactivité qui forcerait le respect si elle s'accompagnait d'une réflexion de fond. Ce dont on n'a pas encore vu la couleur.</p>
 </div>
-<!-- ✏️ AUDIO, décommenter quand disponible
-      <div style="margin:28px 0;">
-        <div style="font-size:9px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--red);margin-bottom:10px;">Témoignage · Habitant du quartier</div>
-        <audio controls style="width:100%;"><source src="audio/temoignage1.mp3" type="audio/mpeg" /></audio>
-      </div>
-      -->
 </div>
+
 <!-- CHAPITRE III -->
 <div class="s">
 <div class="s-label">III. Déjà vu — Hurmic faisait pareil</div>
@@ -354,9 +334,11 @@
 <p>Chiffre confirmé par le préfet Guyot lui-même. La situation n'a pas fondamentalement changé. Qu'est-ce qui nous dit que la 285ème changera quelque chose ?</p>
 </div>
 </div>
+<p>Karine, elle, a une formule qui résume bien l'ambiance : on essaie d'"aseptiser" le quartier. Les bancs enlevés, contestés par tout le monde. Plus de police. Une impression de nettoyage cosmétique plutôt que de transformation réelle. Antonio, qui nettoie lui-même la place le dimanche matin avec son équipe parce que personne d'autre ne le fait, confirme : depuis Cazenave, c'est "peut-être un peu pire."</p>
 </div>
+
 <!-- CHAPITRE IV -->
-<div class="s" style="padding-top:20px;">
+<div class="s">
 <div class="s-label">IV. Ce qu'il faudrait vraiment</div>
 <p>Ce qui frappe, c'est la convergence. Habitants et opposition disent la même chose : la répression seule ne règle rien.</p>
 <div class="cite">
@@ -367,24 +349,27 @@
 <blockquote>"Quels postes budgétaires seront sacrifiés pour financer tout ça ?"</blockquote>
 <cite>Harmonie Lecerf Meunier, opposition municipale</cite>
 </div>
+<p>Les habitants disent exactement la même chose. Mila préfère les services sociaux et les associations à la présence policière. Ben aussi — pour accompagner ceux qui en ont besoin, pas pour quadriller. Unai est direct : la répression ne traite pas le problème, elle stigmatise des gens qui n'ont souvent pas d'autre choix.</p>
+<p>Antonio, lui, a une vision concrète. Ce qu'il veut, c'est que la place vive — des vrais bancs, des événements le soir, une bande de jazz, des vernissages. "Organiser des choses le vendredi, le mercredi soir. Pas le dimanche matin où tout le monde est déjà là." Il a même pris rendez-vous avec la mairie pour le dire en face. Pas pour se plaindre — pour voir si les promesses tiennent.</p>
 <p>Pourtant Cazenave continue. Commissariat mixte, contrat de sécurité intégré, armement des policiers municipaux en discussion. Les annonces s'accumulent, les résultats restent à prouver.</p>
 <p>Ce qui interroge, c'est l'obstination. Quand les habitants demandent de l'accompagnement, quand l'opposition demande de la rénovation, quand le terrain dit autre chose que ce que racontent les conférences de presse — continuer dans la même direction, c'est un choix. Politique, assumé, et qui ne s'adresse pas à tout le monde.</p>
-<p>C'est le symptôme d'une politique à la macroniste : on sait ce qui est bon pour vous, mieux que vous. On frappe fort, on communique, et on passe à autre chose. Rallumer les lumières la nuit, c'est bien. Mais encore faut-il les rallumer à tous les étages. <strong>On connaît cette méthode.</strong></p>
+<p>C'est le symptôme d'une politique à la macroniste : on sait ce qui est bon pour vous, mieux que vous. On frappe fort, on communique, et on passe à autre chose. <strong>On connaît cette méthode.</strong></p>
 <div class="key">
 <p>La répression sans accompagnement, ça a un nom : ça s'appelle du recyclage.</p>
 </div>
 </div>
+
 <!-- CONCLUSION -->
 <div class="conclu">
 <h2 class="conclu-title">Pour qui<br/><span>gouverne-t-il ?</span></h2>
 <p>La question n'est pas de savoir si Thomas Cazenave veut le bien du quartier. La question est de savoir à qui s'adresse réellement ce type d'opération.</p>
 <p>Car ceux qui réclament plus de sécurité et de fermeté ne sont pas nécessairement ceux qui vivent rue Élie-Gintrac. Et ceux qui subissent les contrôles, les fouilles, la présence policière au quotidien : <strong>ce sont les habitants des Capucins. Pas les autres.</strong></p>
+<p>Karine le dit sans détour : <strong>"Ils veulent faire des Capucins les Chartrons. Mais les Capucins, ils ne les connaissent pas."</strong> Ben confirme : il n'a jamais vu un élu venir poser des questions sur le terrain. Jamais. Ce que font des associations externes, pas la municipalité.</p>
 <p>C'est peut-être là que réside le vrai problème. Pas dans les intentions, mais dans l'angle mort de toute politique sécuritaire qui parle du quartier sans vraiment lui parler.</p>
 <div class="conclu-close">
 <strong style="text-decoration:underline;text-underline-offset:4px;">284 opérations sous Hurmic. Une sous Cazenave. Le compteur tourne.</strong>
 <p>Et si la meilleure façon de comprendre ce qui se passe aux Capucins, c'était simplement d'y aller ? Pas pour poser des questions avec un micro, pas pour cocher des cases. Juste pour être là. Sentir l'ambiance d'un mardi matin au marché, croiser les mêmes visages, écouter sans agenda. Ce quartier se raconte mieux dans ses ruelles qu'à la tribune d'une conférence de presse.</p>
 <p>C'est ça, la mission d'Under Bordeaux. Aller là où les discours officiels ne vont pas. Se faire sa propre idée. Et vous donner les moyens de vous faire la vôtre.</p>
-<!-- COMPARAISON PHOTOS -->
 <div style="margin:36px -160px;">
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
 <div>
@@ -401,12 +386,22 @@
 </div>
 </div>
 </div>
+
 <!-- FOOTER -->
 <div class="art-ft">
 <div class="art-ft-logo">UNDER <span>BDX</span></div>
 <a href="enquetes.html">← Retour aux enquêtes</a>
 </div>
 <div class="ub-redline"></div>
+
+<!-- AUDIO HIDDEN -->
+<audio id="aud-antonio"><source src="https://res.cloudinary.com/dvezrm3ds/video/upload/v1779972014/Interview-antonio_ljffy5.mp3" type="audio/mpeg"/></audio>
+<audio id="aud-lucho"><source src="https://res.cloudinary.com/dvezrm3ds/video/upload/v1779972014/Interview-lucho_z4sm9v.mp3" type="audio/mpeg"/></audio>
+<audio id="aud-karine"><source src="https://res.cloudinary.com/dvezrm3ds/video/upload/Interview_Karine.mp3.lnk_mmddtc" type="audio/mpeg"/></audio>
+<audio id="aud-mila"><source src="https://res.cloudinary.com/dvezrm3ds/video/upload/Interview_Mila_xbaxbt" type="audio/mpeg"/></audio>
+<audio id="aud-ben"><source src="https://res.cloudinary.com/dvezrm3ds/video/upload/Interview_Ben_vtupho" type="audio/mpeg"/></audio>
+<audio id="aud-unai"><source src="https://res.cloudinary.com/dvezrm3ds/video/upload/Interview-unai_qqdc1w" type="audio/mpeg"/></audio>
+
 <script src="js/main.js"></script>
 <script>
     const profils = ['antonio', 'lucho', 'karine', 'mila', 'ben', 'unai'];
@@ -420,8 +415,7 @@
 
       if (curProfil && curProfil !== id) {
         const prevAud = document.getElementById('aud-' + curProfil);
-        prevAud.pause();
-        prevAud.currentTime = 0;
+        prevAud.pause(); prevAud.currentTime = 0;
         document.getElementById('profil-' + curProfil).classList.remove('active');
         document.getElementById('btn-' + curProfil).innerHTML = '<svg viewBox="0 0 10 12"><polygon points="1,0 10,6 1,12"/></svg>';
         document.getElementById('fill-' + curProfil).style.width = '0%';
@@ -458,38 +452,14 @@
         });
       }
     }
-</script>
-<!-- PLAYER FIXE -->
-<div class="art-player" id="art-player">
-<div class="art-player-avatar">
-<img alt="" id="art-player-img" src=""/>
-</div>
-<div class="art-player-info">
-<div class="art-player-name" id="art-player-name">—</div>
-<div class="art-player-desc" id="art-player-desc">Under Bordeaux · Interview</div>
-</div>
-<button class="art-player-btn" id="art-player-btn" onclick="toggleFromPlayer()">
-<svg id="art-player-icon" viewbox="0 0 10 12"><polygon points="1,0 10,6 1,12"></polygon></svg>
-</button>
-<div class="art-player-prog">
-<div class="art-player-bar" onclick="seekPlayer(event)">
-<div class="art-player-fill" id="art-player-fill"></div>
-</div>
-<div class="art-player-times">
-<span id="art-player-cur">0:00</span>
-<span id="art-player-dur">0:00</span>
-</div>
-</div>
-<button class="art-player-close" onclick="closePlayer()">✕</button>
-</div>
-<script>
+
     const profilData = {
       antonio: { name: 'Antonio', desc: 'Chef · Restaurant Boccaccia' },
       lucho:   { name: 'Lucho',   desc: 'Habitué du quartier · Devant le Marché des Capucins' },
-      karine: { name: 'Karine', desc: 'Habitante du quartier · Terrasse du café des Capucins' },
-      mila:   { name: 'Mila',   desc: 'Barwoman · Café des Capucins' },
-      ben:    { name: 'Ben',    desc: 'Habitué du marché · Devant l\'entrée' },
-      unai:   { name: 'Unai',   desc: 'Passant · Côté marché des Capucins' },
+      karine:  { name: 'Karine',  desc: 'Habitante du quartier · Terrasse du café des Capucins' },
+      mila:    { name: 'Mila',    desc: 'Barwoman · Café des Capucins' },
+      ben:     { name: 'Ben',     desc: 'Habitué du marché · Devant l\'entrée' },
+      unai:    { name: 'Unai',    desc: 'Passant · Côté marché des Capucins' },
     };
 
     function updatePlayer(id, playing) {
@@ -547,7 +517,31 @@
       const ratio = (e.clientX - rect.left) / rect.width;
       aud.currentTime = Math.max(0, Math.min(1, ratio)) * aud.duration;
     }
+
     function fmtTime(s) { return Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0'); }
 </script>
+
+<!-- PLAYER FIXE -->
+<div class="art-player" id="art-player">
+<div class="art-player-avatar"><img alt="" id="art-player-img" src=""/></div>
+<div class="art-player-info">
+<div class="art-player-name" id="art-player-name">—</div>
+<div class="art-player-desc" id="art-player-desc">Under Bordeaux · Interview</div>
+</div>
+<button class="art-player-btn" id="art-player-btn" onclick="toggleFromPlayer()">
+<svg id="art-player-icon" viewBox="0 0 10 12"><polygon points="1,0 10,6 1,12"></polygon></svg>
+</button>
+<div class="art-player-prog">
+<div class="art-player-bar" onclick="seekPlayer(event)">
+<div class="art-player-fill" id="art-player-fill"></div>
+</div>
+<div class="art-player-times">
+<span id="art-player-cur">0:00</span>
+<span id="art-player-dur">0:00</span>
+</div>
+</div>
+<button class="art-player-close" onclick="closePlayer()">✕</button>
+</div>
+
 </body>
 </html>
