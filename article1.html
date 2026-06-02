@@ -98,7 +98,6 @@
     .profil-audio-bar { height: 3px; background: var(--border); margin-top: 6px; border-radius: 2px; overflow: hidden; display: block; cursor: pointer; }
     .profil-audio-bar:hover { height: 4px; }
     .profil-audio-fill { height: 100%; background: var(--red); width: 0%; transition: width 0.1s; border-radius: 2px; }
-    @media (max-width: 640px) { .profils-grid { grid-template-columns: repeat(2, 1fr); } }
 
     .art-player { position: fixed; bottom: 0; left: 0; right: 0; height: 72px; background: rgba(8,8,8,0.98); backdrop-filter: blur(30px); border-top: 1px solid var(--red); display: flex; align-items: center; gap: 16px; padding: 0 32px; z-index: 100; transform: translateY(100%); transition: transform 0.3s cubic-bezier(0.4,0,0.2,1); }
     .art-player.visible { transform: translateY(0); }
@@ -124,11 +123,16 @@
     .art-ft a { font-size: 10px; color: var(--muted); text-decoration: none; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.15s; }
     .art-ft a:hover { color: #fff; }
 
+    /* Photo compare responsive */
+    .photo-compare { margin: 36px -160px; }
+
     @media (max-width: 640px) {
       .hero-content { padding: 0 20px 40px; }
       .art { padding: 0 20px 80px; }
       .stat { flex-direction: column; gap: 12px; align-items: flex-start; }
       .art-ft { padding: 24px 20px 40px; flex-direction: column; gap: 14px; align-items: flex-start; }
+      .profils-grid { grid-template-columns: repeat(2, 1fr); }
+      .photo-compare { margin: 32px 0; }
     }
 </style>
 </head>
@@ -140,6 +144,7 @@
 <a href="index.html">Accueil</a>
 <a href="enquetes.html" style="color:#fff;">Enquêtes</a>
 <a href="podcasts.html">Multimédia</a>
+<a href="undermap.html">Under Map</a>
 <a href="index.html#contact">Contact</a>
 </div>
 <button aria-label="Menu" class="ub-hamburger"><span></span><span></span><span></span></button>
@@ -360,14 +365,14 @@
 <h2 class="conclu-title">Pour qui<br/><span>gouverne-t-il ?</span></h2>
 <p>La question n'est pas de savoir si Thomas Cazenave veut le bien du quartier. La question est de savoir à qui s'adresse réellement ce type d'opération.</p>
 <p>Car ceux qui réclament plus de sécurité et de fermeté ne sont pas nécessairement ceux qui vivent rue Élie-Gintrac ou au quartier des Capucins. Et ceux qui subissent les contrôles, les fouilles, la présence policière au quotidien : <strong>ce sont les habitants des Capucins. Pas les autres.</strong></p>
-<p>Karine le dit sans détour : <strong>"Ils veulent faire des Capucins les Chartrons. Mais les Capucins ne sont pas les Chartrons, ils ne les connaissent pas."</strong> Ben confirme : il n'a jamais vu un élu venir poser des questions sur le terrain. Jamais. Ce que font des associations externes comme "Le Boulevard Des Potes".</p>
+<p>Karine le dit sans détour : <strong>"Ils veulent faire des Capucins les Chartrons. Mais les Capucins ne sont pas les Chartrons, ils ne les connaissent pas."</strong> Ben confirque : il n'a jamais vu un élu venir poser des questions sur le terrain. Jamais. Ce que font des associations externes comme "Le Boulevard Des Potes".</p>
 <p>C'est peut-être là que réside le vrai problème. Pas dans les intentions, mais dans l'angle mort de toute politique sécuritaire qui parle d'un quartier sans vraiment lui parler.</p>
 <div class="conclu-close">
 <strong style="text-decoration:underline;text-underline-offset:4px;">284 opérations sous Hurmic. Une sous Cazenave. Le compteur tourne, attendons de voir.</strong>
 <p>Et si la meilleure façon de comprendre ce qui se passe aux Capucins, c'était simplement d'y aller ? Pas pour poser des questions avec un micro, pas pour cocher des cases. Juste pour être là. Sentir l'ambiance d'un mardi matin au marché, croiser les mêmes visages. Ce quartier se raconte mieux dans ses ruelles qu'à la tribune d'une conférence de presse.</p>
 <p>D'après notre expérience lors de cette enquête, les discussions hors interview nous ont appris beaucoup de choses : notamment que les gens de ce quartier n'ont plus envie de venir parler au micro. Qu'ils sont sceptiques, pensant que cela ne servirait à rien, puisque rien ne change. Que la réalité médiatique est bien différente de la réalité quotidienne.</p>
 <p>C'est ça, la mission d'Under Bordeaux. Aller là où les discours officiels ne vont pas. Se faire sa propre idée. Et vous donner les moyens de vous faire la vôtre. Affaire à suivre...</p>
-<div style="margin:36px -160px;">
+<div class="photo-compare">
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
 <div>
 <img alt="27 avril 2026" src="images/capucins-27avril.jpg" style="width:100%;display:block;"/>
