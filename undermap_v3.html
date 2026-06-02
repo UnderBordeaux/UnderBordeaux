@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Under Map — Under Bordeaux</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+  :root { --red: #E8000F; --bg: #0e0e0e; --border: #1a1a1a; --muted: #4a4a4a; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; overflow: hidden; }
+  body { background: var(--bg); color: #fff; font-family: 'Inter', sans-serif; display: flex; flex-direction: column; }
+
+  .redline { height: 3px; background: var(--red); flex-shrink: 0; }
+
+  /* ── NAV ── */
+  .nav { display: flex; align-items: center; justify-content: space-between; padding: 0 32px; height: 56px; border-bottom: 0.5px solid var(--border); flex-shrink: 0; }
+  .nav-logo { font-family: 'Bebas Neue', Impact, sans-serif; font-size: 17px; letter-spacing: 3px; color: #fff; text-decoration: none; }
+  .nav-logo span { color: var(--red); }
+  .nav-links { display: flex; gap: 24px; }
+  .nav-links a { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #555; text-decoration: none; transition: color 0.15s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--red); }
+  /* Hamburger */
+  .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+  .hamburger span { display: block; width: 22px; height: 1.5px; background: #fff; transition: all 0.2s; }
+
+  /* Menu mobile overlay */
+  .mobile-menu { display: none; position: fixed; inset: 0; background: rgba(14,14,14,0.98); z-index: 200; flex-direction: column; align-items: center; justify-content: center; gap: 32px; }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { font-family: 'Bebas Neue', Impact, sans-serif; font-size: 36px; letter-spacing: 4px; color: #fff; text-decoration: none; transition: color 0.15s; }
+  .mobile-menu a:hover, .mobile-menu a.active { color: var(--red); }
+  .mobile-menu-close { position: absolute; top: 20px; right: 24px; background: none; border: none; color: #fff; font-size: 28px; cursor: pointer; }
+
+  /* ── HEADER ── */
+  .header { padding: 18px 32px 14px; border-bottom: 0.5px solid var(--border); flex-shrink: 0; display: flex; align-items: flex-end; justify-content: space-between; }
+  .header-tag { font-size: 9px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--red); margin-bottom: 6px; display: flex; align-items: center; gap: 10px; }
+  .header-tag::before { content: ''; width: 14px; height: 1.5px; background: var(--red); display: block; }
+  .header-title { font-family: 'Bebas Neue', Impact, sans-serif; font-size: 40px; line-height: 0.93; color: #fff; }
+  .header-title span { color: var(--red); }
+  .header-sub { font-size: 11px; color: var(--muted); margin-top: 7px; }
+  .header-count { text-align: right; }
+  .header-count strong { display: block; font-family: 'Bebas Neue', Impact, sans-serif; font-size: 34px; color: #fff; line-height: 1; }
+  .header-count span { font-size: 9px; color: var(--muted); letter-spacing: 0.14em; text-transform: uppercase; }
+
+  /* ── CORPS ── */
+  .body { display: flex; flex: 1; overflow: hidden; min-height: 0; position: relative; }
+  #map { flex: 1; min-width: 0; }
+
+  /* ── LEAFLET ── */
+  .leaflet-container { background: #111 !important; }
+  .leaflet-control-zoom { border: none !important; }
+  .leaflet-control-zoom a { background: #141414 !important; color: #888 !important; border: 0.5px solid #1a1a1a !important; border-radius: 0 !important; width: 30px !important; height: 30px !important; line-height: 30px !important; font-size: 16px !important; transition: all 0.15s; }
+  .leaflet-control-zoom a:hover { color: var(--red) !important; border-color: var(--red) !important; }
+  .leaflet-control-attribution { background: rgba(14,14,14,0.85) !important; color: #222 !important; font-size: 8px !important; }
+  .leaflet-control-attribution a { color: #333 !important; }
+
+  /* ── POPUP ── */
+  .leaflet-popup-content-wrapper { background: #0e0e0e !important; border: 0.5px solid var(--red) !important; border-radius: 0 !important; box-shadow: 0 12px 40px rgba(0,0,0,0.8) !important; padding: 0 !important; }
+  .leaflet-popup-tip { background: var(--red) !important; }
+  .leaflet-popup-content { margin: 0 !important; width: 270px !important; }
+  .leaflet-popup-close-button { color: #555 !important; top: 10px !important; right: 12px !important; font-size: 18px !important; }
+  .leaflet-popup-close-button:hover { color: #fff !important; }
+  .popup-red { height: 3px; background: var(--red); }
+  .popup-body { padding: 14px 16px; }
+  .popup-tag { font-size: 8px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); margin-bottom: 8px; }
+  .popup-title { font-family: 'Bebas Neue', Impact, sans-serif; font-size: 18px; line-height: 1.05; color: #fff; margin-bottom: 8px; }
+  .popup-desc { font-size: 11px; color: #666; line-height: 1.6; margin-bottom: 12px; }
+  .popup-footer { display: flex; align-items: center; justify-content: space-between; }
+  .popup-date { font-size: 10px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
+  .popup-link { font-size: 10px; font-weight: 700; color: var(--red); letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; }
+
+  /* ── SIDEBAR DESKTOP ── */
+  .sidebar { width: 320px; border-left: 0.5px solid var(--border); display: flex; flex-direction: column; overflow: hidden; flex-shrink: 0; }
+  .sidebar-head { padding: 16px 20px 12px; border-bottom: 0.5px solid var(--border); }
+  .sidebar-label { font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 3px; }
+  .sidebar-count { font-size: 13px; color: #fff; font-weight: 600; }
+  .sidebar-list { flex: 1; overflow-y: auto; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+  .sidebar-list::-webkit-scrollbar { width: 3px; }
+  .sidebar-list::-webkit-scrollbar-thumb { background: #222; }
+
+  .art-card { border: 0.5px solid var(--border); background: #111; cursor: pointer; transition: all 0.2s; display: block; text-decoration: none; }
+  .art-card:hover, .art-card.active { border-color: var(--red); background: #141414; }
+  .art-card-stripe { height: 2px; background: var(--border); transition: background 0.2s; }
+  .art-card:hover .art-card-stripe, .art-card.active .art-card-stripe { background: var(--red); }
+  .art-card-img { width: 100%; height: 110px; overflow: hidden; }
+  .art-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(0.7); transition: filter 0.3s; }
+  .art-card:hover .art-card-img img { filter: brightness(0.85); }
+  .art-card-body { padding: 12px 14px; }
+  .art-card-quartier { font-size: 8px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--red); margin-bottom: 4px; }
+  .art-card-title { font-family: 'Bebas Neue', Impact, sans-serif; font-size: 14px; line-height: 1.1; color: #fff; margin-bottom: 6px; }
+  .art-card-meta { font-size: 10px; color: var(--muted); }
+
+  /* ── LÉGENDE ── */
+  .legend { position: absolute; bottom: 16px; left: 16px; z-index: 999; background: rgba(14,14,14,0.95); border: 0.5px solid var(--border); padding: 11px 15px; pointer-events: none; }
+  .legend-title { font-size: 8px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 9px; }
+  .legend-item { display: flex; align-items: center; gap: 8px; font-size: 10px; color: #888; margin-bottom: 5px; }
+  .legend-item:last-child { margin: 0; color: #444; }
+  .legend-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+
+  /* ── PANNEAU MOBILE (drawer bas) ── */
+  .mobile-drawer { display: none; }
+
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    body { overflow: hidden; }
+
+    /* Nav mobile */
+    .nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+
+    /* Header mobile */
+    .header { padding: 12px 20px 10px; }
+    .header-tag { font-size: 8px; margin-bottom: 4px; }
+    .header-title { font-size: 28px; }
+    .header-sub { display: none; }
+    .header-count strong { font-size: 28px; }
+    .header-count span { font-size: 8px; }
+
+    /* Sidebar cachée sur mobile */
+    .sidebar { display: none; }
+
+    /* Légende repositionnée */
+    .legend { bottom: 140px; left: 12px; }
+
+    /* Drawer mobile */
+    .mobile-drawer {
+      display: block;
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-top: 1px solid var(--red);
+      transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+      transform: translateY(calc(100% - 64px));
+      max-height: 70vh;
+    }
+    .mobile-drawer.open { transform: translateY(0); }
+
+    /* Poignée */
+    .drawer-handle {
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .drawer-handle-left { display: flex; align-items: center; gap: 12px; }
+    .drawer-handle-pill { width: 32px; height: 3px; background: var(--red); border-radius: 2px; }
+    .drawer-handle-label { font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #fff; }
+    .drawer-handle-count { font-size: 10px; color: var(--muted); letter-spacing: 0.1em; }
+    .drawer-arrow { font-size: 12px; color: var(--muted); transition: transform 0.3s; }
+    .mobile-drawer.open .drawer-arrow { transform: rotate(180deg); }
+
+    /* Liste dans le drawer */
+    .drawer-list {
+      overflow-y: auto;
+      padding: 8px 12px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: calc(70vh - 64px);
+    }
+    .drawer-list::-webkit-scrollbar { width: 3px; }
+    .drawer-list::-webkit-scrollbar-thumb { background: #222; }
+
+    /* Popup mobile plus large */
+    .leaflet-popup-content { width: 240px !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="redline"></div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">UNDER <span>BDX</span></a>
+  <div class="nav-links">
+    <a href="index.html">Accueil</a>
+    <a href="enquetes.html">Enquêtes</a>
+    <a href="podcasts.html">Multimédia</a>
+    <a href="undermap.html" class="active">Under Map</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MENU MOBILE -->
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-menu-close" id="menu-close">✕</button>
+  <a href="index.html">Accueil</a>
+  <a href="enquetes.html">Enquêtes</a>
+  <a href="podcasts.html">Multimédia</a>
+  <a href="undermap.html" class="active">Under Map</a>
+  <a href="index.html#contact">Contact</a>
+</div>
+
+<!-- HEADER -->
+<div class="header">
+  <div>
+    <div class="header-tag">Cartographie · Under Bordeaux</div>
+    <div class="header-title">UNDER <span>MAP</span></div>
+    <div class="header-sub">Tous nos articles ancrés dans la ville. Cliquez sur une punaise pour lire l'enquête.</div>
+  </div>
+  <div class="header-count">
+    <strong id="article-count">1</strong>
+    <span>article publié</span>
+  </div>
+</div>
+
+<!-- CORPS -->
+<div class="body">
+  <div id="map"></div>
+  <!-- SIDEBAR DESKTOP -->
+  <div class="sidebar">
+    <div class="sidebar-head">
+      <div class="sidebar-label">Articles sur la carte</div>
+      <div class="sidebar-count" id="sidebar-count">1 article · Bordeaux</div>
+    </div>
+    <div class="sidebar-list" id="sidebar-list"></div>
+  </div>
+</div>
+
+<!-- DRAWER MOBILE -->
+<div class="mobile-drawer" id="mobile-drawer">
+  <div class="drawer-handle" id="drawer-handle">
+    <div class="drawer-handle-left">
+      <div class="drawer-handle-pill"></div>
+      <div class="drawer-handle-label">Articles</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div class="drawer-handle-count" id="drawer-count">1 article</div>
+      <div class="drawer-arrow">▲</div>
+    </div>
+  </div>
+  <div class="drawer-list" id="drawer-list"></div>
+</div>
+
+<div class="redline" style="position:fixed;bottom:0;left:0;right:0;z-index:50;"></div>
+
+<!-- LÉGENDE -->
+<div class="legend">
+  <div class="legend-title">Légende</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#E8000F;"></div>Article publié</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#2a2a2a;border:1px solid #3a3a3a;"></div>À venir</div>
+</div>
+
+<script>
+const articles = [
+  {
+    id: 'capucins-op',
+    quartier: 'Capucins',
+    titre: 'Op coup de poing aux Capus, 1 mois après.',
+    desc: '130 policiers, le maire, le préfet, le procureur. Un dispositif spectaculaire. Mais pour qui ?',
+    date: 'Mai 2026',
+    categorie: 'Enquête',
+    url: 'capucins-op.html',
+    img: 'images/capucins-hero.jpg',
+    lat: 44.830479,
+    lng: -0.567762,
+    tag: 'Enquête · Capucins · Sécurité'
+  }
+];
+
+// ── CARTE ──
+const map = L.map('map', { center: [44.8378, -0.5792], zoom: 14, zoomControl: false });
+
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+  attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> © <a href="https://carto.com/">CARTO</a>',
+  subdomains: 'abcd', maxZoom: 19
+}).addTo(map);
+
+L.control.zoom({ position: 'bottomright' }).addTo(map);
+
+// Contours Bordeaux
+fetch('https://geo.api.gouv.fr/communes/33063?fields=contour&format=json&geometry=contour')
+  .then(r => r.json())
+  .then(data => {
+    if (data.contour) {
+      L.geoJSON(data.contour, {
+        style: { color: '#E8000F', weight: 1.5, fillOpacity: 0, opacity: 0.45, dashArray: '5 7' }
+      }).addTo(map);
+    }
+  }).catch(() => {});
+
+// ── ICÔNE ──
+function makeIcon() {
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="36" height="48" viewBox="0 0 36 48">
+    <circle cx="18" cy="18" r="17" fill="#E8000F" fill-opacity="0.15"/>
+    <circle cx="18" cy="17" r="11" fill="#E8000F"/>
+    <circle cx="18" cy="17" r="5" fill="#fff" fill-opacity="0.95"/>
+    <line x1="18" y1="28" x2="18" y2="46" stroke="#E8000F" stroke-width="2.5" stroke-linecap="round"/>
+  </svg>`;
+  return L.divIcon({ html: svg, className: '', iconSize: [36, 48], iconAnchor: [18, 46], popupAnchor: [0, -48] });
+}
+
+// ── CARDS ──
+function makeCardHTML(art) {
+  return `
+    <div class="art-card-stripe"></div>
+    ${art.img ? `<div class="art-card-img"><img src="${art.img}" alt="${art.titre}"/></div>` : ''}
+    <div class="art-card-body">
+      <div class="art-card-quartier">${art.quartier}</div>
+      <div class="art-card-title">${art.titre.toUpperCase()}</div>
+      <div class="art-card-meta">${art.date} · ${art.categorie}</div>
+    </div>`;
+}
+
+const sidebarList = document.getElementById('sidebar-list');
+const drawerList = document.getElementById('drawer-list');
+const markers = [];
+
+articles.forEach(art => {
+  // Popup
+  const popup = `
+    <div class="popup-red"></div>
+    ${art.img ? `<div style="width:100%;height:120px;overflow:hidden;"><img src="${art.img}" style="width:100%;height:100%;object-fit:cover;display:block;filter:brightness(0.75);"/></div>` : ''}
+    <div class="popup-body">
+      <div class="popup-tag">${art.tag}</div>
+      <div class="popup-title">${art.titre.toUpperCase()}</div>
+      <div class="popup-desc">${art.desc}</div>
+      <div class="popup-footer">
+        <span class="popup-date">${art.date}</span>
+        <a href="${art.url}" class="popup-link">Lire l'article →</a>
+      </div>
+    </div>`;
+
+  const marker = L.marker([art.lat, art.lng], { icon: makeIcon() })
+    .addTo(map).bindPopup(popup, { maxWidth: 280, minWidth: 240 });
+  markers.push({ art, marker });
+
+  // Sidebar desktop
+  const card = document.createElement('div');
+  card.className = 'art-card'; card.id = 'card-' + art.id;
+  card.innerHTML = makeCardHTML(art);
+  card.addEventListener('click', () => {
+    map.setView([art.lat, art.lng], 16, { animate: true });
+    marker.openPopup();
+    document.querySelectorAll('.art-card').forEach(c => c.classList.remove('active'));
+    card.classList.add('active');
+    cardMobile.classList.add('active');
+  });
+  sidebarList.appendChild(card);
+
+  // Drawer mobile
+  const cardMobile = document.createElement('div');
+  cardMobile.className = 'art-card'; cardMobile.id = 'mob-card-' + art.id;
+  cardMobile.innerHTML = makeCardHTML(art);
+  cardMobile.addEventListener('click', () => {
+    map.setView([art.lat, art.lng], 16, { animate: true });
+    marker.openPopup();
+    document.querySelectorAll('.art-card').forEach(c => c.classList.remove('active'));
+    card.classList.add('active');
+    cardMobile.classList.add('active');
+    // Fermer le drawer
+    document.getElementById('mobile-drawer').classList.remove('open');
+  });
+  drawerList.appendChild(cardMobile);
+
+  marker.on('click', () => {
+    document.querySelectorAll('.art-card').forEach(c => c.classList.remove('active'));
+    card.classList.add('active');
+    cardMobile.classList.add('active');
+  });
+});
+
+// Compteurs
+const n = articles.length;
+document.getElementById('article-count').textContent = n;
+document.getElementById('sidebar-count').textContent = `${n} article${n > 1 ? 's' : ''} · Bordeaux`;
+document.getElementById('drawer-count').textContent = `${n} article${n > 1 ? 's' : ''}`;
+
+// ── HAMBURGER ──
+document.getElementById('hamburger').addEventListener('click', () => {
+  document.getElementById('mobile-menu').classList.add('open');
+});
+document.getElementById('menu-close').addEventListener('click', () => {
+  document.getElementById('mobile-menu').classList.remove('open');
+});
+
+// ── DRAWER ──
+document.getElementById('drawer-handle').addEventListener('click', () => {
+  document.getElementById('mobile-drawer').classList.toggle('open');
+});
+</script>
+
+</body>
+</html>
