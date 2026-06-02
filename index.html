@@ -5,7 +5,6 @@
   <meta name="google-site-verification" content="2WOa3PlqAaXlS0ZmxQfk9tbXATprXgGYvxSPisFXEyU" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Under Bordeaux — Média indépendant</title>
-  <!-- Feuille de styles -->
   <link rel="stylesheet" href="css/style.css" />
   <style>
     .ub-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.88); display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
@@ -33,11 +32,12 @@
   <!-- NAV -->
   <nav class="ub-nav">
     <!-- ✏️ LOGO : remplace le texte par <img src="images/logo.png" alt="Under Bordeaux" /> quand ton logo est prêt -->
-       <div class="ub-logo"><img src="images/logo.png" alt="Under Bordeaux" style="height: 52px; width: auto;" /></div>
+    <div class="ub-logo"><img src="images/logo.png" alt="Under Bordeaux" style="height: 52px; width: auto;" /></div>
     <div class="ub-nav-links">
       <a href="index.html">Accueil</a>
       <a href="enquetes.html">Enquêtes</a>
       <a href="podcasts.html">Multimédia</a>
+      <a href="undermap.html">Under Map</a>
       <a href="#contact">Contact</a>
     </div>
     <button class="ub-hamburger" aria-label="Menu">
@@ -53,7 +53,6 @@
       <div class="ub-eyebrow-dot"></div>
       <span style="color:#fff;">Bordeaux · Média indépendant · 2026</span>
     </div>
-    <!-- ✏️ MODIFIER LE SLOGAN ICI -->
     <h1>On creuse.<br>On parle.<br><em>On laisse parler.</em></h1>
     <!-- ✏️ MODIFIER LA DESCRIPTION ICI -->
     <p class="ub-hero-sub" style="color:#fff;">Articles, podcasts, micros-trottoirs et reportages, proches de tous depuis Bordeaux. Notre objectif : rétablir une visibilité équitable et mettre en lumière les violences que notre société étouffe.</p>
@@ -61,17 +60,13 @@
       <a href="enquetes.html"><button style="font-family:Impact,Arial Black,sans-serif;font-size:18px;letter-spacing:0.12em;text-transform:uppercase;padding:18px 52px;background:#E8000F;color:#fff;border:none;cursor:pointer;transition:all 0.2s;display:inline-flex;align-items:center;gap:12px;" onmouseover="this.style.background='#c5000c';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#E8000F';this.style.transform='translateY(0)'">NOS ENQUÊTES <span style="font-size:22px;">→</span></button></a>
     </div>
 
-    <!-- ENCART -->
     <div style="border-top:0.5px solid #1e1e1e;padding-top:40px;display:flex;align-items:stretch;gap:24px;">
-      <!-- Barre rouge -->
       <div style="width:2px;background:#E8000F;flex-shrink:0;"></div>
-      <!-- Texte -->
       <div style="display:flex;flex-direction:column;gap:10px;flex-shrink:0;width:280px;justify-content:center;">
         <div style="font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#E8000F;">Notre engagement</div>
         <div style="font-family:Impact,Arial Black,sans-serif;font-size:clamp(15px,2vw,22px);text-transform:uppercase;color:#fff;line-height:1.15;">La parole appartient à tout le monde.<br>On est juste là pour la porter.</div>
         <div style="font-size:12px;color:#fff;line-height:1.6;">Ici, personne n'a plus de crédit qu'un autre. Under Bordeaux, c'est votre voix autant que la nôtre.</div>
       </div>
-      <!-- Carousel pleine largeur -->
       <div id="carousel-wrapper" style="flex:1;overflow:hidden;min-width:0;position:relative;height:380px;">
         <div id="carousel-track" style="display:flex;height:100%;transition:transform 0.5s ease;will-change:transform;">
           <!-- ✏️ Mets tes photos dans images/ nommées photo1.jpg à photo5.jpg -->
@@ -81,11 +76,9 @@
           <img src="images/terrasse-victoire1.jpg" class="c-slide" alt="" style="flex-shrink:0;width:260px;height:380px;object-fit:cover;margin-right:8px;" />
           <img src="images/fac-victoire2.jpg" class="c-slide" alt="" style="flex-shrink:0;width:260px;height:380px;object-fit:cover;margin-right:8px;" />
         </div>
-        <!-- Flèches superposées sur les photos -->
         <button id="prev-btn" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.5);border:0.5px solid #555;color:#fff;width:30px;height:30px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;z-index:2;">&#8592;</button>
         <button id="next-btn" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.5);border:0.5px solid #555;color:#fff;width:30px;height:30px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;z-index:2;">&#8594;</button>
       </div>
-      <!-- Logo -->
       <img src="images/logo.png" alt="Under Bordeaux" style="height:380px;width:auto;opacity:0.95;flex-shrink:0;" />
     </div>
       </div>
@@ -192,8 +185,6 @@
 
       <!-- ✏️ ÉPISODE 2 -->
       <a href="podcasts.html" class="ub-pod-card">
-        <div class="ub-pod-card-left">
-          <div class="ub-pod-card-num">02</div>
           <div class="ub-pod-card-icon">
             <svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
           </div>
@@ -218,7 +209,6 @@
   <div class="ub-contact" id="contact">
     <div class="ub-contact-l">
       <h2>Nous<br><em>écrire</em></h2>
-      <!-- ✏️ MODIFIER LE TEXTE CONTACT ICI -->
       <p>Un témoignage, une info à nous transmettre, une idée de collaboration ? On lit tout. Under Bordeaux c'est aussi vos voix.</p>
       <div class="ub-contact-socials">
         <!-- ✏️ REMPLACER PAR VOS VRAIS LIENS -->
@@ -243,7 +233,6 @@
 
   <div class="ub-redline"></div>
 
-  <!-- Scripts -->
   <script src="js/main.js"></script>
   <script>
     const wrapper = document.getElementById('carousel-wrapper');
@@ -274,7 +263,7 @@
     window.addEventListener('resize', () => { setSlideWidths(); go(current); });
   </script>
 
-  <!-- MODAL À LA UNE -->
+  <!-- MODAL -->
   <div class="ub-overlay hidden" id="overlay">
     <div class="ub-modal">
       <div class="ub-modal-head">
