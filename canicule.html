@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>42,5°C à l'ombre, zéro degré d'empathie — Under Bordeaux</title>
+<link href="css/style.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+    :root { --red: #E8000F; --bg: #0e0e0e; --border: #1a1a1a; --muted: #4a4a4a; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: #fff; font-family: 'Inter', sans-serif; }
+
+    /* HERO */
+    .hero { position: relative; height: 88vh; min-height: 520px; display: flex; align-items: flex-end; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(8,8,8,0.15) 0%, rgba(8,8,8,0.98) 100%), url('images/canicule-miroir-eau.webp') center/cover no-repeat; }
+    .hero-content { position: relative; z-index: 2; padding: 0 48px 52px; max-width: 900px; }
+    .hero-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #fff; margin-bottom: 14px; background: rgba(232,0,15,0.85); padding: 4px 10px; display: inline-flex; align-items: center; gap: 10px; }
+    .hero-tag::before { content: ''; width: 20px; height: 1.5px; background: var(--red); display: block; }
+    .hero-title { font-family: 'Bebas Neue', Impact, sans-serif; font-size: clamp(44px, 7.5vw, 84px); line-height: 0.95; color: #fff; margin-bottom: 18px; }
+    .hero-title span { color: var(--red); }
+    .hero-sub { font-size: 14px; color: #ddd; line-height: 1.65; max-width: 540px; margin-bottom: 24px; }
+    .hero-meta { display: flex; align-items: center; gap: 14px; font-size: 11px; color: #fff; letter-spacing: 0.1em; text-transform: uppercase; }
+    .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--red); }
+
+    /* ARTICLE */
+    .art { max-width: 720px; margin: 0 auto; padding: 0 48px 100px; }
+
+    .art-intro { padding: 52px 0 44px; border-bottom: 0.5px solid var(--border); }
+    .art-intro p { font-size: 16px; line-height: 1.9; color: #888; font-weight: 300; margin-bottom: 18px; }
+    .art-intro p:last-child { margin: 0; }
+    .art-intro strong { color: #ddd; font-weight: 600; }
+    .art-intro .accroche { font-size: 19px; font-weight: 600; color: #ccc; line-height: 1.5; padding-top: 22px; margin-top: 6px; border-top: 0.5px solid var(--border); }
+
+    /* CITATION MEDIA */
+    .quote-media { margin: 28px 0; padding: 22px 24px; background: #121212; border-left: 2px solid var(--red); }
+    .quote-media p { font-size: 14px; line-height: 1.8; color: #aaa; font-style: italic; margin: 0 0 12px; font-weight: 300; }
+    .quote-media cite { font-size: 10px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; font-style: normal; display: block; }
+
+    /* CITATION MEDIA AVEC PHOTO */
+    .quote-portrait { margin: 28px 0; background: #121212; border-left: 2px solid var(--red); display: flex; gap: 0; overflow: hidden; }
+    .quote-portrait-img { width: 140px; flex-shrink: 0; overflow: hidden; }
+    .quote-portrait-img img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(0.2); }
+    .quote-portrait-body { padding: 22px 24px; flex: 1; min-width: 0; }
+    .quote-portrait-body p { font-size: 14px; line-height: 1.8; color: #aaa; font-style: italic; margin: 0 0 12px; font-weight: 300; }
+    .quote-portrait-body cite { font-size: 10px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; font-style: normal; display: block; }
+    .quote-portrait-credit { font-size: 8px; color: #333; letter-spacing: 0.04em; padding: 4px 8px; text-align: center; }
+    @media (max-width: 640px) {
+      .quote-portrait { flex-direction: column; }
+      .quote-portrait-img { width: 100%; height: 200px; }
+    }
+
+    .s { padding: 44px 0; border-bottom: 0.5px solid var(--border); }
+    .s:last-child { border-bottom: none; }
+    .s-label { font-size: 9px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--red); margin-bottom: 22px; display: flex; align-items: center; gap: 10px; }
+    .s-label::before { content: ''; width: 14px; height: 1.5px; background: var(--red); display: block; }
+    .s p { font-size: 15px; line-height: 1.9; color: #888; margin-bottom: 16px; }
+    .s p:last-child { margin: 0; }
+    .s strong { color: #ccc; font-weight: 600; }
+
+    .key { margin: 32px 0; padding-left: 18px; border-left: 2px solid var(--red); }
+    .key p { font-size: 19px; font-weight: 600; color: #ddd; line-height: 1.5; margin: 0; }
+
+    /* IMAGE ARTICLE */
+    .art-img { margin: 32px 0; }
+    .art-img img { width: 100%; display: block; border: 0.5px solid var(--border); }
+    .art-img-cap { padding: 7px 0; font-size: 10px; color: var(--muted); letter-spacing: 0.06em; display: flex; align-items: center; gap: 8px; }
+    .art-img-cap::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--red); flex-shrink: 0; }
+
+    /* STAT */
+    .stat { margin: 36px 0; display: flex; align-items: center; gap: 28px; padding: 28px 0; border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); }
+    .stat-n { font-family: 'Bebas Neue', Impact, sans-serif; font-size: 76px; color: var(--red); line-height: 1; flex-shrink: 0; }
+    .stat-t strong { font-size: 14px; color: #ccc; display: block; margin-bottom: 6px; font-weight: 600; }
+    .stat-t p { font-size: 12px; color: var(--muted); line-height: 1.6; margin: 0; }
+
+    /* CONCLUSION */
+    .conclu { padding: 44px 0 0; }
+    .conclu-title { font-family: 'Bebas Neue', Impact, sans-serif; font-size: clamp(38px, 6vw, 54px); line-height: 1; color: #fff; margin-bottom: 28px; }
+    .conclu-title span { color: var(--red); }
+    .conclu p { font-size: 15px; line-height: 1.9; color: #888; margin-bottom: 16px; }
+    .conclu strong { color: #ccc; }
+    .conclu-close { margin-top: 36px; padding-top: 24px; border-top: 0.5px solid var(--border); }
+    .conclu-close p { font-size: 15px; color: #fff; line-height: 1.8; margin-bottom: 10px; }
+
+    /* FOOTER */
+    .art-ft { max-width: 720px; margin: 0 auto; padding: 28px 48px 60px; border-top: 0.5px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+    .art-ft-logo { font-family: 'Bebas Neue', Impact, sans-serif; font-size: 15px; letter-spacing: 2px; color: #fff; }
+    .art-ft-logo span { color: var(--red); }
+    .art-ft a { font-size: 10px; color: var(--muted); text-decoration: none; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.15s; }
+    .art-ft a:hover { color: #fff; }
+
+    @media (max-width: 640px) {
+      .hero-content { padding: 0 20px 40px; }
+      .art { padding: 0 20px 80px; }
+      .stat { flex-direction: column; gap: 12px; align-items: flex-start; }
+      .art-ft { padding: 24px 20px 40px; flex-direction: column; gap: 14px; align-items: flex-start; }
+      .quote-media { padding: 18px 18px; }
+    }
+</style>
+</head>
+<body>
+<div class="ub-redline"></div>
+<nav class="ub-nav">
+<div class="ub-logo"><img alt="Under Bordeaux" src="images/logo.png" style="height:52px;width:auto;"/></div>
+<div class="ub-nav-links">
+<a href="index.html">Accueil</a>
+<a href="enquetes.html" style="color:#fff;">Enquêtes</a>
+<a href="podcasts.html">Multimédia</a>
+<a href="undermap.html">Under Map</a>
+<a href="index.html#contact">Contact</a>
+</div>
+<button aria-label="Menu" class="ub-hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+<div class="hero-bg"></div>
+<div class="hero-content">
+<div class="hero-tag">Analyse · Canicule · Inégalités</div>
+<h1 class="hero-title">42,5°C à l'ombre,<br/><span>zéro degré d'empathie.</span></h1>
+<p class="hero-sub">Chronique d'une canicule à deux vitesses. Dans quelle mesure l'épisode caniculaire de juin impacte-t-il Bordeaux et ses habitants ? Fait-il si chaud pour tout le monde ? Et qui sont les premiers touchés ?</p>
+<div class="hero-meta">
+<span>Under Bordeaux</span><div class="dot"></div>
+<span>Juillet 2026</span><div class="dot"></div>
+<span>👁 Lecture 6 min.</span>
+</div>
+</div>
+</div>
+
+<div class="art">
+
+<!-- INTRO -->
+<div class="art-intro">
+
+<div class="quote-portrait">
+<div class="quote-portrait-img">
+<img alt="Daniel Riolo" src="images/riolo.png"/>
+<div class="quote-portrait-credit">Photo : ZACK / Wikimedia Commons · CC BY 3.0</div>
+</div>
+<div class="quote-portrait-body">
+<p>"On va faire un chèque-chaleur aussi ? Une aide pour acheter des bouteilles d'eau ? Une aide pour acheter la petite serviette fraîche que tu vas te mettre sur la nuque ? Tout ce blabla pour deux semaines de chaleur dans l'année… En Espagne, en Italie, comment font-ils ? Toute votre réflexion, c'est l'assistanat permanent. Il fait chaud, basta ! Je trouve les débats autour de la chaleur complètement délirants. Tu mets un t-shirt, t'arrêtes de chouiner. En hiver il fait trop froid, en été il fait trop chaud… ça suffit"</p>
+<cite>Daniel Riolo · RMC · 27 mai 2026</cite>
+</div>
+</div>
+
+<p>Voici une citation de Daniel Riolo qui date du 27 mai 2026, sur RMC, dans le cadre d'un débat sur les canicules que nous avons vécues ces deux derniers mois. Nous pourrions dire que cela va dans la continuité des idéaux politiques du personnage que l'on connaît bien et d'un média orienté à droite… Mais encore faudrait-il aussi aller voir de l'autre côté de la scène politico-médiatique, chez Quotidien. Où ici aussi, à nouveau, un chroniqueur privilégié s'est permis de parler au nom de tous, et s'est cru en position d'étaler son mépris sans gêne, avec une légèreté condescendante, j'ai nommé… Yann Barthès !</p>
+
+<div class="quote-portrait">
+<div class="quote-portrait-img">
+<img alt="Yann Barthès" src="images/barthes.jpg"/>
+<div class="quote-portrait-credit">Photo : Anipamal / Wikimedia Commons · CC BY-SA 4.0</div>
+</div>
+<div class="quote-portrait-body">
+<p>« Comme on le disait hier, tout le monde a chaud. Bon, c'est rare d'ailleurs de vivre un événement universel, on est tous logés à la même enseigne. Si vous croisez Bernard Arnault, il aura chaud. Un ministre, il aura chaud, il aura aussi chaud que vous ou que votre voisin du dessus ou du dessous. Il y a ceux qui vivent sous les toits. Ils se sentent autorisés à parler plus fort car "j'habite sous les toits". Tout le monde s'en fout ! »</p>
+<cite>Yann Barthès · Quotidien · TMC · 23 juin 2026</cite>
+</div>
+</div>
+
+<p>Laissez-nous vous répondre messieurs : oui, tous les Français ont chaud durant cette canicule. Mais tous n'ont pas la possibilité de travailler sur un plateau climatisé, d'avoir un appartement assez isolé pour conserver la fraîcheur, d'être véhiculés ou de payer l'essence pour aller à la plage. Ne serait-ce que d'avoir une clim.</p>
+
+<p>Des millions de Français souffrent de chaleur physique, et la seule réponse que vous leur offrez, c'est votre froideur sociale. Ces deux séquences ne sont pas des dérapages isolés. C'est du mépris de classe ordinaire, décomplexé, en prime time. L'ignorance de ceux qui n'ont jamais eu à choisir entre dormir et respirer, et qui parlent au nom de ceux qui n'ont pas le micro. Et la chaleur n'est qu'un exemple parmi d'autres : se loger, se soigner, se déplacer, se nourrir — dans tous les domaines, la France ne vit pas à la même enseigne, contrairement à ce qu'on nous répète. <strong>La canicule ne crée pas les inégalités, elle les révèle</strong> : dans une même ville, à la même heure, sous le même soleil, on ne vit pas la même chose.</p>
+
+<p class="accroche">Alors comme ça, tous les Français ont chaud de la même manière ? Nous sommes allés voir.</p>
+</div>
+
+<!-- CHAPITRE I -->
+<div class="s">
+<div class="s-label">I. Le bilan — deux mois de fournaise</div>
+<p>Bordeaux n'a pas attendu l'été pour suffoquer. Dès le 27 mai, la Gironde bascule en vigilance orange. 36°C la journée, des nuits à 21°C. Du jamais vu pour un mois de mai depuis le XIXe siècle.</p>
+<p>Après trois semaines de répit, place au mois de juin, rebelote, en pire. Le 17 juin, la vigilance canicule est réactivée. Cette fois, ça monte vite, ça monte haut, et ça dure. Vigilance orange le 20, rouge le 21. Les nuits ne descendent plus sous les 22°C. Le 23 juin, le thermomètre de Bordeaux-Mérignac affiche <strong>42,5°C</strong>. Record absolu, tous mois confondus, depuis que les mesures existent.</p>
+<p>Dix jours de fournaise, et trois personnes décédées à domicile, dans la métropole, en plein épisode. Des décès attribués à la canicule par la préfecture, même si le maire de Cenon, où vivait l'une des victimes, nuance : "Est-ce vraiment consécutif à la chaleur ? Rien ne le dit." Une prudence compréhensible. Mais trois personnes âgées, mortes chez elles, pendant les jours les plus chauds jamais enregistrés à Bordeaux, ça ne ressemble pas à une coïncidence.</p>
+<div class="key">
+<p>Long, chaud, fréquent, voilà le résumé de ce début d'été.</p>
+</div>
+<p>Et ce n'est pas une anomalie : selon Météo-France, le nombre de jours de vagues de chaleur sera multiplié par cinq d'ici 2050. Il va falloir s'y habituer. Ou s'y préparer.</p>
+</div>
+
+<!-- CHAPITRE II -->
+<div class="s">
+<div class="s-label">II. Quand la ville s'arrête, mais pas pour tout le monde</div>
+<p>Le 23 juin, jour du record, le réseau TBM s'effondre : <strong>213 bus arrêtés sur 312, 32 rames de tram sur 84</strong>. L'explication officielle vaut le détour : les climatisations ont été "impactées au-delà de leurs limites de fonctionnement". Traduction — il faisait trop chaud pour les machines censées nous protéger de la chaleur. On appréciera l'ironie.</p>
+<p>Le lendemain, une rame sur deux seulement. La SNCF arrête tous les TER de la région entre 10h et 18h. Et pour ne rien arranger, le même jour démarraient les travaux du pont de pierre — lignes A et E coupées pour deux mois.</p>
+<p>Résultat : au moment précis où les habitants avaient le plus besoin de se déplacer, d'aller au frais, de rejoindre un parc ou un proche, le réseau lâchait. Des quais de tram en plein soleil, des attentes interminables sous 40°C, des bus anciens sans clim — juste des "rafraîchisseurs d'air", précise TBM.</p>
+
+<div class="art-img">
+<img alt="Parc bondé pendant la canicule à Bordeaux" src="images/canicule-parc.jpg"/>
+<div class="art-img-cap">Les Bordelais cherchent la fraîcheur dans les parcs · Source : Sud Ouest</div>
+</div>
+
+<div class="key">
+<p>Ceux qui ont une voiture climatisée n'ont rien vu de tout ça. Les autres, ceux qui dépendent du tram ou du bus pour tout, ont attendu. Debout. En plein soleil.</p>
+</div>
+<p>Une métropole à deux vitesses, jusque dans ses transports.</p>
+</div>
+
+<!-- CHAPITRE III -->
+<div class="s">
+<div class="s-label">III. La réponse de la ville</div>
+<p>400 gourdes distribuées à la halte Stalingrad. Des brumisateurs installés dans l'espace public. Les parcs ouverts plus tard le soir. Une plateforme téléphonique pour les seniors, un registre municipal, des appels hebdomadaires aux personnes âgées isolées. Les événements en plein air interdits pendant la vigilance rouge, les chantiers BTP autorisés à démarrer une heure plus tôt.</p>
+
+<div class="art-img">
+<img alt="Brumisateurs installés par la ville de Bordeaux" src="images/canicule-brumisateurs.webp"/>
+<div class="art-img-cap">Les brumisateurs déployés par la ville · Source : Ville de Bordeaux</div>
+</div>
+
+
+<div class="stat">
+<div class="stat-n">400</div>
+<div class="stat-t">
+<strong>Gourdes distribuées pendant l'épisode</strong>
+<p>Pour une métropole de près d'un million d'habitants.</p>
+</div>
+</div>
+
+<p>Voilà ce que la ville a fait. Ce n'est pas rien. Mais mettons ça en perspective : 400 gourdes pour une métropole de près d'un million d'habitants. Des brumisateurs quand ce sont des arbres qu'il faudrait. Un numéro vert quand ce sont des logements isolés qui manquent.</p>
+
+<div class="art-img">
+<img alt="Dispositif d'accompagnement seniors de la ville de Bordeaux" src="images/canicule-seniors.jpg"/>
+<div class="art-img-cap">Le dispositif d'accompagnement des personnes vulnérables · Source : Ville de Bordeaux</div>
+</div>
+
+
+<p>Et surtout, il y a ce détail qui résume tout : la ville a ouvert les parcs plus tard le soir, pour que les gens puissent aller au frais. Sauf que le même jour, le tram pour y aller ne circulait plus qu'une fois sur deux. Un point important à comprendre : la mairie et la métropole ne sont pas deux entités séparées. <strong>Thomas Cazenave est maire de Bordeaux depuis le 22 mars, et président de Bordeaux Métropole depuis le 24 avril.</strong> TBM, c'est la Métropole. C'est donc lui. D'un côté on ouvre les parcs, de l'autre on n'arrive pas à y amener les gens. Le premier point de son projet de mandature s'appelle pourtant "fluidifier les déplacements".</p>
+
+<div class="key">
+<p>On soigne le symptôme, jamais la cause. Et pendant ce temps, trois personnes sont mortes chez elles.</p>
+</div>
+</div>
+
+<!-- CONCLUSION -->
+<div class="conclu">
+<h2 class="conclu-title">La suite,<br/><span>on va la chercher.</span></h2>
+<p>Ce que vous venez de lire, c'est le constat. Les chiffres, les records, les discours déconnectés. Mais derrière tout ça, il y a des gens qu'on n'entend jamais.</p>
+<p>Les sans-abri qui ont traversé les 42 degrés sans un toit. Les habitants des logements-fournaises, ceux dont "tout le monde se fout". Les étudiants qui ont passé leurs examens dans des salles étouffantes. Ceux qui ont continué à bosser dehors, parce qu'ils n'avaient pas le choix.</p>
+<p>On est partis à leur rencontre. Leurs témoignages, leurs réalités, et les réponses qu'on ira chercher à la mairie.</p>
+<div class="conclu-close">
+<p><strong style="color:#fff;">Enquête complète à la rentrée.</strong></p>
+<p style="color:#E8000F;font-weight:600;margin-top:16px;">À suivre. De près.</p>
+</div>
+</div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="art-ft">
+<div class="art-ft-logo">UNDER <span>BDX</span></div>
+<a href="enquetes.html">← Retour aux enquêtes</a>
+</div>
+<div class="ub-redline"></div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
