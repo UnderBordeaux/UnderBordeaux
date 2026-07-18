@@ -106,9 +106,23 @@
       <!-- ARTICLE 1 — À LA UNE -->
       <div class="ub-card-art featured" onclick="openModal(1)" style="cursor:pointer;">
         <div class="ub-card-img">
-          <img src="images/capucins.jpg" alt="Op coup de poing aux Capus" />
+          <img src="images/canicule-miroir-eau.webp" alt="42,5°C à l'ombre, zéro degré d'empathie" />
           <div class="ub-card-overlay"></div>
           <div class="ub-card-badge">À la une</div>
+        </div>
+        <div class="ub-card-body">
+          <div class="ub-card-tag">Analyse</div>
+          <div class="ub-card-title">42,5°C à l'ombre, zéro degré d'empathie.</div>
+          <div class="ub-card-desc">Chronique d'une canicule à deux vitesses. À Bordeaux, tout le monde n'a pas chaud de la même manière.</div>
+          <div class="ub-card-meta">Under Bordeaux · Juillet 2026</div>
+        </div>
+      </div>
+
+      <!-- ARTICLE 2 -->
+      <div class="ub-card-art" onclick="openModal(2)" style="cursor:pointer;">
+        <div class="ub-card-img">
+          <img src="images/capucins.jpg" alt="Op coup de poing aux Capus" />
+          <div class="ub-card-overlay"></div>
         </div>
         <div class="ub-card-body">
           <div class="ub-card-tag">Enquête</div>
@@ -118,22 +132,11 @@
         </div>
       </div>
 
-      <!-- ✏️ ARTICLE 2 -->
-      <div class="ub-card-art" onclick="openModal(2)" style="cursor:pointer;">
-        <div class="ub-card-img placeholder"></div>
-        <div class="ub-card-body">
-          <div class="ub-card-tag">Investigation</div>
-          <div class="ub-card-title">Prochain article à venir</div>
-          <div class="ub-card-desc">Description courte de l'article.</div>
-          <div class="ub-card-meta">Under Bordeaux · 2026</div>
-        </div>
-      </div>
-
       <!-- ✏️ ARTICLE 3 -->
       <div class="ub-card-art" onclick="openModal(3)" style="cursor:pointer;">
         <div class="ub-card-img placeholder"></div>
         <div class="ub-card-body">
-          <div class="ub-card-tag">Analyse</div>
+          <div class="ub-card-tag">Récits & Traces</div>
           <div class="ub-card-title">Prochain article à venir</div>
           <div class="ub-card-desc">Description courte de l'article.</div>
           <div class="ub-card-meta">Under Bordeaux · 2026</div>
@@ -185,6 +188,8 @@
 
       <!-- ✏️ ÉPISODE 2 -->
       <a href="podcasts.html" class="ub-pod-card">
+        <div class="ub-pod-card-left">
+          <div class="ub-pod-card-num">02</div>
           <div class="ub-pod-card-icon">
             <svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
           </div>
@@ -285,9 +290,9 @@
 
   <script>
     const articlesUne = [
-      { id:1, tag:"Enquête", title:"Opération coup de poing aux Capucins, 1 mois après.", date:"24 mai 2026", auteur:"Under Bordeaux", desc:"Investigations sur les méthodes répressives des équipes municipales à Bordeaux, au sein du quartier des Capucins.", img:"images/capucins.jpg", href:"article1.html" },
-      { id:2, tag:"Investigation", title:"Prochain article à venir", date:"???", auteur:"Under Bordeaux", desc:"Prochainement.", img:null, href:"enquetes.html" },
-      { id:3, tag:"Analyse", title:"Prochain article à venir", date:"???", auteur:"Under Bordeaux", desc:"Prochainement.", img:null, href:"enquetes.html" },
+      { id:1, tag:"Analyse", title:"42,5°C à l'ombre, zéro degré d'empathie.", date:"18 juillet 2026", auteur:"Under Bordeaux", desc:"Chronique d'une canicule à deux vitesses. Records de chaleur, transports à l'arrêt et discours déconnectés : à Bordeaux, tout le monde n'a pas chaud de la même manière.", img:"images/canicule-miroir-eau.webp", href:"canicule.html" },
+      { id:2, tag:"Enquête", title:"Opération coup de poing aux Capucins, 1 mois après.", date:"31 mai 2026", auteur:"Under Bordeaux", desc:"Investigations sur les méthodes répressives des équipes municipales à Bordeaux, au sein du quartier des Capucins.", img:"images/capucins.jpg", href:"article1.html" },
+      { id:3, tag:"Récits & Traces", title:"Prochain article à venir", date:"???", auteur:"Under Bordeaux", desc:"Prochainement.", img:null, href:"enquetes.html" },
     ];
 
     function openModal(id) {
