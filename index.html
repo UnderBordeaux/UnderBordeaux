@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Under Bordeaux — Média indépendant</title>
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <style>
     .ub-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.88); display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
     .ub-overlay.hidden { display: none; }
@@ -59,26 +61,14 @@
       <a href="articles.html"><button style="font-family:Impact,Arial Black,sans-serif;font-size:18px;letter-spacing:0.12em;text-transform:uppercase;padding:18px 52px;background:#E8000F;color:#fff;border:none;cursor:pointer;transition:all 0.2s;display:inline-flex;align-items:center;gap:12px;" onmouseover="this.style.background='#c5000c';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#E8000F';this.style.transform='translateY(0)'">NOS ENQUÊTES <span style="font-size:22px;">→</span></button></a>
     </div>
 
-    <div style="border-top:0.5px solid #1e1e1e;padding-top:40px;display:flex;align-items:stretch;gap:24px;">
-      <div style="width:2px;background:#E8000F;flex-shrink:0;"></div>
-      <div style="display:flex;flex-direction:column;gap:10px;flex-shrink:0;width:280px;justify-content:center;">
+    <div style="border-top:0.5px solid #1e1e1e;padding-top:40px;display:flex;align-items:center;gap:32px;">
+      <div style="width:2px;background:#E8000F;flex-shrink:0;align-self:stretch;"></div>
+      <div style="display:flex;flex-direction:column;gap:10px;flex:1;justify-content:center;">
         <div style="font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#E8000F;">Notre engagement</div>
         <div style="font-family:Impact,Arial Black,sans-serif;font-size:clamp(15px,2vw,22px);text-transform:uppercase;color:#fff;line-height:1.15;">La parole appartient à tout le monde.<br>On est juste là pour la porter.</div>
         <div style="font-size:12px;color:#fff;line-height:1.6;">Ici, personne n'a plus de crédit qu'un autre. Under Bordeaux, c'est votre voix autant que la nôtre.</div>
       </div>
-      <div id="carousel-wrapper" style="flex:1;overflow:hidden;min-width:0;position:relative;height:380px;">
-        <div id="carousel-track" style="display:flex;height:100%;transition:transform 0.5s ease;will-change:transform;">
-          <!-- ✏️ Mets tes photos dans images/ nommées photo1.jpg à photo5.jpg -->
-          <img src="images/tram-victoire.jpg" class="c-slide" alt="" style="flex-shrink:0;width:260px;height:380px;object-fit:cover;margin-right:8px;" />
-          <img src="images/porte-victoire.jpg" class="c-slide" alt="" style="flex-shrink:0;width:260px;height:380px;object-fit:cover;margin-right:8px;" />
-          <img src="images/logo-podcast.jpg" class="c-slide" alt="" style="flex-shrink:0;width:260px;height:380px;object-fit:cover;margin-right:8px;" />
-          <img src="images/terrasse-victoire1.jpg" class="c-slide" alt="" style="flex-shrink:0;width:260px;height:380px;object-fit:cover;margin-right:8px;" />
-          <img src="images/fac-victoire2.jpg" class="c-slide" alt="" style="flex-shrink:0;width:260px;height:380px;object-fit:cover;margin-right:8px;" />
-        </div>
-        <button id="prev-btn" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.5);border:0.5px solid #555;color:#fff;width:30px;height:30px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;z-index:2;">&#8592;</button>
-        <button id="next-btn" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.5);border:0.5px solid #555;color:#fff;width:30px;height:30px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;z-index:2;">&#8594;</button>
-      </div>
-      <img src="images/logo.png" alt="Under Bordeaux" style="height:380px;width:auto;opacity:0.95;flex-shrink:0;" />
+      <img src="images/logo.png" alt="Under Bordeaux" style="height:200px;width:auto;opacity:0.95;flex-shrink:0;" />
     </div>
       </div>
   </section>
@@ -142,6 +132,19 @@
         </div>
       </div>
 
+    </div>
+  </section>
+
+  <!-- UNDER MAP -->
+  <section class="ub-section">
+    <div class="ub-section-head">
+      <div class="ub-section-name" style="color:#E8000F;">Under Map</div>
+      <a class="ub-section-all" href="undermap.html">Explorer la carte →</a>
+    </div>
+    <p style="font-size:14px;color:#888;line-height:1.7;max-width:640px;margin:0 0 24px;">Chaque enquête est ancrée quelque part dans Bordeaux. La Under Map, c'est notre ville vue à travers nos articles : cliquez sur une punaise pour découvrir ce qui s'y est passé.</p>
+    <div style="position:relative;border:0.5px solid #1e1e1e;overflow:hidden;">
+      <div id="mini-map" style="width:100%;height:420px;background:#0e0e0e;"></div>
+      <a href="undermap.html" style="position:absolute;bottom:16px;right:16px;z-index:500;background:#E8000F;color:#fff;font-family:Impact,Arial Black,sans-serif;font-size:14px;letter-spacing:0.1em;text-transform:uppercase;padding:12px 24px;text-decoration:none;transition:background 0.15s;box-shadow:0 4px 16px rgba(0,0,0,0.5);" onmouseover="this.style.background='#c5000c'" onmouseout="this.style.background='#E8000F'">Ouvrir la carte →</a>
     </div>
   </section>
 
@@ -239,32 +242,39 @@
 
   <script src="js/main.js"></script>
   <script>
-    const wrapper = document.getElementById('carousel-wrapper');
-    const track   = document.getElementById('carousel-track');
-    const slides  = document.querySelectorAll('.c-slide');
-    const prevBtn = document.getElementById('prev-btn');
-    const nextBtn = document.getElementById('next-btn');
-    let current = 0;
+    // ── MINI UNDER MAP ──
+    const miniArticles = [
+      { titre: "42,5°C à l'ombre, zéro degré d'empathie.", url: 'canicule.html', lat: 44.841225, lng: -0.569520 },
+      { titre: 'Op coup de poing aux Capus, 1 mois après.', url: 'article1.html', lat: 44.830479, lng: -0.567762 }
+    ];
 
-    function setSlideWidths() {
-      const w = Math.floor(wrapper.offsetWidth / 2.5);
-      slides.forEach(s => { s.style.width = w + 'px'; });
-    }
+    const miniMap = L.map('mini-map', { center: [44.8378, -0.5792], zoom: 13, zoomControl: false, scrollWheelZoom: false, attributionControl: false });
 
-    function maxIdx() { return slides.length - 2; }
-    function getStep() { return slides[0].offsetWidth; }
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      subdomains: 'abcd', maxZoom: 20
+    }).addTo(miniMap);
 
-    function go(index) {
-      current = Math.max(0, Math.min(index, maxIdx()));
-      track.style.transform = `translateX(-${current * getStep()}px)`;
-    }
+    // Contour de Bordeaux
+    fetch('https://geo.api.gouv.fr/communes/33063?fields=contour&format=json&geometry=contour')
+      .then(r => r.json())
+      .then(data => {
+        if (data && data.contour) {
+          L.geoJSON(data.contour, { style: { color: '#E8000F', weight: 1.5, opacity: 0.5, fill: false, dashArray: '5,5' } }).addTo(miniMap);
+        }
+      }).catch(() => {});
 
-    nextBtn.addEventListener('click', () => go(current >= maxIdx() ? 0 : current + 1));
-    prevBtn.addEventListener('click', () => go(current <= 0 ? maxIdx() : current - 1));
-    setInterval(() => go(current >= maxIdx() ? 0 : current + 1), 3000);
+    // Punaises rouges
+    const miniIcon = L.divIcon({
+      className: 'mini-pin',
+      html: '<div style="width:16px;height:16px;background:#E8000F;border:3px solid #fff;border-radius:50%;box-shadow:0 0 0 4px rgba(232,0,15,0.3);"></div>',
+      iconSize: [16, 16], iconAnchor: [8, 8]
+    });
 
-    setSlideWidths();
-    window.addEventListener('resize', () => { setSlideWidths(); go(current); });
+    miniArticles.forEach(a => {
+      L.marker([a.lat, a.lng], { icon: miniIcon })
+        .addTo(miniMap)
+        .bindPopup(`<strong>${a.titre}</strong><br><a href="${a.url}" style="color:#E8000F;">Lire l'article →</a>`);
+    });
   </script>
 
   <!-- MODAL -->
