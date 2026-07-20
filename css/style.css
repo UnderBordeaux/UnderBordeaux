@@ -241,18 +241,38 @@ textarea.ub-field { height: 110px; resize: none; }
 .ub-footer p { font-size: 11px; color: #2a2a2a; }
 .ub-redline { height: 2.5px; background: #E8000F; width: 100%; }
 
+/* ── RESPONSIVE TABLETTE ── */
+@media (max-width: 900px) {
+  .ub-nav-links { display: none; }
+  .ub-hamburger { display: flex; }
+  .ub-contact { grid-template-columns: 1fr; gap: 40px; }
+  .ub-articles-featured { grid-template-columns: 1fr; }
+  .ub-articles-row { grid-template-columns: 1fr 1fr; }
+}
+
 /* ── RESPONSIVE MOBILE ── */
 @media (max-width: 640px) {
   .ub-nav { padding: 0 20px; }
   .ub-nav-links { display: none; }
   .ub-hamburger { display: flex; }
   .ub-hero { padding: 48px 20px 40px; }
+  .ub-hero h1 { font-size: clamp(32px, 11vw, 48px); margin-bottom: 18px; }
+  .ub-hero-sub { font-size: 14px; margin-bottom: 28px; }
   .ub-section { padding: 40px 20px; }
+  .ub-section-head { margin-bottom: 24px; }
   .ub-articles-featured { grid-template-columns: 1fr; }
   .ub-articles-row { grid-template-columns: 1fr; }
   .ub-pod-right { display: none; }
   .ub-contact { grid-template-columns: 1fr; gap: 40px; padding: 40px 20px; }
+  .ub-contact-l h2 { font-size: 24px; }
   .ub-footer { padding: 20px; flex-direction: column; align-items: flex-start; gap: 6px; }
+}
+
+/* ── TRÈS PETITS ÉCRANS ── */
+@media (max-width: 400px) {
+  .ub-hero { padding: 40px 16px 32px; }
+  .ub-section { padding: 32px 16px; }
+  .ub-hero h1 { font-size: clamp(28px, 10vw, 40px); }
 }
 
 /* ── CARTES ARTICLES À LA UNE ── */
@@ -308,7 +328,13 @@ textarea.ub-field { height: 110px; resize: none; }
 .ub-pod-card-btn svg { width: 9px; height: 9px; fill: #444; margin-left: 1px; }
 .ub-pod-card:hover .ub-pod-card-btn svg { fill: #fff; }
 
+@media (max-width: 900px) {
+  .ub-cards-grid { grid-template-columns: 1fr 1fr; }
+}
 @media (max-width: 640px) {
   .ub-cards-grid { grid-template-columns: 1fr; }
   .ub-pod-card-right { display: none; }
+  .ub-card-img { height: 180px; }
+  .ub-card-art.featured .ub-card-title { font-size: 18px; }
+  .ub-pod-card { padding: 16px 18px; gap: 14px; }
 }
