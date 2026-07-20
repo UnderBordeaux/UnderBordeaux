@@ -25,6 +25,11 @@
     .ub-modal-open:hover { background: #c5000c; }
     .ub-modal-cancel { background: none; border: 0.5px solid #2a2a2a; color: #555; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 10px 14px; cursor: pointer; transition: all 0.15s; }
     .ub-modal-cancel:hover { border-color: #555; color: #fff; }
+    @media (max-width: 768px) {
+      .ub-engage { flex-direction: column; align-items: stretch !important; gap: 24px !important; }
+      .ub-engage-bar { width: 40px !important; height: 2px; align-self: flex-start !important; }
+      .ub-engage-logo { height: 140px !important; align-self: center; }
+    }
   </style>
 </head>
 <body>
@@ -58,17 +63,17 @@
     <!-- ✏️ MODIFIER LA DESCRIPTION ICI -->
     <p class="ub-hero-sub" style="color:#fff;">Articles, podcasts, micros-trottoirs et reportages, proches de tous depuis Bordeaux. Notre objectif : rétablir une visibilité équitable et mettre en lumière les violences que notre société étouffe.</p>
     <div class="ub-hero-actions">
-      <a href="articles.html"><button style="font-family:Impact,Arial Black,sans-serif;font-size:18px;letter-spacing:0.12em;text-transform:uppercase;padding:18px 52px;background:#E8000F;color:#fff;border:none;cursor:pointer;transition:all 0.2s;display:inline-flex;align-items:center;gap:12px;" onmouseover="this.style.background='#c5000c';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#E8000F';this.style.transform='translateY(0)'">NOS ARTICLES <span style="font-size:22px;">→</span></button></a>
+      <a href="articles.html"><button style="font-family:Impact,Arial Black,sans-serif;font-size:18px;letter-spacing:0.12em;text-transform:uppercase;padding:18px 52px;background:#E8000F;color:#fff;border:none;cursor:pointer;transition:all 0.2s;display:inline-flex;align-items:center;gap:12px;" onmouseover="this.style.background='#c5000c';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#E8000F';this.style.transform='translateY(0)'">NOS ENQUÊTES <span style="font-size:22px;">→</span></button></a>
     </div>
 
-    <div style="border-top:0.5px solid #1e1e1e;padding-top:40px;display:flex;align-items:center;gap:32px;">
-      <div style="width:2px;background:#E8000F;flex-shrink:0;align-self:stretch;"></div>
+    <div class="ub-engage" style="border-top:0.5px solid #1e1e1e;padding-top:40px;display:flex;align-items:center;gap:32px;">
+      <div class="ub-engage-bar" style="width:2px;background:#E8000F;flex-shrink:0;align-self:stretch;"></div>
       <div style="display:flex;flex-direction:column;gap:10px;flex:1;justify-content:center;">
         <div style="font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#E8000F;">Notre engagement</div>
         <div style="font-family:Impact,Arial Black,sans-serif;font-size:clamp(15px,2vw,22px);text-transform:uppercase;color:#fff;line-height:1.15;">La parole appartient à tout le monde.<br>On est juste là pour la porter.</div>
         <div style="font-size:12px;color:#fff;line-height:1.6;">Ici, personne n'a plus de crédit qu'un autre. Under Bordeaux, c'est votre voix autant que la nôtre.</div>
       </div>
-      <img src="images/logo.png" alt="Under Bordeaux" style="height:200px;width:auto;opacity:0.95;flex-shrink:0;" />
+      <img class="ub-engage-logo" src="images/logo.png" alt="Under Bordeaux" style="height:200px;width:auto;opacity:0.95;flex-shrink:0;" />
     </div>
       </div>
   </section>
