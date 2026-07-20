@@ -25,7 +25,7 @@ if (hamburger && navLinks) {
 // ── Fermer le menu si on clique sur un lien ──
 document.querySelectorAll('.ub-nav-links a').forEach(link => {
   link.addEventListener('click', () => {
-    if (window.innerWidth <= 640) {
+    if (window.innerWidth <= 900) {
       navLinks.style.display = 'none';
     }
   });
