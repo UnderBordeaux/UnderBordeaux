@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Articles — Under Bordeaux</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .ub-lib-filters { display: flex; gap: 8px; padding: 12px 32px; border-bottom: 0.5px solid #1a1a1a; }
+    .ub-filter { background: none; border: 0.5px solid #2a2a2a; color: #555; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 4px 12px; cursor: pointer; transition: all 0.15s; }
+    .ub-filter:hover, .ub-filter.active { border-color: #E8000F; color: #E8000F; }
+    .ub-lib-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; padding: 32px; }
+    .ub-card { background: #111; border: 0.5px solid #1e1e1e; cursor: pointer; transition: all 0.15s; }
+    .ub-card:hover { border-color: #333; transform: translateY(-2px); }
+    .ub-card:hover .ub-card-title { color: #E8000F; }
+    .ub-card-img { width: 100%; height: 160px; object-fit: cover; display: block; background: #1a1a1a; position: relative; overflow: hidden; }
+    .ub-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .ub-card-img-placeholder { width: 100%; height: 160px; background: #1a1a1a; display: flex; align-items: center; justify-content: center; position: relative; }
+    .ub-card-badge { position: absolute; top: 8px; left: 8px; background: #E8000F; font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #fff; padding: 3px 8px; }
+    .ub-card-body { padding: 16px; }
+    .ub-card-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #E8000F; margin-bottom: 8px; }
+    .ub-card-title { font-family: Impact, Arial Black, sans-serif; font-size: 16px; text-transform: uppercase; color: #fff; line-height: 1.2; margin-bottom: 6px; transition: color 0.15s; }
+    .ub-card-meta { font-size: 11px; color: #333; padding-top: 12px; border-top: 0.5px solid #1a1a1a; }
+    .ub-statusbar { background: #0e0e0e; border-top: 0.5px solid #1a1a1a; padding: 6px 32px; display: flex; justify-content: space-between; font-size: 10px; color: #2a2a2a; letter-spacing: 0.08em; text-transform: uppercase; }
+    .ub-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.88); display: flex; align-items: center; justify-content: center; z-index: 100; padding: 20px; }
+    .ub-overlay.hidden { display: none; }
+    .ub-modal { background: #111; border: 0.5px solid #333; width: 420px; max-width: 100%; }
+    .ub-modal-head { background: #121212; border-bottom: 0.5px solid #222; padding: 10px 14px; display: flex; align-items: center; justify-content: space-between; }
+    .ub-modal-head-title { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #E8000F; }
+    .ub-modal-close { background: none; border: none; color: #555; font-size: 16px; cursor: pointer; }
+    .ub-modal-close:hover { color: #fff; }
+    .ub-modal-body { padding: 16px; }
+    .ub-modal-title { font-family: Impact, Arial Black, sans-serif; font-size: 18px; text-transform: uppercase; color: #fff; line-height: 1.15; margin-bottom: 6px; }
+    .ub-modal-meta { font-size: 11px; color: #444; margin-bottom: 10px; }
+    .ub-modal-desc { font-size: 13px; color: #666; line-height: 1.65; }
+    .ub-modal-foot { display: flex; gap: 8px; padding: 12px 16px; border-top: 0.5px solid #1e1e1e; }
+    .ub-modal-open { flex: 1; background: #E8000F; border: none; color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 10px; cursor: pointer; transition: background 0.15s; }
+    .ub-modal-open:hover { background: #c5000c; }
+    .ub-modal-cancel { background: none; border: 0.5px solid #2a2a2a; color: #555; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 10px 14px; cursor: pointer; transition: all 0.15s; }
+    .ub-modal-cancel:hover { border-color: #555; color: #fff; }
+    .ub-lib-empty { padding: 60px 32px; text-align: center; color: #333; font-size: 13px; }
+  </style>
+</head>
+<body style="background:#141414;color:#fff;margin:0;">
+
+  <div class="ub-redline"></div>
+
+  <nav class="ub-nav">
+    <div class="ub-logo"><img src="images/logo.png" alt="Under Bordeaux" style="height:52px;width:auto;" /></div>
+    <div class="ub-nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="articles.html" style="color:#fff;">Articles</a>
+      <a href="podcasts.html">Multimédia</a>
+       <a href="undermap.html">Under Map</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <button class="ub-hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- EN-TÊTE PAGE -->
+  <div style="padding:40px 32px 0;">
+    <div style="font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#E8000F;margin-bottom:8px;">Accueil › Articles</div>
+    <h1 style="font-family:Impact,Arial Black,sans-serif;font-size:clamp(28px,5vw,52px);text-transform:uppercase;line-height:1;color:#fff;margin-bottom:4px;">Nos <span style="color:#E8000F;">Articles</span></h1>
+    <p style="font-size:13px;color:#444;margin-bottom:0;">Du plus récent au plus ancien — cliquez sur un dossier pour l'ouvrir.</p>
+  </div>
+
+  <!-- FILTRES -->
+  <div class="ub-lib-filters" style="margin-top:24px;">
+    <button class="ub-filter active" onclick="filter('all',this)">Tout</button>
+    <button class="ub-filter" onclick="filter('enquete',this)">Articles</button>
+    <button class="ub-filter" onclick="filter('analyse',this)">Analyses</button>
+    <button class="ub-filter" onclick="filter('article',this)">Récits & Traces</button>
+  </div>
+
+  <!-- GRILLE -->
+  <div class="ub-lib-grid" id="grid"></div>
+
+  <!-- STATUSBAR -->
+  <div class="ub-statusbar">
+    <span id="count">0 articles</span>
+    <span>Under Bordeaux · 2026</span>
+  </div>
+
+  <div class="ub-redline"></div>
+
+  <!-- MODAL -->
+  <div class="ub-overlay hidden" id="overlay">
+    <div class="ub-modal">
+      <div class="ub-modal-head">
+        <div class="ub-modal-head-title" id="m-tag">—</div>
+        <button class="ub-modal-close" onclick="closeModal()">✕</button>
+      </div>
+      <div id="m-img" style="width:100%;height:180px;background:#1a1a1a;display:flex;align-items:center;justify-content:center;font-size:48px;">📁</div>
+      <div class="ub-modal-body">
+        <div class="ub-modal-title" id="m-title">—</div>
+        <div class="ub-modal-meta" id="m-meta">—</div>
+        <div class="ub-modal-desc" id="m-desc">—</div>
+      </div>
+      <div class="ub-modal-foot">
+        <button class="ub-modal-open" id="m-open-btn">Ouvrir l'article →</button>
+        <button class="ub-modal-cancel" onclick="closeModal()">Fermer</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script>
+    /*
+    ✏️ AJOUTER VOS ARTICLES ICI
+    Copiez-collez un bloc { } pour chaque nouvel article.
+    Les champs :
+      - id      : numéro unique (1, 2, 3...)
+      - tag     : 'enquete', 'analyse' ou 'microtrottoir'
+      - label   : texte affiché ('Enquête', 'Analyse', 'Micro-trottoir')
+      - title   : titre de l'article
+      - date    : date de publication
+      - auteur  : nom(s) de l'auteur
+      - desc    : courte description
+      - nouveau : true si récent, false sinon
+      - img     : chemin vers la photo (ex: 'images/enquete1.jpg') ou null
+      - href    : lien vers la page de l'article (ex: 'article1.html')
+    */
+    const articles = [
+      { id:1, tag:'analyse', label:'Analyse', title:'42,5°C à l\'ombre, zéro degré d\'empathie.', date:'18 juillet 2026', auteur:'Under Bordeaux', desc:'Chronique d\'une canicule à deux vitesses. Records de chaleur, transports à l\'arrêt et discours déconnectés : à Bordeaux, tout le monde n\'a pas chaud de la même manière.', nouveau:true, img:'images/canicule-miroir-eau.webp', href:'canicule.html' },
+      { id:2, tag:'enquete', label:'Enquête', title:'Opération coup de poing aux Capucins, 1 mois après.', date:'31 mai 2026', auteur:'Under Bordeaux', desc:'Investigations sur les méthodes répressives des équipes municipales à Bordeaux, au sein du quartier des Capucins.', nouveau:false, img:'images/capucins.jpg', href:'article1.html' },
+      { id:3, tag:'article', label:'Récits & Traces', title:'Prochainement...', date:'???', auteur:'Under Bordeaux', desc:'Prochainement', nouveau:false, img:null, href:'article3.html' },
+    ];
+
+    let current = null;
+
+    function renderGrid(items) {
+      const grid = document.getElementById('grid');
+      document.getElementById('count').textContent = items.length + ' article' + (items.length > 1 ? 's' : '');
+      if (items.length === 0) {
+        grid.innerHTML = '<div class="ub-lib-empty">Aucun article dans cette catégorie pour l\'instant.</div>';
+        return;
+      }
+      grid.innerHTML = items.map(a => `
+        <div class="ub-card" onclick="openModal(${a.id})">
+          ${a.img
+            ? `<div class="ub-card-img" style="position:relative;"><img src="${a.img}" alt="${a.title}" />${a.nouveau ? '<div class="ub-card-badge">Nouveau</div>' : ''}</div>`
+            : `<div class="ub-card-img-placeholder">${a.nouveau ? '<div class="ub-card-badge">Nouveau</div>' : ''}<span style="font-size:28px;color:#2a2a2a;">📁</span></div>`}
+          <div class="ub-card-body">
+            <div class="ub-card-tag">${a.label}</div>
+            <div class="ub-card-title">${a.title}</div>
+            <div class="ub-card-meta">${a.auteur} · ${a.date}</div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function filter(tag, btn) {
+      document.querySelectorAll('.ub-filter').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderGrid(tag === 'all' ? articles : articles.filter(a => a.tag === tag));
+    }
+
+    function openModal(id) {
+      const a = articles.find(x => x.id === id);
+      current = a;
+      document.getElementById('m-tag').textContent = a.label;
+      document.getElementById('m-title').textContent = a.title;
+      document.getElementById('m-meta').textContent = a.date + ' · ' + a.auteur;
+      document.getElementById('m-desc').textContent = a.desc;
+      document.getElementById('m-img').innerHTML = a.img
+        ? `<img src="${a.img}" alt="${a.title}" style="width:100%;height:180px;object-fit:cover;display:block;" />`
+        : `<div style="width:100%;height:180px;background:#1a1a1a;display:flex;align-items:center;justify-content:center;font-size:48px;">📁</div>`;
+      document.getElementById('m-open-btn').onclick = () => { window.location.href = a.href; };
+      document.getElementById('overlay').classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('overlay').classList.add('hidden');
+      current = null;
+    }
+
+    document.getElementById('overlay').addEventListener('click', e => {
+      if (e.target.id === 'overlay') closeModal();
+    });
+
+    renderGrid(articles);
+  </script>
+
+</body>
+</html>
