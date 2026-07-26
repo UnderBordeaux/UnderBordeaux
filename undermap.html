@@ -246,6 +246,19 @@
 <script>
 const articles = [
   {
+    id: 'incendie',
+    quartier: 'Lège-Cap-Ferret',
+    titre: 'La Gironde brûle : bien réagir suffit-il ?',
+    desc: 'Face aux flammes, Bordeaux a ouvert ses portes aux sinistrés. Une réaction à saluer. Mais l\'avait-on anticipée ?',
+    date: 'Juillet 2026',
+    categorie: 'Analyse',
+    url: 'incendie.html',
+    img: 'images/incendie-hero.jpeg',
+    lat: 44.783300,
+    lng: -1.148900,
+    tag: 'Analyse · Incendies · Moyens'
+  },
+  {
     id: 'canicule',
     quartier: 'Place de la Bourse',
     titre: '42,5°C à l\'ombre, zéro degré d\'empathie.',
@@ -378,7 +391,7 @@ articles.forEach(art => {
 // Compteurs
 const n = articles.length;
 document.getElementById('article-count').textContent = n;
-document.getElementById('sidebar-count').textContent = `${n} article${n > 1 ? 's' : ''} · Bordeaux`;
+document.getElementById('sidebar-count').textContent = `${n} article${n > 1 ? 's' : ''} · Gironde`;
 document.getElementById('drawer-count').textContent = `${n} article${n > 1 ? 's' : ''}`;
 
 // ── HAMBURGER ──
