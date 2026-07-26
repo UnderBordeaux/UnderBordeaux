@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>La Gironde brûle : bien réagir suffit-il ? — Under Bordeaux</title>
+<link href="css/style.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+    :root { --red: #E8000F; --bg: #0e0e0e; --border: #1a1a1a; --muted: #4a4a4a; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: #fff; font-family: 'Inter', sans-serif; }
+
+    /* HERO */
+    .hero { position: relative; height: 90vh; min-height: 540px; display: flex; align-items: flex-end; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(8,8,8,0.25) 0%, rgba(8,8,8,0.55) 55%, rgba(8,8,8,0.97) 100%), url('images/incendie-hero.jpg') center/cover no-repeat; }
+    .hero-content { position: relative; z-index: 2; padding: 0 48px 52px; max-width: 900px; }
+    .hero-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #fff; margin-bottom: 14px; background: rgba(232,0,15,0.85); padding: 4px 10px; display: inline-flex; align-items: center; gap: 10px; }
+    .hero-tag::before { content: ''; width: 20px; height: 1.5px; background: var(--red); display: block; }
+    .hero-title { font-family: 'Bebas Neue', Impact, sans-serif; font-size: clamp(46px, 8vw, 92px); line-height: 0.92; color: #fff; margin-bottom: 18px; }
+    .hero-title span { color: var(--red); }
+    .hero-sub { font-size: 14px; color: #ddd; line-height: 1.65; max-width: 560px; margin-bottom: 24px; }
+    .hero-meta { display: flex; align-items: center; gap: 14px; font-size: 11px; color: #fff; letter-spacing: 0.1em; text-transform: uppercase; }
+    .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--red); }
+    .hero-credit { position: absolute; bottom: 10px; right: 16px; z-index: 2; font-size: 9px; color: rgba(255,255,255,0.5); letter-spacing: 0.05em; }
+
+    /* ARTICLE */
+    .art { max-width: 720px; margin: 0 auto; padding: 0 48px 100px; }
+
+    /* HOMMAGE */
+    .hommage { padding: 44px 0 40px; border-bottom: 0.5px solid var(--border); text-align: center; }
+    .hommage p { font-size: 15px; line-height: 1.85; color: #999; font-style: italic; font-weight: 300; margin-bottom: 14px; }
+    .hommage p:last-child { margin: 0; color: #ccc; font-weight: 500; font-style: normal; letter-spacing: 0.02em; }
+
+    .art-intro { padding: 48px 0 44px; border-bottom: 0.5px solid var(--border); }
+    .art-intro p { font-size: 16px; line-height: 1.9; color: #999; font-weight: 300; margin-bottom: 18px; }
+    .art-intro p:last-child { margin: 0; }
+    .art-intro strong { color: #ddd; font-weight: 600; }
+    .art-intro .accroche { font-size: 19px; font-weight: 600; color: #ccc; line-height: 1.5; padding-top: 22px; margin-top: 6px; border-top: 0.5px solid var(--border); }
+
+    .s { padding: 44px 0; border-bottom: 0.5px solid var(--border); }
+    .s:last-child { border-bottom: none; }
+    .s-label { font-size: 9px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--red); margin-bottom: 22px; display: flex; align-items: center; gap: 10px; }
+    .s-label::before { content: ''; width: 14px; height: 1.5px; background: var(--red); display: block; }
+    .s p { font-size: 15px; line-height: 1.9; color: #999; margin-bottom: 16px; }
+    .s p:last-child { margin: 0; }
+    .s strong { color: #ddd; font-weight: 600; }
+
+    .key { margin: 32px 0; padding-left: 18px; border-left: 2px solid var(--red); }
+    .key p { font-size: 19px; font-weight: 600; color: #ddd; line-height: 1.5; margin: 0; }
+
+    /* IMAGE ARTICLE */
+    .art-img { margin: 32px 0; }
+    .art-img img { width: 100%; display: block; border: 0.5px solid var(--border); }
+    .art-img-cap { padding: 7px 0; font-size: 10px; color: var(--muted); letter-spacing: 0.06em; display: flex; align-items: center; gap: 8px; }
+    .art-img-cap::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--red); flex-shrink: 0; }
+
+    /* STAT */
+    .stat { margin: 36px 0; display: flex; align-items: center; gap: 28px; padding: 28px 0; border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); }
+    .stat-n { font-family: 'Bebas Neue', Impact, sans-serif; font-size: 76px; color: var(--red); line-height: 1; flex-shrink: 0; }
+    .stat-t strong { font-size: 14px; color: #ccc; display: block; margin-bottom: 6px; font-weight: 600; }
+    .stat-t p { font-size: 12px; color: var(--muted); line-height: 1.6; margin: 0; }
+
+    /* CONCLUSION */
+    .conclu { padding: 44px 0 0; }
+    .conclu-title { font-family: 'Bebas Neue', Impact, sans-serif; font-size: clamp(38px, 6vw, 54px); line-height: 1; color: #fff; margin-bottom: 28px; }
+    .conclu-title span { color: var(--red); }
+    .conclu p { font-size: 15px; line-height: 1.9; color: #999; margin-bottom: 16px; }
+    .conclu strong { color: #ddd; }
+    .conclu-close { margin-top: 36px; padding-top: 24px; border-top: 0.5px solid var(--border); }
+    .conclu-close p { font-size: 17px; color: #fff; line-height: 1.7; margin-bottom: 10px; font-weight: 600; }
+
+    /* FOOTER */
+    .art-ft { max-width: 720px; margin: 0 auto; padding: 28px 48px 60px; border-top: 0.5px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+    .art-ft-logo { font-family: 'Bebas Neue', Impact, sans-serif; font-size: 15px; letter-spacing: 2px; color: #fff; }
+    .art-ft-logo span { color: var(--red); }
+    .art-ft a { font-size: 10px; color: var(--muted); text-decoration: none; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.15s; }
+    .art-ft a:hover { color: #fff; }
+
+    @media (max-width: 640px) {
+      .hero-content { padding: 0 20px 40px; }
+      .art { padding: 0 20px 80px; }
+      .stat { flex-direction: column; gap: 12px; align-items: flex-start; }
+      .art-ft { padding: 24px 20px 40px; flex-direction: column; gap: 14px; align-items: flex-start; }
+    }
+</style>
+</head>
+<body>
+<div class="ub-redline"></div>
+<nav class="ub-nav">
+<div class="ub-logo"><img alt="Under Bordeaux" src="images/logo.png" style="height:52px;width:auto;"/></div>
+<div class="ub-nav-links">
+<a href="index.html">Accueil</a>
+<a href="articles.html" style="color:#fff;">Articles</a>
+<a href="podcasts.html">Multimédia</a>
+<a href="undermap.html">Under Map</a>
+<a href="index.html#contact">Contact</a>
+</div>
+<button aria-label="Menu" class="ub-hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+<div class="hero-bg"></div>
+<div class="hero-content">
+<div class="hero-tag">Analyse · Incendies · Gironde</div>
+<h1 class="hero-title">La Gironde brûle :<br/><span>bien réagir suffit-il ?</span></h1>
+<p class="hero-sub">Face aux flammes, Bordeaux a ouvert ses portes aux sinistrés. Une réaction à saluer. Mais gérer la crise quand elle éclate, est-ce la même chose que l'avoir anticipée ?</p>
+<div class="hero-meta">
+<span>Under Bordeaux</span><div class="dot"></div>
+<span>Juillet 2026</span><div class="dot"></div>
+<span>👁 Lecture 4 min.</span>
+</div>
+</div>
+<div class="hero-credit">Photo : Under Bordeaux</div>
+</div>
+
+<div class="art">
+
+<!-- HOMMAGE -->
+<div class="hommage">
+<p>Avant toute chose.</p>
+<p>Nos pensées vont aux deux sapeurs-pompiers qui ont perdu la vie en nous protégeant, ainsi qu'à leurs familles. Et à toutes celles et ceux qui, jour et nuit, tiennent la ligne face aux flammes pour défendre la Gironde et ses habitants.</p>
+<p>Le respect avant les mots.</p>
+</div>
+
+<!-- INTRO -->
+<div class="art-intro">
+<p>Depuis la mi-juillet, la Gironde vit une série d'incendies parmi les pires de son histoire. Comme ailleurs en France cet été, le feu a gagné du terrain, et les évacuations se sont enchaînées, commune après commune, jusqu'aux portes de la métropole. Plus de <strong>140 000 personnes</strong> ont dû quitter leur domicile.</p>
+<p>Face à cette vague, Thomas Cazenave a pris une décision à saluer : l'ouverture du parc des expositions de Bordeaux, transformé en centre d'accueil. Jusqu'à 10 000 places, des lits, de l'eau, des repas chauds, un espace pour les animaux, des douches. Des milliers de sinistrés y ont trouvé un refuge. Dans l'urgence, la ville a été à la hauteur, et son maire aussi.</p>
+<p class="accroche">Mais gérer une crise quand elle éclate, c'est une chose. Avoir tout fait pour l'affronter, avant qu'elle arrive, en est une autre.</p>
+</div>
+
+<!-- CHAPITRE I -->
+<div class="s">
+<div class="s-label">I. Un choix, pas une erreur</div>
+<p>Reprenons depuis le début. Février 2024. Thomas Cazenave est alors ministre chargé des Comptes publics. À ce titre, il contresigne un décret qui annule 10 milliards d'euros de crédits — dont <strong>52,8 millions sur le budget de la Sécurité civile</strong>. Conséquence directe, confirmée par la Direction générale de la sécurité civile et deux rapports parlementaires : l'État renonce à commander deux Canadair supplémentaires. Deux avions bombardiers d'eau en moins, en pleine ère des méga-feux.</p>
+
+<div class="art-img">
+<img alt="Décret d'annulation de crédits, ligne Sécurité civile" src="images/decret-securite-civile.jpg"/>
+<div class="art-img-cap">Décret n°2024-124 du 21 février 2024. Ligne « Sécurité civile » (programme 161) : 52 766 476 € annulés. · Source : Journal officiel de la République française</div>
+</div>
+
+<p>Ces deux Canadair, aujourd'hui, on les cherche. Le feu est tel que la France a dû demander l'aide de ses voisins européens : des Canadair croates, des avions portugais, des hélicoptères venus de Tchéquie et de Slovaquie sont venus prêter main-forte. Un comble, pour un pays qui, d'ordinaire, envoie <strong>ses</strong> avions secourir la Grèce ou l'Espagne. Cette fois, c'est nous qui avons tendu la main.</p>
+
+<p>Deux ans plus tard, le voilà maire de Bordeaux. Et l'une de ses priorités affichées, son "plan Marshall de la sécurité" : porter le budget sécurité de la ville à <strong>20 millions d'euros</strong>, doubler la police municipale, armer tous les agents.</p>
+
+<p>Deux décisions, deux fonctions différentes — soyons précis : on ne finance pas les Canadair avec le budget municipal de Bordeaux. Mais c'est le même homme, et la même logique. Quand il s'agit de police et de caméras, les millions sont là. Quand il s'agit des moyens de secours, on coupe.</p>
+
+<div class="key">
+<p>Et il y a un troisième détail. Les pompiers de Gironde, le SDIS, sont financés par le département et par la métropole. Cette métropole que Thomas Cazenave préside également.</p>
+</div>
+</div>
+
+<!-- CHAPITRE II -->
+<div class="s">
+<div class="s-label">II. La mauvaise réponse à la mauvaise menace</div>
+<p>Alors posons la vraie question. Quand on parle de "sécurité", pourquoi ne pense-t-on jamais à eux ? Un pompier protège autant qu'un policier — souvent plus. Il éteint les feux, désincarcère, secourt, relève. En Gironde, ce sont eux qui tiennent la ligne pendant que la forêt part en fumée. Deux d'entre eux y ont laissé la vie cette semaine.</p>
+<p>Mais dans les budgets, dans les discours, dans les "plans Marshall", ce sont toujours les caméras et les effectifs de police qui raflent la mise. Jamais les casernes.</p>
+
+<div class="art-img">
+<img alt="Incendie en Gironde, la nuit" src="images/incendie-nuit.png"/>
+<div class="art-img-cap">Le front de flammes à l'horizon, à la nuit tombée. · Photo : Under Bordeaux</div>
+</div>
+
+<p>Depuis des années, la recette est la même : plus de caméras, plus de policiers. À Bordeaux comme ailleurs, on a déployé des centaines de caméras dont l'efficacité réelle sur la délinquance reste, au mieux, contestée. On répète ce qui ne fait pas ses preuves, et on appelle ça un "plan Marshall".</p>
+<p>Pendant ce temps, une autre menace, elle, ne cesse de grandir. Elle ne se règle pas avec des caméras ni des rondes de nuit. Elle brûle nos forêts, elle asphyxie nos villes, elle tue nos pompiers. Et face à elle, on coupe les moyens.</p>
+</div>
+
+<!-- CONCLUSION -->
+<div class="conclu">
+<h2 class="conclu-title">Protéger,<br/><span>mais protéger qui ?</span></h2>
+<p>Faudra-t-il voir Bordeaux disparaître sous les cendres pour comprendre l'urgence ?</p>
+<p>On nous expliquera que ces feux sont d'origine humaine, un accident. Sans doute. Mais cessons de faire comme si le reste n'existait pas : la sécheresse, les canicules à répétition, une forêt qui s'embrase comme jamais. Ça, ce n'est pas un accident. C'est le climat qui change, et il change vite.</p>
+<p>On ne demande pas à un maire d'éteindre le feu à mains nues. On lui demande d'arrêter de couper dans les moyens de ceux qui le font. De cesser de traiter la menace de demain avec les réflexes d'hier.</p>
+<p>Le feu ne demande pas votre carte d'électeur avant de frapper. Il emporte tout — les maisons, les forêts, les animaux qu'on lâche en catastrophe pour qu'ils fuient les flammes. Il touche tout ce qui vit.</p>
+<p>Un maire ne gouverne pas que pour ceux qui l'ont élu. Il peut être tentant de répondre d'abord aux peurs de son électorat — l'insécurité, la délinquance. Mais le feu, la canicule, l'air irrespirable, eux, ne touchent pas que ses électeurs. Ils touchent chaque Bordelais, quel que soit son quartier, quel que soit son vote.</p>
+<p>Contre le vol et la délinquance, oui. Mais aussi, et surtout, face aux dangers de demain — dont on voit déjà les couleurs aujourd'hui.</p>
+<p>Ces dangers, nous les affronterons ensemble ou pas du tout. Face au feu, à la sécheresse, à ce qui vient, aucune caméra, aucun mur ne remplacera ce qui nous a toujours sauvés : l'entraide, la solidarité, la cohésion. Ces jours-ci, ce sont des inconnus qui ouvrent leur porte, des bénévoles qui distribuent l'eau, des pompiers venus de toute l'Europe. Voilà ce qui tient debout quand tout brûle.</p>
+<div class="conclu-close">
+<p>Réparons demain les erreurs d'hier. Ensemble.</p>
+<p style="color:#E8000F;margin-top:16px;">La sécurité, oui. Mais dans tous les sens du terme.</p>
+</div>
+</div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="art-ft">
+<div class="art-ft-logo">UNDER <span>BDX</span></div>
+<a href="articles.html">← Retour aux articles</a>
+</div>
+<div class="ub-redline"></div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
