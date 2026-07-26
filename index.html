@@ -1,198 +1,339 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>La Gironde brûle : bien réagir suffit-il ? — Under Bordeaux</title>
-<link href="css/style.css" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-<style>
-    :root { --red: #E8000F; --bg: #0e0e0e; --border: #1a1a1a; --muted: #4a4a4a; }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background: var(--bg); color: #fff; font-family: 'Inter', sans-serif; }
-
-    /* HERO */
-    .hero { position: relative; height: 90vh; min-height: 540px; display: flex; align-items: flex-end; overflow: hidden; }
-    .hero-bg { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(8,8,8,0.25) 0%, rgba(8,8,8,0.55) 55%, rgba(8,8,8,0.97) 100%), url('images/incendie-hero.jpeg') center/cover no-repeat; }
-    .hero-content { position: relative; z-index: 2; padding: 0 48px 52px; max-width: 900px; }
-    .hero-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #fff; margin-bottom: 14px; background: rgba(232,0,15,0.85); padding: 4px 10px; display: inline-flex; align-items: center; gap: 10px; }
-    .hero-tag::before { content: ''; width: 20px; height: 1.5px; background: var(--red); display: block; }
-    .hero-title { font-family: 'Bebas Neue', Impact, sans-serif; font-size: clamp(46px, 8vw, 92px); line-height: 0.92; color: #fff; margin-bottom: 18px; }
-    .hero-title span { color: var(--red); }
-    .hero-sub { font-size: 14px; color: #ddd; line-height: 1.65; max-width: 560px; margin-bottom: 24px; }
-    .hero-meta { display: flex; align-items: center; gap: 14px; font-size: 11px; color: #fff; letter-spacing: 0.1em; text-transform: uppercase; }
-    .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--red); }
-    .hero-credit { position: absolute; bottom: 10px; right: 16px; z-index: 2; font-size: 9px; color: rgba(255,255,255,0.5); letter-spacing: 0.05em; }
-
-    /* ARTICLE */
-    .art { max-width: 720px; margin: 0 auto; padding: 0 48px 100px; }
-
-    /* HOMMAGE */
-    .hommage { padding: 44px 0 40px; border-bottom: 0.5px solid var(--border); text-align: center; }
-    .hommage p { font-size: 15px; line-height: 1.85; color: #999; font-style: italic; font-weight: 300; margin-bottom: 14px; }
-    .hommage p:last-child { margin: 0; color: #ccc; font-weight: 500; font-style: normal; letter-spacing: 0.02em; }
-
-    .art-intro { padding: 48px 0 44px; border-bottom: 0.5px solid var(--border); }
-    .art-intro p { font-size: 16px; line-height: 1.9; color: #999; font-weight: 300; margin-bottom: 18px; }
-    .art-intro p:last-child { margin: 0; }
-    .art-intro strong { color: #ddd; font-weight: 600; }
-    .art-intro .accroche { font-size: 19px; font-weight: 600; color: #ccc; line-height: 1.5; padding-top: 22px; margin-top: 6px; border-top: 0.5px solid var(--border); }
-
-    .s { padding: 44px 0; border-bottom: 0.5px solid var(--border); }
-    .s:last-child { border-bottom: none; }
-    .s-label { font-size: 9px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--red); margin-bottom: 22px; display: flex; align-items: center; gap: 10px; }
-    .s-label::before { content: ''; width: 14px; height: 1.5px; background: var(--red); display: block; }
-    .s p { font-size: 15px; line-height: 1.9; color: #999; margin-bottom: 16px; }
-    .s p:last-child { margin: 0; }
-    .s strong { color: #ddd; font-weight: 600; }
-
-    .key { margin: 32px 0; padding-left: 18px; border-left: 2px solid var(--red); }
-    .key p { font-size: 19px; font-weight: 600; color: #ddd; line-height: 1.5; margin: 0; }
-
-    /* IMAGE ARTICLE */
-    .art-img { margin: 32px 0; }
-    .art-img img { width: 100%; display: block; border: 0.5px solid var(--border); }
-    .art-img-cap { padding: 7px 0; font-size: 10px; color: var(--muted); letter-spacing: 0.06em; display: flex; align-items: center; gap: 8px; }
-    .art-img-cap::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--red); flex-shrink: 0; }
-
-    /* STAT */
-    .stat { margin: 36px 0; display: flex; align-items: center; gap: 28px; padding: 28px 0; border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); }
-    .stat-n { font-family: 'Bebas Neue', Impact, sans-serif; font-size: 76px; color: var(--red); line-height: 1; flex-shrink: 0; }
-    .stat-t strong { font-size: 14px; color: #ccc; display: block; margin-bottom: 6px; font-weight: 600; }
-    .stat-t p { font-size: 12px; color: var(--muted); line-height: 1.6; margin: 0; }
-
-    /* CONCLUSION */
-    .conclu { padding: 44px 0 0; }
-    .conclu-title { font-family: 'Bebas Neue', Impact, sans-serif; font-size: clamp(38px, 6vw, 54px); line-height: 1; color: #fff; margin-bottom: 28px; }
-    .conclu-title span { color: var(--red); }
-    .conclu p { font-size: 15px; line-height: 1.9; color: #999; margin-bottom: 16px; }
-    .conclu strong { color: #ddd; }
-    .conclu-close { margin-top: 36px; padding-top: 24px; border-top: 0.5px solid var(--border); }
-    .conclu-close p { font-size: 17px; color: #fff; line-height: 1.7; margin-bottom: 10px; font-weight: 600; }
-
-    /* FOOTER */
-    .art-ft { max-width: 720px; margin: 0 auto; padding: 28px 48px 60px; border-top: 0.5px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
-    .art-ft-logo { font-family: 'Bebas Neue', Impact, sans-serif; font-size: 15px; letter-spacing: 2px; color: #fff; }
-    .art-ft-logo span { color: var(--red); }
-    .art-ft a { font-size: 10px; color: var(--muted); text-decoration: none; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.15s; }
-    .art-ft a:hover { color: #fff; }
-
-    @media (max-width: 640px) {
-      .hero-content { padding: 0 20px 40px; }
-      .art { padding: 0 20px 80px; }
-      .stat { flex-direction: column; gap: 12px; align-items: flex-start; }
-      .art-ft { padding: 24px 20px 40px; flex-direction: column; gap: 14px; align-items: flex-start; }
+  <meta charset="UTF-8" />
+  <meta name="google-site-verification" content="2WOa3PlqAaXlS0ZmxQfk9tbXATprXgGYvxSPisFXEyU" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Under Bordeaux — Média indépendant</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <style>
+    .ub-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.88); display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
+    .ub-overlay.hidden { display: none; }
+    .ub-modal { background: #111; border: 0.5px solid #333; width: 420px; max-width: 100%; }
+    .ub-modal-head { background: #121212; border-bottom: 0.5px solid #222; padding: 10px 14px; display: flex; align-items: center; justify-content: space-between; }
+    .ub-modal-head-title { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #E8000F; }
+    .ub-modal-close { background: none; border: none; color: #555; font-size: 16px; cursor: pointer; }
+    .ub-modal-close:hover { color: #fff; }
+    .ub-modal-body { padding: 16px; }
+    .ub-modal-title { font-family: Impact, Arial Black, sans-serif; font-size: 18px; text-transform: uppercase; color: #fff; line-height: 1.15; margin-bottom: 6px; }
+    .ub-modal-meta { font-size: 11px; color: #444; margin-bottom: 10px; }
+    .ub-modal-desc { font-size: 13px; color: #666; line-height: 1.65; }
+    .ub-modal-foot { display: flex; gap: 8px; padding: 12px 16px; border-top: 0.5px solid #1e1e1e; }
+    .ub-modal-open { flex: 1; background: #E8000F; border: none; color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 10px; cursor: pointer; transition: background 0.15s; }
+    .ub-modal-open:hover { background: #c5000c; }
+    .ub-modal-cancel { background: none; border: 0.5px solid #2a2a2a; color: #555; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 10px 14px; cursor: pointer; transition: all 0.15s; }
+    .ub-modal-cancel:hover { border-color: #555; color: #fff; }
+    @media (max-width: 768px) {
+      .ub-engage { flex-direction: column; align-items: stretch !important; gap: 24px !important; }
+      .ub-engage-bar { width: 40px !important; height: 2px; align-self: flex-start !important; }
+      .ub-engage-logo { height: 140px !important; align-self: center; }
+      #mini-map { height: 300px !important; }
     }
-</style>
+  </style>
 </head>
 <body>
-<div class="ub-redline"></div>
-<nav class="ub-nav">
-<div class="ub-logo"><img alt="Under Bordeaux" src="images/logo.png" style="height:52px;width:auto;"/></div>
-<div class="ub-nav-links">
-<a href="index.html">Accueil</a>
-<a href="articles.html" style="color:#fff;">Articles</a>
-<a href="podcasts.html">Multimédia</a>
-<a href="undermap.html">Under Map</a>
-<a href="index.html#contact">Contact</a>
-</div>
-<button aria-label="Menu" class="ub-hamburger"><span></span><span></span><span></span></button>
-</nav>
 
-<!-- HERO -->
-<div class="hero">
-<div class="hero-bg"></div>
-<div class="hero-content">
-<div class="hero-tag">Analyse · Incendies · Gironde</div>
-<h1 class="hero-title">La Gironde brûle :<br/><span>bien réagir suffit-il ?</span></h1>
-<p class="hero-sub">Face aux flammes, Bordeaux a ouvert ses portes aux sinistrés. Une réaction à saluer. Mais gérer la crise quand elle éclate, est-ce la même chose que l'avoir anticipée ?</p>
-<div class="hero-meta">
-<span>Under Bordeaux</span><div class="dot"></div>
-<span>Juillet 2026</span><div class="dot"></div>
-<span>👁 Lecture 4 min.</span>
-</div>
-</div>
-<div class="hero-credit">Photo : Under Bordeaux</div>
-</div>
+  <div class="ub-redline"></div>
 
-<div class="art">
+  <!-- NAV -->
+  <nav class="ub-nav">
+    <div class="ub-logo"><img src="images/logo.png" alt="Under Bordeaux" style="height: 52px; width: auto;" /></div>
+    <div class="ub-nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="articles.html">Articles</a>
+      <a href="podcasts.html">Multimédia</a>
+      <a href="undermap.html">Under Map</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button class="ub-hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
 
-<!-- HOMMAGE -->
-<div class="hommage">
-<p>Avant toute chose.</p>
-<p>Nos pensées vont aux deux sapeurs-pompiers qui ont perdu la vie en nous protégeant, ainsi qu'à leurs familles. Et à toutes celles et ceux qui, jour et nuit, tiennent la ligne face aux flammes pour défendre la Gironde et ses habitants.</p>
-<p>Le respect avant les mots.</p>
-</div>
+  <!-- HERO -->
+  <section class="ub-hero" style="position:relative;overflow:hidden;text-shadow:0 2px 8px rgba(0,0,0,0.8);">
+    <div style="position:absolute;inset:0;background:linear-gradient(to bottom, rgba(8,8,8,0.35) 0%, rgba(20,20,20,0.85) 65%, #141414 100%), url('images/rue-élie-gintrac.jpg') center/cover no-repeat;z-index:0;"></div>
+    <div style="position:relative;z-index:1;">
+    <div class="ub-eyebrow">
+      <div class="ub-eyebrow-dot"></div>
+      <span style="color:#fff;">Bordeaux · Média indépendant · 2026</span>
+    </div>
+    <h1>On creuse.<br>On parle.<br><em>On laisse parler.</em></h1>
+    <!-- ✏️ MODIFIER LA DESCRIPTION ICI -->
+    <p class="ub-hero-sub" style="color:#fff;">Articles, podcasts, micros-trottoirs et reportages, proches de tous depuis Bordeaux. Notre objectif : rétablir une visibilité équitable et mettre en lumière les violences que notre société étouffe.</p>
+    <div class="ub-hero-actions">
+      <a href="articles.html"><button style="font-family:Impact,Arial Black,sans-serif;font-size:18px;letter-spacing:0.12em;text-transform:uppercase;padding:18px 52px;background:#E8000F;color:#fff;border:none;cursor:pointer;transition:all 0.2s;display:inline-flex;align-items:center;gap:12px;" onmouseover="this.style.background='#c5000c';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#E8000F';this.style.transform='translateY(0)'">NOS ENQUÊTES <span style="font-size:22px;">→</span></button></a>
+    </div>
 
-<!-- INTRO -->
-<div class="art-intro">
-<p>Depuis la mi-juillet, la Gironde vit une série d'incendies parmi les pires de son histoire. Comme ailleurs en France cet été, le feu a gagné du terrain, et les évacuations se sont enchaînées, commune après commune, jusqu'aux portes de la métropole. Plus de <strong>140 000 personnes</strong> ont dû quitter leur domicile.</p>
-<p>Face à cette vague, Thomas Cazenave a pris une décision à saluer : l'ouverture du parc des expositions de Bordeaux, transformé en centre d'accueil. Jusqu'à 10 000 places, des lits, de l'eau, des repas chauds, un espace pour les animaux, des douches. Des milliers de sinistrés y ont trouvé un refuge. Dans l'urgence, la ville a été à la hauteur, et son maire aussi.</p>
-<p class="accroche">Mais gérer une crise quand elle éclate, c'est une chose. Avoir tout fait pour l'affronter, avant qu'elle arrive, en est une autre.</p>
-</div>
+    <div class="ub-engage" style="border-top:0.5px solid #1e1e1e;padding-top:40px;display:flex;align-items:center;gap:32px;">
+      <div class="ub-engage-bar" style="width:2px;background:#E8000F;flex-shrink:0;align-self:stretch;"></div>
+      <div style="display:flex;flex-direction:column;gap:10px;flex:1;justify-content:center;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#E8000F;">Notre engagement</div>
+        <div style="font-family:Impact,Arial Black,sans-serif;font-size:clamp(15px,2vw,22px);text-transform:uppercase;color:#fff;line-height:1.15;">La parole appartient à tout le monde.<br>On est juste là pour la porter.</div>
+        <div style="font-size:12px;color:#fff;line-height:1.6;">Ici, personne n'a plus de crédit qu'un autre. Under Bordeaux, c'est votre voix autant que la nôtre.</div>
+      </div>
+      <img class="ub-engage-logo" src="images/logo.png" alt="Under Bordeaux" style="height:200px;width:auto;opacity:0.95;flex-shrink:0;" />
+    </div>
+      </div>
+  </section>
 
-<!-- CHAPITRE I -->
-<div class="s">
-<div class="s-label">I. Un choix, pas une erreur</div>
-<p>Reprenons depuis le début. Février 2024. Thomas Cazenave est alors ministre chargé des Comptes publics. À ce titre, il contresigne un décret qui annule 10 milliards d'euros de crédits — dont <strong>52,8 millions sur le budget de la Sécurité civile</strong>. Conséquence directe, confirmée par la Direction générale de la sécurité civile et deux rapports parlementaires : l'État renonce à commander deux Canadair supplémentaires. Deux avions bombardiers d'eau en moins, en pleine ère des méga-feux.</p>
+  <!-- ENQUÊTES À LA UNE -->
+  <section class="ub-section">
+    <div class="ub-section-head">
+      <div class="ub-section-name">À la une</div>
+      <a class="ub-section-all" href="articles.html">Tout voir →</a>
+    </div>
+    <!--
+    ✏️ AJOUTER VOS ARTICLES ICI
+    Dupliquez un bloc .ub-card-art pour chaque nouvel article.
+    Remplacez :
+      - href         : lien vers l'article (ex: 'article2.html')
+      - img src      : photo de l'article (ex: 'images/photo-article.jpg')
+      - ub-card-tag  : catégorie
+      - ub-card-title: titre
+      - ub-card-desc : résumé court
+      - ub-card-meta : auteur · date
+    -->
+    <div class="ub-cards-grid">
 
-<div class="art-img">
-<img alt="Décret n°2024-124 signé par Thomas Cazenave" src="images/decret-signature.jpeg"/>
-<div class="art-img-cap">Le décret d'annulation de crédits, contresigné par Thomas Cazenave, alors ministre chargé des Comptes publics (en bas à droite). · Source : Journal officiel de la République française</div>
-</div>
+      <!-- ARTICLE 1 — À LA UNE -->
+      <div class="ub-card-art featured" onclick="openModal(1)" style="cursor:pointer;">
+        <div class="ub-card-img">
+          <img src="images/incendie-hero.jpeg" alt="La Gironde brûle : bien réagir suffit-il ?" />
+          <div class="ub-card-overlay"></div>
+          <div class="ub-card-badge">À la une</div>
+        </div>
+        <div class="ub-card-body">
+          <div class="ub-card-tag">Analyse</div>
+          <div class="ub-card-title">La Gironde brûle : bien réagir suffit-il ?</div>
+          <div class="ub-card-desc">Face aux flammes, Bordeaux a ouvert ses portes aux sinistrés. Une réaction à saluer. Mais l'avait-on anticipée ?</div>
+          <div class="ub-card-meta">Under Bordeaux · Juillet 2026</div>
+        </div>
+      </div>
 
-<div class="art-img">
-<img alt="Décret d'annulation de crédits, ligne Sécurité civile" src="images/decret-securite-civile.jpeg"/>
-<div class="art-img-cap">Dans le détail du décret, la ligne « Sécurité civile » (programme 161) : 52 766 476 € annulés. · Source : Journal officiel de la République française</div>
-</div>
+      <!-- ARTICLE 2 -->
+      <div class="ub-card-art" onclick="openModal(2)" style="cursor:pointer;">
+        <div class="ub-card-img">
+          <img src="images/canicule-miroir-eau.webp" alt="42,5°C à l'ombre, zéro degré d'empathie" />
+          <div class="ub-card-overlay"></div>
+        </div>
+        <div class="ub-card-body">
+          <div class="ub-card-tag">Analyse</div>
+          <div class="ub-card-title">42,5°C à l'ombre, zéro degré d'empathie.</div>
+          <div class="ub-card-desc">Chronique d'une canicule à deux vitesses. À Bordeaux, tout le monde n'a pas chaud de la même manière.</div>
+          <div class="ub-card-meta">Under Bordeaux · Juillet 2026</div>
+        </div>
+      </div>
 
-<p>Ces deux Canadair, aujourd'hui, on les cherche. Le feu est tel que la France a dû demander l'aide de ses voisins européens : des Canadair croates, des avions portugais, des hélicoptères venus de Tchéquie et de Slovaquie sont venus prêter main-forte. Un comble, pour un pays qui, d'ordinaire, envoie <strong>ses</strong> avions secourir la Grèce ou l'Espagne. Cette fois, c'est nous qui avons tendu la main.</p>
+      <!-- ARTICLE 3 -->
+      <div class="ub-card-art" onclick="openModal(3)" style="cursor:pointer;">
+        <div class="ub-card-img">
+          <img src="images/capucins.jpg" alt="Op coup de poing aux Capus" />
+          <div class="ub-card-overlay"></div>
+        </div>
+        <div class="ub-card-body">
+          <div class="ub-card-tag">Enquête</div>
+          <div class="ub-card-title">Op coup de poing aux Capus, 1 mois après.</div>
+          <div class="ub-card-desc">Les "nouvelles" méthodes de Cazenave sont-elles réellement impactantes pour les habitants des Capucins ?</div>
+          <div class="ub-card-meta">Under Bordeaux · Mai 2026</div>
+        </div>
+      </div>
 
-<p>Deux ans plus tard, le voilà maire de Bordeaux. Et l'une de ses priorités affichées, son "plan Marshall de la sécurité" : porter le budget sécurité de la ville à <strong>20 millions d'euros</strong>, doubler la police municipale, armer tous les agents.</p>
+    </div>
+  </section>
 
-<p>Deux décisions, deux fonctions différentes — soyons précis : on ne finance pas les Canadair avec le budget municipal de Bordeaux. Mais c'est le même homme, et la même logique. Quand il s'agit de police et de caméras, les millions sont là. Quand il s'agit des moyens de secours, on coupe.</p>
+  <!-- UNDER MAP -->
+  <section class="ub-section">
+    <div class="ub-section-head">
+      <div class="ub-section-name" style="color:#E8000F;">Under Map</div>
+      <a class="ub-section-all" href="undermap.html">Explorer la carte →</a>
+    </div>
+    <p style="font-size:14px;color:#888;line-height:1.7;max-width:640px;margin:0 0 24px;">Chaque enquête est ancrée quelque part dans Bordeaux. La Under Map, c'est notre ville vue à travers nos articles : cliquez sur une punaise pour découvrir ce qui s'y est passé.</p>
+    <div style="position:relative;border:0.5px solid #1e1e1e;overflow:hidden;">
+      <div id="mini-map" style="width:100%;height:420px;background:#0e0e0e;"></div>
+      <a href="undermap.html" style="position:absolute;bottom:16px;right:16px;z-index:500;background:#E8000F;color:#fff;font-family:Impact,Arial Black,sans-serif;font-size:14px;letter-spacing:0.1em;text-transform:uppercase;padding:12px 24px;text-decoration:none;transition:background 0.15s;box-shadow:0 4px 16px rgba(0,0,0,0.5);" onmouseover="this.style.background='#c5000c'" onmouseout="this.style.background='#E8000F'">Ouvrir la carte →</a>
+    </div>
+  </section>
 
-<div class="key">
-<p>Et il y a un troisième détail. Les pompiers de Gironde, le SDIS, sont financés par le département et par la métropole. Cette métropole que Thomas Cazenave préside également.</p>
-</div>
-</div>
+  <!-- Multimédia À LA UNE -->
+  <section class="ub-section">
+    <div class="ub-section-head">
+      <div class="ub-section-name">Multimédia</div>
+      <a class="ub-section-all" href="podcasts.html">Tout écouter →</a>
+    </div>
+    <!--
+    ✏️ AJOUTER VOS PODCASTS ICI
+    Quand vous avez des épisodes, dupliquez un bloc .ub-pod-card.
+    Remplacez :
+      - href            : lien vers la page podcasts
+      - ub-pod-card-tag : catégorie (Audio / Vidéo)
+      - ub-pod-card-ep  : numéro d'épisode
+      - ub-pod-card-title : titre
+      - ub-pod-card-desc  : description courte
+      - ub-pod-card-dur   : durée
+    -->
+    <div class="ub-pods-grid">
 
-<!-- CHAPITRE II -->
-<div class="s">
-<div class="s-label">II. La mauvaise réponse à la mauvaise menace</div>
-<p>Alors posons la vraie question. Quand on parle de "sécurité", pourquoi ne pense-t-on jamais à eux ? Un pompier protège autant qu'un policier — souvent plus. Il éteint les feux, désincarcère, secourt, relève. En Gironde, ce sont eux qui tiennent la ligne pendant que la forêt part en fumée. Deux d'entre eux y ont laissé la vie cette semaine.</p>
-<p>Mais dans les budgets, dans les discours, dans les "plans Marshall", ce sont toujours les caméras et les effectifs de police qui raflent la mise. Jamais les casernes.</p>
+      <!-- ✏️ ÉPISODE 1 -->
+      <a href="podcasts.html" class="ub-pod-card">
+        <div class="ub-pod-card-left">
+          <div class="ub-pod-card-num">01</div>
+          <div class="ub-pod-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+          </div>
+        </div>
+        <div class="ub-pod-card-info">
+          <div class="ub-pod-card-tag">Audio · À venir</div>
+          <div class="ub-pod-card-title">Premier épisode bientôt disponible</div>
+          <div class="ub-pod-card-desc">Restez connectés — notre premier podcast arrive prochainement.</div>
+        </div>
+        <div class="ub-pod-card-right">
+          <div class="ub-pod-card-dur">—</div>
+          <div class="ub-pod-card-btn">
+            <svg viewBox="0 0 10 12"><polygon points="1,0 10,6 1,12"/></svg>
+          </div>
+        </div>
+      </a>
 
-<p>Depuis des années, la recette est la même : plus de caméras, plus de policiers. À Bordeaux comme ailleurs, on a déployé des centaines de caméras dont l'efficacité réelle sur la délinquance reste, au mieux, contestée. On répète ce qui ne fait pas ses preuves, et on appelle ça un "plan Marshall".</p>
-<p>Pendant ce temps, une autre menace, elle, ne cesse de grandir. Elle ne se règle pas avec des caméras ni des rondes de nuit. Elle brûle nos forêts, elle asphyxie nos villes, elle tue nos pompiers. Et face à elle, on coupe les moyens.</p>
-</div>
+      <!-- ✏️ ÉPISODE 2 -->
+      <a href="podcasts.html" class="ub-pod-card">
+        <div class="ub-pod-card-left">
+          <div class="ub-pod-card-num">02</div>
+          <div class="ub-pod-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+          </div>
+        </div>
+        <div class="ub-pod-card-info">
+          <div class="ub-pod-card-tag">Audio · À venir</div>
+          <div class="ub-pod-card-title">Deuxième épisode bientôt disponible</div>
+          <div class="ub-pod-card-desc">Description courte de l'épisode à venir.</div>
+        </div>
+        <div class="ub-pod-card-right">
+          <div class="ub-pod-card-dur">—</div>
+          <div class="ub-pod-card-btn">
+            <svg viewBox="0 0 10 12"><polygon points="1,0 10,6 1,12"/></svg>
+          </div>
+        </div>
+      </a>
 
-<!-- CONCLUSION -->
-<div class="conclu">
-<h2 class="conclu-title">Protéger,<br/><span>mais protéger qui ?</span></h2>
-<p>Faudra-t-il voir Bordeaux disparaître sous les cendres pour comprendre l'urgence ?</p>
-<p>On nous expliquera que ces feux sont d'origine humaine, un accident. Sans doute. Mais cessons de faire comme si le reste n'existait pas : la sécheresse, les canicules à répétition, une forêt qui s'embrase comme jamais. Ça, ce n'est pas un accident. C'est le climat qui change, et il change vite.</p>
-<p>On ne demande pas à un maire d'éteindre le feu à mains nues. On lui demande d'arrêter de couper dans les moyens de ceux qui le font. De cesser de traiter la menace de demain avec les réflexes d'hier.</p>
-<p>Le feu ne demande pas votre carte d'électeur avant de frapper. Il emporte tout — les maisons, les forêts, les animaux qu'on lâche en catastrophe pour qu'ils fuient les flammes. Il touche tout ce qui vit.</p>
-<p>Un maire ne gouverne pas que pour ceux qui l'ont élu. Il peut être tentant de répondre d'abord aux peurs de son électorat — l'insécurité, la délinquance. Mais le feu, la canicule, l'air irrespirable, eux, ne touchent pas que ses électeurs. Ils touchent chaque Bordelais, quel que soit son quartier, quel que soit son vote.</p>
-<p>Contre le vol et la délinquance, oui. Mais aussi, et surtout, face aux dangers de demain — dont on voit déjà les couleurs aujourd'hui.</p>
-<p>Ces dangers, nous les affronterons ensemble ou pas du tout. Face au feu, à la sécheresse, à ce qui vient, aucune caméra, aucun mur ne remplacera ce qui nous a toujours sauvés : l'entraide, la solidarité, la cohésion. Ces jours-ci, ce sont des inconnus qui ouvrent leur porte, des bénévoles qui distribuent l'eau, des pompiers venus de toute l'Europe. Voilà ce qui tient debout quand tout brûle.</p>
-<div class="conclu-close">
-<p>Réparons demain les erreurs d'hier. Ensemble.</p>
-<p style="color:#E8000F;margin-top:16px;">La sécurité, oui. Mais dans tous les sens du terme.</p>
-</div>
-</div>
+    </div>
+  </section>
 
-</div>
+  <!-- CONTACT -->
+  <div class="ub-contact" id="contact">
+    <div class="ub-contact-l">
+      <h2>Nous<br><em>écrire</em></h2>
+      <p>Un témoignage, une info à nous transmettre, une idée de collaboration ? On lit tout. Under Bordeaux c'est aussi vos voix.</p>
+      <div class="ub-contact-socials">
+        <!-- ✏️ REMPLACER PAR VOS VRAIS LIENS -->
+        <a class="ub-social" href="https://www.instagram.com/underbordeaux" target="_blank">Instagram</a>
+        <a class="ub-social" href="https://www.tiktok.com/@under_bordeaux" target="_blank">TikTok</a>
+        <a class="ub-social" href="mailto:underbordeaux@gmail.com">underbordeaux@gmail.com</a>
+      </div>
+    </div>
+    <form class="ub-form" action="https://formspree.io/f/mgodqyge" method="POST">
+      <input class="ub-field" type="text" name="nom" placeholder="Votre nom" required />
+      <input class="ub-field" type="email" name="email" placeholder="Votre email" required />
+      <textarea class="ub-field" name="message" placeholder="Votre message..." required></textarea>
+      <button class="ub-submit" type="submit">Envoyer →</button>
+    </form>
+  </div>
 
-<!-- FOOTER -->
-<div class="art-ft">
-<div class="art-ft-logo">UNDER <span>BDX</span></div>
-<a href="articles.html">← Retour aux articles</a>
-</div>
-<div class="ub-redline"></div>
+  <!-- FOOTER -->
+  <footer class="ub-footer">
+    <div class="ub-footer-logo">UNDER BORDEAUX</div>
+    <p>Média indépendant · Bordeaux · 2026</p>
+  </footer>
 
-<script src="js/main.js"></script>
+  <div class="ub-redline"></div>
+
+  <script src="js/main.js"></script>
+  <script>
+    // ── MINI UNDER MAP ──
+    const miniArticles = [
+      { titre: "La Gironde brûle : bien réagir suffit-il ?", url: 'incendie.html', lat: 44.783300, lng: -1.148900 },
+      { titre: "42,5°C à l'ombre, zéro degré d'empathie.", url: 'canicule.html', lat: 44.841225, lng: -0.569520 },
+      { titre: 'Op coup de poing aux Capus, 1 mois après.', url: 'article1.html', lat: 44.830479, lng: -0.567762 }
+    ];
+
+    const miniMap = L.map('mini-map', { center: [44.8378, -0.5792], zoom: 13, zoomControl: false, scrollWheelZoom: false, attributionControl: false });
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      subdomains: 'abcd', maxZoom: 20
+    }).addTo(miniMap);
+
+    // Contour de Bordeaux
+    fetch('https://geo.api.gouv.fr/communes/33063?fields=contour&format=json&geometry=contour')
+      .then(r => r.json())
+      .then(data => {
+        if (data && data.contour) {
+          L.geoJSON(data.contour, { style: { color: '#E8000F', weight: 1.5, opacity: 0.5, fill: false, dashArray: '5,5' } }).addTo(miniMap);
+        }
+      }).catch(() => {});
+
+    // Punaises rouges
+    const miniIcon = L.divIcon({
+      className: 'mini-pin',
+      html: '<div style="width:16px;height:16px;background:#E8000F;border:3px solid #fff;border-radius:50%;box-shadow:0 0 0 4px rgba(232,0,15,0.3);"></div>',
+      iconSize: [16, 16], iconAnchor: [8, 8]
+    });
+
+    miniArticles.forEach(a => {
+      L.marker([a.lat, a.lng], { icon: miniIcon })
+        .addTo(miniMap)
+        .bindPopup(`<strong>${a.titre}</strong><br><a href="${a.url}" style="color:#E8000F;">Lire l'article →</a>`);
+    });
+  </script>
+
+  <!-- MODAL -->
+  <div class="ub-overlay hidden" id="overlay">
+    <div class="ub-modal">
+      <div class="ub-modal-head">
+        <div class="ub-modal-head-title" id="m-tag">—</div>
+        <button class="ub-modal-close" onclick="closeModal()">✕</button>
+      </div>
+      <div id="m-img" style="width:100%;height:180px;background:#1a1a1a;display:flex;align-items:center;justify-content:center;font-size:48px;">📁</div>
+      <div class="ub-modal-body">
+        <div class="ub-modal-title" id="m-title">—</div>
+        <div class="ub-modal-meta" id="m-meta">—</div>
+        <div class="ub-modal-desc" id="m-desc">—</div>
+      </div>
+      <div class="ub-modal-foot">
+        <button class="ub-modal-open" id="m-open-btn">Ouvrir l'article →</button>
+        <button class="ub-modal-cancel" onclick="closeModal()">Fermer</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const articlesUne = [
+      { id:1, tag:"Analyse", title:"La Gironde brûle : bien réagir suffit-il ?", date:"26 juillet 2026", auteur:"Under Bordeaux", desc:"Face aux incendies, Bordeaux a ouvert ses portes aux sinistrés. Une réaction à saluer. Mais les moyens de secours, eux, ont-ils été à la hauteur des choix passés ?", img:"images/incendie-hero.jpeg", href:"incendie.html" },
+      { id:2, tag:"Analyse", title:"42,5°C à l'ombre, zéro degré d'empathie.", date:"18 juillet 2026", auteur:"Under Bordeaux", desc:"Chronique d'une canicule à deux vitesses. Records de chaleur, transports à l'arrêt et discours déconnectés : à Bordeaux, tout le monde n'a pas chaud de la même manière.", img:"images/canicule-miroir-eau.webp", href:"canicule.html" },
+      { id:3, tag:"Enquête", title:"Opération coup de poing aux Capucins, 1 mois après.", date:"31 mai 2026", auteur:"Under Bordeaux", desc:"Investigations sur les méthodes répressives des équipes municipales à Bordeaux, au sein du quartier des Capucins.", img:"images/capucins.jpg", href:"article1.html" },
+    ];
+
+    function openModal(id) {
+      const a = articlesUne.find(x => x.id === id);
+      document.getElementById("m-tag").textContent = a.tag;
+      document.getElementById("m-title").textContent = a.title;
+      document.getElementById("m-meta").textContent = a.date + " · " + a.auteur;
+      document.getElementById("m-desc").textContent = a.desc;
+      document.getElementById("m-img").innerHTML = a.img
+        ? `<img src="${a.img}" alt="${a.title}" style="width:100%;height:180px;object-fit:cover;display:block;" />`
+        : `<div style="width:100%;height:180px;background:#1a1a1a;display:flex;align-items:center;justify-content:center;font-size:48px;">📁</div>`;
+      document.getElementById("m-open-btn").onclick = () => { window.location.href = a.href; };
+      document.getElementById("overlay").classList.remove("hidden");
+    }
+
+    function closeModal() {
+      document.getElementById("overlay").classList.add("hidden");
+    }
+
+    document.getElementById("overlay").addEventListener("click", e => {
+      if (e.target.id === "overlay") closeModal();
+    });
+  </script>
 </body>
 </html>
