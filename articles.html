@@ -74,7 +74,7 @@
   <!-- FILTRES -->
   <div class="ub-lib-filters" style="margin-top:24px;">
     <button class="ub-filter active" onclick="filter('all',this)">Tout</button>
-    <button class="ub-filter" onclick="filter('enquete',this)">Enquêtes</button>
+    <button class="ub-filter" onclick="filter('enquete',this)">Articles</button>
     <button class="ub-filter" onclick="filter('analyse',this)">Analyses</button>
     <button class="ub-filter" onclick="filter('article',this)">Récits & Traces</button>
   </div>
@@ -128,9 +128,9 @@
       - href    : lien vers la page de l'article (ex: 'article1.html')
     */
     const articles = [
-      { id:1, tag:'analyse', label:'Analyse', title:'42,5°C à l\'ombre, zéro degré d\'empathie.', date:'18 juillet 2026', auteur:'Under Bordeaux', desc:'Chronique d\'une canicule à deux vitesses. Records de chaleur, transports à l\'arrêt et discours déconnectés : à Bordeaux, tout le monde n\'a pas chaud de la même manière.', nouveau:true, img:'images/canicule-miroir-eau.webp', href:'canicule.html' },
-      { id:2, tag:'enquete', label:'Enquête', title:'Opération coup de poing aux Capucins, 1 mois après.', date:'31 mai 2026', auteur:'Under Bordeaux', desc:'Investigations sur les méthodes répressives des équipes municipales à Bordeaux, au sein du quartier des Capucins.', nouveau:false, img:'images/capucins.jpg', href:'article1.html' },
-      { id:3, tag:'article', label:'Récits & Traces', title:'Prochainement...', date:'???', auteur:'Under Bordeaux', desc:'Prochainement', nouveau:false, img:null, href:'article3.html' },
+      { id:1, tag:'analyse', label:'Analyse', title:'La Gironde brûle : bien réagir suffit-il ?', date:'26 juillet 2026', auteur:'Under Bordeaux', desc:'Face aux incendies, Bordeaux a ouvert ses portes aux sinistrés. Une réaction à saluer. Mais les moyens de secours ont-ils été à la hauteur des choix passés ?', nouveau:true, img:'images/incendie-hero.jpeg', href:'incendie.html' },
+      { id:2, tag:'analyse', label:'Analyse', title:'42,5°C à l\'ombre, zéro degré d\'empathie.', date:'18 juillet 2026', auteur:'Under Bordeaux', desc:'Chronique d\'une canicule à deux vitesses. Records de chaleur, transports à l\'arrêt et discours déconnectés : à Bordeaux, tout le monde n\'a pas chaud de la même manière.', nouveau:false, img:'images/canicule-miroir-eau.webp', href:'canicule.html' },
+      { id:3, tag:'enquete', label:'Enquête', title:'Opération coup de poing aux Capucins, 1 mois après.', date:'31 mai 2026', auteur:'Under Bordeaux', desc:'Investigations sur les méthodes répressives des équipes municipales à Bordeaux, au sein du quartier des Capucins.', nouveau:false, img:'images/capucins.jpg', href:'article1.html' },
     ];
 
     let current = null;
