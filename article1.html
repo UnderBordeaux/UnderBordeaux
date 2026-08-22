@@ -1,192 +1,567 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Articles — Under Bordeaux</title>
-  <link rel="stylesheet" href="css/style.css" />
-  <style>
-    .ub-lib-filters { display: flex; gap: 8px; padding: 12px 32px; border-bottom: 0.5px solid #1a1a1a; }
-    .ub-filter { background: none; border: 0.5px solid #2a2a2a; color: #555; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 4px 12px; cursor: pointer; transition: all 0.15s; }
-    .ub-filter:hover, .ub-filter.active { border-color: #E8000F; color: #E8000F; }
-    .ub-lib-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; padding: 32px; }
-    .ub-card { background: #111; border: 0.5px solid #1e1e1e; cursor: pointer; transition: all 0.15s; }
-    .ub-card:hover { border-color: #333; transform: translateY(-2px); }
-    .ub-card:hover .ub-card-title { color: #E8000F; }
-    .ub-card-img { width: 100%; height: 160px; object-fit: cover; display: block; background: #1a1a1a; position: relative; overflow: hidden; }
-    .ub-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .ub-card-img-placeholder { width: 100%; height: 160px; background: #1a1a1a; display: flex; align-items: center; justify-content: center; position: relative; }
-    .ub-card-badge { position: absolute; top: 8px; left: 8px; background: #E8000F; font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #fff; padding: 3px 8px; }
-    .ub-card-body { padding: 16px; }
-    .ub-card-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #E8000F; margin-bottom: 8px; }
-    .ub-card-title { font-family: Impact, Arial Black, sans-serif; font-size: 16px; text-transform: uppercase; color: #fff; line-height: 1.2; margin-bottom: 6px; transition: color 0.15s; }
-    .ub-card-meta { font-size: 11px; color: #333; padding-top: 12px; border-top: 0.5px solid #1a1a1a; }
-    .ub-statusbar { background: #0e0e0e; border-top: 0.5px solid #1a1a1a; padding: 6px 32px; display: flex; justify-content: space-between; font-size: 10px; color: #2a2a2a; letter-spacing: 0.08em; text-transform: uppercase; }
-    .ub-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.88); display: flex; align-items: center; justify-content: center; z-index: 100; padding: 20px; }
-    .ub-overlay.hidden { display: none; }
-    .ub-modal { background: #111; border: 0.5px solid #333; width: 420px; max-width: 100%; }
-    .ub-modal-head { background: #121212; border-bottom: 0.5px solid #222; padding: 10px 14px; display: flex; align-items: center; justify-content: space-between; }
-    .ub-modal-head-title { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #E8000F; }
-    .ub-modal-close { background: none; border: none; color: #555; font-size: 16px; cursor: pointer; }
-    .ub-modal-close:hover { color: #fff; }
-    .ub-modal-body { padding: 16px; }
-    .ub-modal-title { font-family: Impact, Arial Black, sans-serif; font-size: 18px; text-transform: uppercase; color: #fff; line-height: 1.15; margin-bottom: 6px; }
-    .ub-modal-meta { font-size: 11px; color: #444; margin-bottom: 10px; }
-    .ub-modal-desc { font-size: 13px; color: #666; line-height: 1.65; }
-    .ub-modal-foot { display: flex; gap: 8px; padding: 12px 16px; border-top: 0.5px solid #1e1e1e; }
-    .ub-modal-open { flex: 1; background: #E8000F; border: none; color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 10px; cursor: pointer; transition: background 0.15s; }
-    .ub-modal-open:hover { background: #c5000c; }
-    .ub-modal-cancel { background: none; border: 0.5px solid #2a2a2a; color: #555; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 10px 14px; cursor: pointer; transition: all 0.15s; }
-    .ub-modal-cancel:hover { border-color: #555; color: #fff; }
-    .ub-lib-empty { padding: 60px 32px; text-align: center; color: #333; font-size: 13px; }
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Op coup de poing aux Capus, 1 mois après, Under Bordeaux</title>
+<link href="css/style.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+    :root { --red: #E8000F; --bg: #0e0e0e; --border: #1a1a1a; --muted: #4a4a4a; --surface: #121212; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: #fff; font-family: 'Inter', sans-serif; }
+
+    /* HERO */
+    .hero { position: relative; height: 88vh; min-height: 520px; display: flex; align-items: flex-end; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(8,8,8,0.1) 0%, rgba(8,8,8,0.98) 100%), url('images/capucins-hero.jpg') center/cover no-repeat; }
+    .hero-content { position: relative; z-index: 2; padding: 0 48px 52px; max-width: 860px; }
+    .hero-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #fff; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; background: rgba(232,0,15,0.85); padding: 4px 10px; display: inline-flex; }
+    .hero-tag::before { content: ''; width: 20px; height: 1.5px; background: var(--red); display: block; }
+    .hero-title { font-family: 'Bebas Neue', Impact, sans-serif; font-size: clamp(52px, 9vw, 100px); line-height: 0.93; color: #fff; margin-bottom: 18px; }
+    .hero-title span { color: var(--red); }
+    .hero-sub { font-size: 14px; color: #ddd; line-height: 1.65; max-width: 500px; margin-bottom: 24px; }
+    .hero-meta { display: flex; align-items: center; gap: 14px; font-size: 11px; color: #fff; letter-spacing: 0.1em; text-transform: uppercase; }
+    .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--red); }
+
+    /* ARTICLE BODY */
+    .art { max-width: 720px; margin: 0 auto; padding: 0 48px 100px; }
+
+    /* INTRO */
+    .art-intro { padding: 52px 0 44px; border-bottom: 0.5px solid var(--border); }
+    .art-intro p { font-size: 17px; line-height: 1.9; color: #888; font-weight: 300; margin-bottom: 16px; }
+    .art-intro p:last-child { margin: 0; }
+    .art-intro strong { color: #ddd; font-weight: 600; }
+    .art-intro .accroche { font-size: 19px; font-weight: 600; color: #ccc; line-height: 1.5; padding-top: 20px; margin-top: 4px; border-top: 0.5px solid var(--border); }
+
+    /* SECTION */
+    .s { padding: 44px 0; border-bottom: 0.5px solid var(--border); }
+    .s:last-child { border-bottom: none; }
+    .s-label { font-size: 9px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--red); margin-bottom: 22px; display: flex; align-items: center; gap: 10px; }
+    .s-label::before { content: ''; width: 14px; height: 1.5px; background: var(--red); display: block; }
+    .s p { font-size: 15px; line-height: 1.9; color: #888; margin-bottom: 16px; }
+    .s p:last-child { margin: 0; }
+    .s strong { color: #ccc; font-weight: 600; }
+
+    /* PHRASE CLÉ */
+    .key { margin: 32px 0; padding-left: 18px; border-left: 2px solid var(--red); }
+    .key p { font-size: 19px; font-weight: 600; color: #ddd; line-height: 1.5; margin: 0; }
+
+    /* FRISE CHRONOLOGIQUE */
+    .timeline { margin: 36px 0; }
+    .tl-head { font-size: 9px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
+    .tl-item { display: grid; grid-template-columns: 76px 1fr; position: relative; }
+    .tl-item::after { content: ''; position: absolute; left: 75.5px; top: 0; bottom: 0; width: 0.5px; background: var(--border); }
+    .tl-date { font-size: 10px; font-weight: 700; color: var(--red); padding: 13px 12px 13px 0; text-align: right; line-height: 1.3; }
+    .tl-body { padding: 11px 0 11px 22px; border-bottom: 0.5px solid var(--border); position: relative; }
+    .tl-body::before { content: ''; position: absolute; left: -4px; top: 17px; width: 8px; height: 8px; border-radius: 50%; background: var(--red); z-index: 1; }
+    .tl-item:last-child .tl-body { border-bottom: none; }
+    .tl-body strong { font-size: 13px; color: #ccc; display: block; margin-bottom: 3px; font-weight: 600; }
+    .tl-body p { font-size: 12px; color: var(--muted); line-height: 1.55; margin: 0; }
+
+    /* SCREENSHOT */
+    .src { margin: 32px 0; }
+    .src img { width: 100%; display: block; border: 0.5px solid var(--border); }
+    .src-cap { padding: 7px 0; font-size: 10px; color: var(--muted); letter-spacing: 0.06em; display: flex; align-items: center; gap: 8px; }
+    .src-cap::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--red); flex-shrink: 0; }
+
+    /* STAT */
+    .stat { margin: 36px 0; display: flex; align-items: center; gap: 28px; padding: 28px 0; border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); }
+    .stat-n { font-family: 'Bebas Neue', Impact, sans-serif; font-size: 80px; color: var(--red); line-height: 1; flex-shrink: 0; }
+    .stat-t strong { font-size: 14px; color: #ccc; display: block; margin-bottom: 6px; font-weight: 600; }
+    .stat-t p { font-size: 12px; color: var(--muted); line-height: 1.6; margin: 0; }
+
+    /* CITATIONS */
+    .cite { margin: 28px 0 20px; padding-left: 16px; border-left: 0.5px solid var(--border); }
+    .cite blockquote { font-size: 14px; color: #999; line-height: 1.7; margin-bottom: 7px; font-style: normal; }
+    .cite cite { font-size: 10px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; font-style: normal; }
+
+    /* CONCLUSION */
+    .conclu { padding: 44px 0 0; }
+    .conclu-title { font-family: 'Bebas Neue', Impact, sans-serif; font-size: clamp(38px, 6vw, 58px); line-height: 1; color: #fff; margin-bottom: 28px; }
+    .conclu-title span { color: var(--red); }
+    .conclu p { font-size: 15px; line-height: 1.9; color: #888; margin-bottom: 16px; }
+    .conclu strong { color: #ccc; }
+    .conclu-close { margin-top: 36px; padding-top: 24px; border-top: 0.5px solid var(--border); }
+    .conclu-close strong { font-size: 14px; color: #ccc; display: block; margin-bottom: 8px; font-weight: 600; }
+    .conclu-close p { font-size: 14px; color: #fff; line-height: 1.8; margin-bottom: 10px; }
+
+    /* BLOC PROFILS */
+    .profils { margin: 40px 0; }
+    .profils-label { font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+    .profils-label::before { content: ''; width: 14px; height: 1.5px; background: var(--red); display: block; }
+    .profils-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .profil-card { background: #111; border: 0.5px solid var(--border); cursor: pointer; transition: all 0.2s; overflow: hidden; }
+    .profil-card:hover { border-color: var(--red); transform: translateY(-2px); }
+    .profil-card.active { border-color: var(--red); }
+    .profil-avatar { width: 100%; aspect-ratio: 1; overflow: hidden; position: relative; }
+    .profil-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s; }
+    .profil-card:hover .profil-avatar img { transform: scale(1.04); }
+    .profil-info { padding: 12px; }
+    .profil-name { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 2px; }
+    .profil-desc { font-size: 10px; color: var(--muted); line-height: 1.4; }
+    .profil-play { display: flex; align-items: center; gap: 8px; margin-top: 10px; padding-top: 10px; border-top: 0.5px solid var(--border); }
+    .profil-play-btn { width: 24px; height: 24px; border-radius: 50%; background: var(--red); border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; transition: all 0.15s; }
+    .profil-play-btn:hover { background: #c5000c; transform: scale(1.1); }
+    .profil-play-btn svg { width: 8px; height: 8px; fill: #fff; margin-left: 1px; }
+    .profil-play-label { font-size: 10px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+    .profil-card.active .profil-play-label { color: var(--red); }
+    .profil-audio-bar { height: 3px; background: var(--border); margin-top: 6px; border-radius: 2px; overflow: hidden; display: block; cursor: pointer; }
+    .profil-audio-bar:hover { height: 4px; }
+    .profil-audio-fill { height: 100%; background: var(--red); width: 0%; transition: width 0.1s; border-radius: 2px; }
+    @media (max-width: 640px) { .profils-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    /* PLAYER FIXE */
+    .art-player { position: fixed; bottom: 0; left: 0; right: 0; height: 72px; background: rgba(8,8,8,0.98); backdrop-filter: blur(30px); border-top: 1px solid var(--red); display: flex; align-items: center; gap: 16px; padding: 0 32px; z-index: 100; transform: translateY(100%); transition: transform 0.3s cubic-bezier(0.4,0,0.2,1); }
+    .art-player.visible { transform: translateY(0); }
+    .art-player-avatar { width: 44px; height: 44px; border-radius: 4px; overflow: hidden; flex-shrink: 0; border: 0.5px solid var(--border); }
+    .art-player-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .art-player-info { flex: 1; min-width: 0; }
+    .art-player-name { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .art-player-desc { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .art-player-btn { width: 38px; height: 38px; border-radius: 50%; background: var(--red); border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; transition: all 0.18s; box-shadow: 0 4px 14px rgba(232,0,15,0.35); }
+    .art-player-btn:hover { background: #c5000c; transform: scale(1.06); }
+    .art-player-btn svg { width: 13px; height: 13px; fill: #fff; }
+    .art-player-prog { flex: 1; max-width: 300px; }
+    .art-player-bar { width: 100%; height: 3px; background: var(--border); cursor: pointer; border-radius: 2px; margin-bottom: 5px; }
+    .art-player-bar:hover { height: 4px; }
+    .art-player-fill { height: 100%; background: var(--red); border-radius: 2px; width: 0%; transition: width 0.1s; }
+    .art-player-times { display: flex; justify-content: space-between; font-size: 10px; color: var(--muted); font-variant-numeric: tabular-nums; }
+    .art-player-close { background: none; border: none; color: var(--muted); font-size: 18px; cursor: pointer; transition: color 0.15s; padding: 4px; flex-shrink: 0; }
+    .art-player-close:hover { color: #fff; }
+
+    /* FOOTER */
+    .art-ft { max-width: 720px; margin: 0 auto; padding: 28px 48px 60px; border-top: 0.5px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+    .art-ft-logo { font-family: 'Bebas Neue', Impact, sans-serif; font-size: 15px; letter-spacing: 2px; color: #fff; }
+    .art-ft-logo span { color: var(--red); }
+    .art-ft a { font-size: 10px; color: var(--muted); text-decoration: none; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.15s; }
+    .art-ft a:hover { color: #fff; }
+
     @media (max-width: 640px) {
-      .ub-lib-filters { padding: 12px 20px; flex-wrap: wrap; }
-      .ub-lib-grid { grid-template-columns: 1fr; padding: 20px; gap: 16px; }
-      .ub-lib-header { padding: 32px 20px 0 !important; }
+      .hero-content { padding: 0 20px 40px; }
+      .art { padding: 0 20px 80px; }
+      .stat { flex-direction: column; gap: 12px; align-items: flex-start; }
+      .art-ft { padding: 24px 20px 40px; flex-direction: column; gap: 14px; align-items: flex-start; }
     }
   </style>
 </head>
-<body style="background:#141414;color:#fff;margin:0;">
+<body>
+<div class="ub-redline"></div>
+<nav class="ub-nav">
+<div class="ub-logo"><img alt="Under Bordeaux" src="images/logo.png" style="height:52px;width:auto;"/></div>
+<div class="ub-nav-links">
+<a href="index.html">Accueil</a>
+<a href="enquetes.html" style="color:#fff;">Enquêtes</a>
+<a href="podcasts.html">Multimédia</a>
+<a href="index.html#contact">Contact</a>
+</div>
+<button aria-label="Menu" class="ub-hamburger"><span></span><span></span><span></span></button>
+</nav>
 
-  <div class="ub-redline"></div>
+<!-- HERO -->
+<div class="hero">
+<div class="hero-bg"></div>
+<div class="hero-content">
+<div class="hero-tag">Enquête · Capucins · Sécurité</div>
+<h1 class="hero-title">Op coup de poing<br/>aux Capus,<br/><span>1 mois après.</span></h1>
+<p class="hero-sub">130 policiers, le maire, le préfet, le procureur. Un dispositif spectaculaire. Mais pour qui ? Et surtout, déjà vu ?</p>
+<div class="hero-meta">
+<span>Under Bordeaux</span><div class="dot"></div>
+<span>Mai 2026</span><div class="dot"></div>
+<span>👁 Lecture 15 min.</span>
+</div>
+</div>
+</div>
 
-  <nav class="ub-nav">
-    <div class="ub-logo"><img src="images/logo.png" alt="Under Bordeaux" style="height:52px;width:auto;" /></div>
-    <div class="ub-nav-links">
-      <a href="index.html">Accueil</a>
-      <a href="articles.html" style="color:#fff;">Articles</a>
-      <a href="podcasts.html">Multimédia</a>
-       <a href="undermap.html">Under Map</a>
-      <a href="index.html#contact">Contact</a>
-    </div>
-    <button class="ub-hamburger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
+<div class="art">
+<!-- INTRO -->
+<div class="art-intro">
+<p><strong>27 avril 2026, 14h.</strong> Rue Élie-Gintrac, quartier des Capucins. Plus de 130 policiers quadrillent le quartier, à pied, à cheval, à VTT, à moto. Le préfet Étienne Guyot est là. Le procureur Renaud Gaudeul aussi. Thomas Cazenave, tout juste élu maire, en première ligne.</p>
+<div class="src" style="margin:24px 0;">
+<img alt="Le préfet Guyot, le maire Cazenave et le procureur Gaudeul aux Capucins" src="images/3Antag.jpg" style="width:100%;display:block;border:0.5px solid var(--border);"/>
+<div class="src-cap">Source : Thierry David / Sud Ouest · 27 avril 2026</div>
+</div>
+<p>Le message est clair : la nouvelle équipe frappe fort, frappe vite. Un "véritable signal envoyé", selon ses propres mots.</p>
+<p class="accroche">Mais un signal à qui ? Et surtout, est-ce vraiment nouveau ? On est allés voir.</p>
+</div>
 
-  <!-- EN-TÊTE PAGE -->
-  <div class="ub-lib-header" style="padding:40px 32px 0;">
-    <div style="font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#E8000F;margin-bottom:8px;">Accueil › Articles</div>
-    <h1 style="font-family:Impact,Arial Black,sans-serif;font-size:clamp(28px,5vw,52px);text-transform:uppercase;line-height:1;color:#fff;margin-bottom:4px;">Nos <span style="color:#E8000F;">Articles</span></h1>
-    <p style="font-size:13px;color:#444;margin-bottom:0;">Du plus récent au plus ancien — cliquez sur un dossier pour l'ouvrir.</p>
-  </div>
+<!-- SÉQUENCE POLITIQUE -->
+<div class="s">
+<div class="s-label">La séquence politique</div>
+<div class="timeline">
+<div class="tl-head">Chronologie, Bordeaux, printemps 2026</div>
+<div class="tl-item">
+<div class="tl-date">Début avril</div>
+<div class="tl-body">
+<strong>Le Premier ministre à Bordeaux</strong>
+<p>Lecornu et Nuñez annoncent un commissariat mixte aux Capucins. Cazenave s'empare de la séquence.</p>
+</div>
+</div>
+<div class="tl-item">
+<div class="tl-date">9 avril</div>
+<div class="tl-body">
+<strong>Conférence de presse, Halle des Douves</strong>
+<p>Treize jours après son investiture. Caméras nomades, présence renforcée, lutte contre les vélos débridés. Des annonces.</p>
+</div>
+</div>
+<div class="tl-item">
+<div class="tl-date">27 avril</div>
+<div class="tl-body">
+<strong>L'opération "coup de poing"</strong>
+<p>130 policiers déployés. L'opération avait fuité en amont via Révolution Permanente Bordeaux. Les dealers étaient prévenus avant les journalistes.</p>
+</div>
+</div>
+<div class="tl-item">
+<div class="tl-date">Aujourd'hui</div>
+<div class="tl-body">
+<strong>La rue ressemble à ce qu'elle était avant.</strong>
+<p>Les trafics n'ont pas disparu. Les habitants n'ont pas changé de discours.</p>
+</div>
+</div>
+</div>
+</div>
 
-  <!-- FILTRES -->
-  <div class="ub-lib-filters" style="margin-top:24px;">
-    <button class="ub-filter active" onclick="filter('all',this)">Tout</button>
-    <button class="ub-filter" onclick="filter('enquete',this)">Articles</button>
-    <button class="ub-filter" onclick="filter('analyse',this)">Analyses</button>
-    <button class="ub-filter" onclick="filter('article',this)">Récits & Traces</button>
-  </div>
+<!-- CHAPITRE I -->
+<div class="s">
+<div class="s-label">I. Le quartier, tel qu'il est vraiment</div>
+<p>Le quartier des Capucins, c'est d'abord un marché populaire, des petits restaurateurs, une mixité sociale rare dans un centre-ville de plus en plus gentrifié. Un quartier vivant, bruyant, imparfait.</p>
+<p>Mais depuis des années, la rue Élie-Gintrac concentre les tensions. <strong>En 2024, 400 contrôles dans cette seule rue</strong>, 266 interpellations, 5 kg de cocaïne saisis, selon le blog "Bouger à Bordeaux".</p>
+<div class="src">
+<img alt="Chiffres Bouger à Bordeaux 2024" src="images/BougeraBDXchiffre.png"/>
+<div class="src-cap">Source : Bouger à Bordeaux, 2024</div>
+</div>
+<p>Face à ça, des habitants se sont organisés <strong>dès 2020 au sein du collectif "Élie Ta Rue"</strong>, dénonçant un commissariat fermé le week-end, une présence policière aux abonnés absents aux heures creuses.</p>
+<div class="key">
+<p>Sur le terrain, le sentiment est unanime : l'insécurité existe, mais elle est grossie par les discours politiques.</p>
+</div>
+</div>
 
-  <!-- GRILLE -->
-  <div class="ub-lib-grid" id="grid"></div>
+<!-- CHAPITRE II -->
+<div class="s">
+<div class="s-label">II. La parole aux habitants</div>
+<p>On est allés à la rencontre des gens du quartier. Pas les élus. Les gens.</p>
 
-  <!-- STATUSBAR -->
-  <div class="ub-statusbar">
-    <span id="count">0 articles</span>
-    <span>Under Bordeaux · 2026</span>
-  </div>
+<p>Le mot qui revient le plus souvent, c'est <em>vivant</em>. Karine parle d'un quartier "cosmopolite, hors-normes pour Bordeaux, avec son humanité." Mila, barwoman au café depuis trois ans, voit un beau mélange de cultures et de classes sociales. Antonio et Lucho, eux, parlent carrément de melting pot — et après dix ans à tenir la Boccaccia juste en face du marché, Antonio sait de quoi il parle.</p>
 
-  <div class="ub-redline"></div>
+<p>Sur le sentiment d'insécurité, le consensus est là aussi : exagéré. Ben, cinq ans dans le quartier, ne s'est "jamais senti agressé ou en menace." Unai pointe quelque chose de plus structurel : la réputation du quartier tient selon lui davantage à la stigmatisation des habitants qu'aux faits réels. La délinquance existe — Antonio ne le nie pas — mais elle découle, disent-ils tous, de la précarité. Pas d'une nature particulière du quartier.</p>
 
-  <!-- MODAL -->
-  <div class="ub-overlay hidden" id="overlay">
-    <div class="ub-modal">
-      <div class="ub-modal-head">
-        <div class="ub-modal-head-title" id="m-tag">—</div>
-        <button class="ub-modal-close" onclick="closeModal()">✕</button>
-      </div>
-      <div id="m-img" style="width:100%;height:180px;background:#1a1a1a;display:flex;align-items:center;justify-content:center;font-size:48px;">📁</div>
-      <div class="ub-modal-body">
-        <div class="ub-modal-title" id="m-title">—</div>
-        <div class="ub-modal-meta" id="m-meta">—</div>
-        <div class="ub-modal-desc" id="m-desc">—</div>
-      </div>
-      <div class="ub-modal-foot">
-        <button class="ub-modal-open" id="m-open-btn">Ouvrir l'article →</button>
-        <button class="ub-modal-cancel" onclick="closeModal()">Fermer</button>
-      </div>
-    </div>
-  </div>
+<p>Sur l'opération du 27 avril, les avis convergent. Karine l'a vue depuis le marché — des policiers qui se baladaient à l'intérieur, là où d'habitude il n'y en a pas. Inhabituel. Mais pour elle, difficile de voir autre chose qu'un coup de com', mis en scène, sans réel impact factuel. Lucho dit la même chose : utile, peut-être, si c'était non-stop. Une fois, ça ne sert à rien. Unai, lui, n'était pas là ce jour-là mais a vu les images. Ce qu'il y a vu, c'est surtout des contrôles au faciès, ciblant en priorité les personnes racisées d'un quartier qui l'est majoritairement. Un biais qui, selon lui, annule d'emblée tout impact réel. Sur le terrain, un mois après, personne ne constate de changement.</p>
 
-  <script src="js/main.js"></script>
-  <script>
-    /*
-    ✏️ AJOUTER VOS ARTICLES ICI
-    Copiez-collez un bloc { } pour chaque nouvel article.
-    Les champs :
-      - id      : numéro unique (1, 2, 3...)
-      - tag     : 'enquete', 'analyse' ou 'microtrottoir'
-      - label   : texte affiché ('Enquête', 'Analyse', 'Micro-trottoir')
-      - title   : titre de l'article
-      - date    : date de publication
-      - auteur  : nom(s) de l'auteur
-      - desc    : courte description
-      - nouveau : true si récent, false sinon
-      - img     : chemin vers la photo (ex: 'images/enquete1.jpg') ou null
-      - href    : lien vers la page de l'article (ex: 'article1.html')
-    */
-    const articles = [
-      { id:1, tag:'analyse', label:'Analyse', title:'La Gironde brûle : bien réagir suffit-il ?', date:'26 juillet 2026', auteur:'Under Bordeaux', desc:'Face aux incendies, Bordeaux a ouvert ses portes aux sinistrés. Une réaction à saluer. Mais les moyens de secours ont-ils été à la hauteur des choix passés ?', nouveau:true, img:'images/incendie-hero.jpeg', href:'incendie.html' },
-      { id:2, tag:'analyse', label:'Analyse', title:'42,5°C à l\'ombre, zéro degré d\'empathie.', date:'18 juillet 2026', auteur:'Under Bordeaux', desc:'Chronique d\'une canicule à deux vitesses. Records de chaleur, transports à l\'arrêt et discours déconnectés : à Bordeaux, tout le monde n\'a pas chaud de la même manière.', nouveau:false, img:'images/canicule-miroir-eau.webp', href:'canicule.html' },
-      { id:3, tag:'enquete', label:'Enquête', title:'Opération coup de poing aux Capucins, 1 mois après.', date:'31 mai 2026', auteur:'Under Bordeaux', desc:'Investigations sur les méthodes répressives des équipes municipales à Bordeaux, au sein du quartier des Capucins.', nouveau:false, img:'images/capucins.jpg', href:'article1.html' },
-    ];
+<p>Ce que tout le monde demande, en revanche, c'est plus d'accompagnement. Des éducateurs, des associations, des centres sociaux. Et de la vie. Antonio, qui nettoie lui-même la place le dimanche matin avec son équipe, a une idée précise : organiser des événements le soir — pas le dimanche matin où tout le monde est déjà là. Le vendredi, le mercredi. Une bande de jazz, des vernissages. Il a même pris rendez-vous avec la mairie pour le dire en face.</p>
 
-    let current = null;
+<p>Sur les élus, le mot "déconnectés" revient. Karine le formule directement : <strong>"Ils veulent faire des Capucins les Chartrons. Mais les Capucins, ils ne les connaissent pas."</strong></p>
 
-    function renderGrid(items) {
-      const grid = document.getElementById('grid');
-      document.getElementById('count').textContent = items.length + ' article' + (items.length > 1 ? 's' : '');
-      if (items.length === 0) {
-        grid.innerHTML = '<div class="ub-lib-empty">Aucun article dans cette catégorie pour l\'instant.</div>';
-        return;
+<div class="profils">
+<div class="profils-label">Ils nous ont parlé</div>
+<div class="profils-grid"><div class="profil-card" id="profil-karine" onclick="toggleProfil('karine')">
+<div class="profil-avatar"><img alt="Karine" src="images/interview-karine.jpg"/></div>
+<div class="profil-info">
+<div class="profil-name">Karine</div>
+<div class="profil-desc">Habitante du quartier, terrasse du café des Capucins</div>
+<div class="profil-play">
+<button class="profil-play-btn" id="btn-karine"><svg viewBox="0 0 10 12"><polygon points="1,0 10,6 1,12"></polygon></svg></button>
+<div class="profil-play-label">Écouter l'interview</div>
+</div>
+<div class="profil-audio-bar" onclick="event.stopPropagation();seekProfil(event,'karine')"><div class="profil-audio-fill" id="fill-karine"></div></div>
+</div>
+</div><div class="profil-card" id="profil-lucho" onclick="toggleProfil('lucho')">
+<div class="profil-avatar">
+<img alt="Lucho" src="images/interview-lucho.png"/>
+</div>
+<div class="profil-info">
+<div class="profil-name">Lucho</div>
+<div class="profil-desc">Habitué du quartier · Devant le Marché des Capucins</div>
+<div class="profil-play">
+<button class="profil-play-btn" id="btn-lucho" onclick="event.stopPropagation();toggleProfil('lucho')">
+<svg viewBox="0 0 10 12"><polygon points="1,0 10,6 1,12"></polygon></svg>
+</button>
+<span class="profil-play-label">Écouter</span>
+</div>
+<div class="profil-audio-bar" onclick="event.stopPropagation();seekProfil(event,'lucho')"><div class="profil-audio-fill" id="fill-lucho"></div></div>
+</div>
+</div><div class="profil-card" id="profil-mila" onclick="toggleProfil('mila')">
+<div class="profil-avatar"><img alt="Mila" src="images/interview-mila.jpg"/></div>
+<div class="profil-info">
+<div class="profil-name">Mila</div>
+<div class="profil-desc">Barwoman au Café des Capucins</div>
+<div class="profil-play">
+<button class="profil-play-btn" id="btn-mila"><svg viewBox="0 0 10 12"><polygon points="1,0 10,6 1,12"></polygon></svg></button>
+<div class="profil-play-label">Écouter l'interview</div>
+</div>
+<div class="profil-audio-bar" onclick="event.stopPropagation();seekProfil(event,'mila')"><div class="profil-audio-fill" id="fill-mila"></div></div>
+</div>
+</div><div class="profil-card" id="profil-antonio" onclick="toggleProfil('antonio')">
+<div class="profil-avatar">
+<img alt="Antonio" src="images/interview-antonio.png"/>
+</div>
+<div class="profil-info">
+<div class="profil-name">Antonio</div>
+<div class="profil-desc">Chef · Restaurant Boccaccia</div>
+<div class="profil-play">
+<button class="profil-play-btn" id="btn-antonio" onclick="event.stopPropagation();toggleProfil('antonio')">
+<svg viewBox="0 0 10 12"><polygon points="1,0 10,6 1,12"></polygon></svg>
+</button>
+<span class="profil-play-label">Écouter</span>
+</div>
+<div class="profil-audio-bar" onclick="event.stopPropagation();seekProfil(event,'antonio')"><div class="profil-audio-fill" id="fill-antonio"></div></div>
+</div>
+</div><div class="profil-card" id="profil-ben" onclick="toggleProfil('ben')">
+<div class="profil-avatar"><img alt="Ben" src="images/interview-ben.jpg"/></div>
+<div class="profil-info">
+<div class="profil-name">Ben</div>
+<div class="profil-desc">Habitué du marché, rencontré devant l'entrée</div>
+<div class="profil-play">
+<button class="profil-play-btn" id="btn-ben"><svg viewBox="0 0 10 12"><polygon points="1,0 10,6 1,12"></polygon></svg></button>
+<div class="profil-play-label">Écouter l'interview</div>
+</div>
+<div class="profil-audio-bar" onclick="event.stopPropagation();seekProfil(event,'ben')"><div class="profil-audio-fill" id="fill-ben"></div></div>
+</div>
+</div><div class="profil-card" id="profil-unai" onclick="toggleProfil('unai')">
+<div class="profil-avatar"><img alt="Unai" src="images/interview-unai.jpg"/></div>
+<div class="profil-info">
+<div class="profil-name">Unai</div>
+<div class="profil-desc">Passant rencontré côté marché des Capucins</div>
+<div class="profil-play">
+<button class="profil-play-btn" id="btn-unai"><svg viewBox="0 0 10 12"><polygon points="1,0 10,6 1,12"></polygon></svg></button>
+<div class="profil-play-label">Écouter l'interview</div>
+</div>
+<div class="profil-audio-bar" onclick="event.stopPropagation();seekProfil(event,'unai')"><div class="profil-audio-fill" id="fill-unai"></div></div>
+</div>
+</div></div>
+</div>
+
+<!-- AUDIO HIDDEN -->
+<audio id="aud-antonio"><source src="https://res.cloudinary.com/dvezrm3ds/video/upload/v1779972014/Interview-antonio_ljffy5.mp3" type="audio/mpeg"/></audio>
+<audio id="aud-lucho"><source src="https://res.cloudinary.com/dvezrm3ds/video/upload/v1779972014/Interview-lucho_z4sm9v.mp3" type="audio/mpeg"/></audio>
+<audio id="aud-karine"><source src="https://res.cloudinary.com/dvezrm3ds/video/upload/Interview_Karine.mp3.lnk_mmddtc" type="audio/mpeg"/></audio>
+<audio id="aud-mila"><source src="https://res.cloudinary.com/dvezrm3ds/video/upload/Interview_Mila_xbaxbt" type="audio/mpeg"/></audio>
+<audio id="aud-ben"><source src="https://res.cloudinary.com/dvezrm3ds/video/upload/Interview_Ben_vtupho" type="audio/mpeg"/></audio>
+<audio id="aud-unai"><source src="https://res.cloudinary.com/dvezrm3ds/video/upload/Interview-unai_qqdc1w" type="audio/mpeg"/></audio>
+
+<div class="key">
+<p>Cazenave a voulu frapper vite et fort. Une réactivité qui forcerait le respect si elle s'accompagnait d'une réflexion de fond. Ce dont on n'a pas encore vu la couleur.</p>
+</div>
+</div>
+
+<!-- CHAPITRE III -->
+<div class="s">
+<div class="s-label">III. Déjà vu — Hurmic faisait pareil</div>
+<p>Avant Cazenave, il y avait Hurmic. Le GLTD existait déjà. Les partenariats entre police nationale et municipale, la rhétorique de la fermeté, tout ça préexistait.</p>
+<div class="key">
+<p>Hurmic faisait pareil. En silence.</p>
+</div>
+<p>La preuve vient du préfet lui-même. Étienne Guyot, le 27 avril en marge de l'opération :</p>
+<div class="src">
+<img alt="Citation Guyot, 284 opérations en 2025" src="images/284OPGUYOT.png"/>
+<div class="src-cap">Source : Rue89 Bordeaux, 27 avril 2026</div>
+</div>
+<div class="stat">
+<div class="stat-n">284</div>
+<div class="stat-t">
+<strong>Opérations menées sous Hurmic en 2025</strong>
+<p>Chiffre confirmé par le préfet Guyot lui-même. La situation n'a pas fondamentalement changé. Qu'est-ce qui nous dit que la 285ème changera quelque chose ?</p>
+</div>
+</div>
+</div>
+
+<!-- CHAPITRE IV -->
+<div class="s" style="padding-top:20px;">
+<div class="s-label">IV. Ce qu'il faudrait vraiment</div>
+<p>Ce qui frappe, c'est la convergence. Habitants et opposition disent la même chose : la répression seule ne règle rien.</p>
+<div class="cite">
+<blockquote>"Thomas Cazenave n'a utilisé qu'une fois le mot rénovation. Si on veut résoudre les problèmes, c'est par la rénovation, pas par des opérations policières."</blockquote>
+<cite>Stéphane Pfeiffer, conseiller municipal d'opposition</cite>
+</div>
+<div class="cite">
+<blockquote>"Quels postes budgétaires seront sacrifiés pour financer tout ça ?"</blockquote>
+<cite>Harmonie Lecerf Meunier, opposition municipale</cite>
+</div>
+<p>Pourtant Cazenave continue. Commissariat mixte, contrat de sécurité intégré, armement des policiers municipaux en discussion. Les annonces s'accumulent, les résultats restent à prouver.</p>
+<p>Ce qui interroge, c'est l'obstination. Quand les habitants demandent de l'accompagnement, quand l'opposition demande de la rénovation, quand le terrain dit autre chose que ce que racontent les conférences de presse — continuer dans la même direction, c'est un choix. Politique, assumé, et qui ne s'adresse pas à tout le monde.</p>
+<p>C'est le symptôme d'une politique à la macroniste : on sait ce qui est bon pour vous, mieux que vous. On frappe fort, on communique, et on passe à autre chose. Rallumer les lumières la nuit, c'est bien. Mais encore faut-il les rallumer à tous les étages. <strong>On connaît cette méthode.</strong></p>
+<div class="key">
+<p>La répression sans accompagnement, ça a un nom : ça s'appelle du recyclage.</p>
+</div>
+</div>
+
+<!-- CONCLUSION -->
+<div class="conclu">
+<h2 class="conclu-title">Pour qui<br/><span>gouverne-t-il ?</span></h2>
+<p>La question n'est pas de savoir si Thomas Cazenave veut le bien du quartier. La question est de savoir à qui s'adresse réellement ce type d'opération.</p>
+<p>Car ceux qui réclament plus de sécurité et de fermeté ne sont pas nécessairement ceux qui vivent rue Élie-Gintrac. Et ceux qui subissent les contrôles, les fouilles, la présence policière au quotidien : <strong>ce sont les habitants des Capucins. Pas les autres.</strong></p>
+<p>C'est peut-être là que réside le vrai problème. Pas dans les intentions, mais dans l'angle mort de toute politique sécuritaire qui parle du quartier sans vraiment lui parler.</p>
+<div class="conclu-close">
+<strong style="text-decoration:underline;text-underline-offset:4px;">284 opérations sous Hurmic. Une sous Cazenave. Le compteur tourne.</strong>
+<p>Et si la meilleure façon de comprendre ce qui se passe aux Capucins, c'était simplement d'y aller ? Pas pour poser des questions avec un micro, pas pour cocher des cases. Juste pour être là. Sentir l'ambiance d'un mardi matin au marché, croiser les mêmes visages, écouter sans agenda. Ce quartier se raconte mieux dans ses ruelles qu'à la tribune d'une conférence de presse.</p>
+<p>C'est ça, la mission d'Under Bordeaux. Aller là où les discours officiels ne vont pas. Se faire sa propre idée. Et vous donner les moyens de vous faire la vôtre.</p>
+<!-- COMPARAISON PHOTOS -->
+<div style="margin:36px -160px;">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+<div>
+<img alt="27 avril 2026" src="images/capucins-27avril.jpg" style="width:100%;display:block;"/>
+<div style="padding:8px 0;font-size:10px;color:#555;letter-spacing:0.06em;text-transform:uppercase;display:flex;align-items:center;gap:6px;"><span style="display:block;width:6px;height:6px;border-radius:50%;background:#E8000F;flex-shrink:0;"></span>27 avril · Source : Sud Ouest</div>
+</div>
+<div>
+<img alt="18 mai 2026" src="images/capucins-hero.jpg" style="width:100%;display:block;"/>
+<div style="padding:8px 0;font-size:10px;color:#555;letter-spacing:0.06em;text-transform:uppercase;display:flex;align-items:center;gap:6px;"><span style="display:block;width:6px;height:6px;border-radius:50%;background:#E8000F;flex-shrink:0;"></span>18 mai · Source : Under Bordeaux</div>
+</div>
+</div>
+</div>
+<p style="margin-top:16px;color:#E8000F;font-weight:600;">À suivre. De près.</p>
+</div>
+</div>
+</div>
+
+<!-- FOOTER -->
+<div class="art-ft">
+<div class="art-ft-logo">UNDER <span>BDX</span></div>
+<a href="enquetes.html">← Retour aux enquêtes</a>
+</div>
+<div class="ub-redline"></div>
+<script src="js/main.js"></script>
+<script>
+    const profils = ['antonio', 'lucho', 'karine', 'mila', 'ben', 'unai'];
+    let curProfil = null;
+
+    function toggleProfil(id) {
+      const aud = document.getElementById('aud-' + id);
+      const card = document.getElementById('profil-' + id);
+      const btn = document.getElementById('btn-' + id);
+      const fill = document.getElementById('fill-' + id);
+
+      if (curProfil && curProfil !== id) {
+        const prevAud = document.getElementById('aud-' + curProfil);
+        prevAud.pause();
+        prevAud.currentTime = 0;
+        document.getElementById('profil-' + curProfil).classList.remove('active');
+        document.getElementById('btn-' + curProfil).innerHTML = '<svg viewBox="0 0 10 12"><polygon points="1,0 10,6 1,12"/></svg>';
+        document.getElementById('fill-' + curProfil).style.width = '0%';
       }
-      grid.innerHTML = items.map(a => `
-        <div class="ub-card" onclick="openModal(${a.id})">
-          ${a.img
-            ? `<div class="ub-card-img" style="position:relative;"><img src="${a.img}" alt="${a.title}" />${a.nouveau ? '<div class="ub-card-badge">Nouveau</div>' : ''}</div>`
-            : `<div class="ub-card-img-placeholder">${a.nouveau ? '<div class="ub-card-badge">Nouveau</div>' : ''}<span style="font-size:28px;color:#2a2a2a;">📁</span></div>`}
-          <div class="ub-card-body">
-            <div class="ub-card-tag">${a.label}</div>
-            <div class="ub-card-title">${a.title}</div>
-            <div class="ub-card-meta">${a.auteur} · ${a.date}</div>
-          </div>
-        </div>
-      `).join('');
+
+      if (curProfil === id && !aud.paused) {
+        aud.pause();
+        btn.innerHTML = '<svg viewBox="0 0 10 12"><polygon points="1,0 10,6 1,12"/></svg>';
+        curProfil = null;
+        card.classList.remove('active');
+        updatePlayerIcon(false);
+      } else {
+        aud.play();
+        btn.innerHTML = '<svg viewBox="0 0 8 10"><rect x="0" y="0" width="3" height="10"/><rect x="5" y="0" width="3" height="10"/></svg>';
+        curProfil = id;
+        card.classList.add('active');
+        updatePlayer(id, true);
+
+        aud.addEventListener('timeupdate', function() {
+          if (!aud.duration) return;
+          fill.style.width = (aud.currentTime / aud.duration * 100) + '%';
+          document.getElementById('art-player-fill').style.width = (aud.currentTime / aud.duration * 100) + '%';
+          document.getElementById('art-player-cur').textContent = fmtTime(aud.currentTime);
+          document.getElementById('art-player-dur').textContent = fmtTime(aud.duration);
+        });
+        aud.addEventListener('ended', function() {
+          btn.innerHTML = '<svg viewBox="0 0 10 12"><polygon points="1,0 10,6 1,12"/></svg>';
+          fill.style.width = '0%';
+          card.classList.remove('active');
+          curProfil = null;
+          updatePlayerIcon(false);
+          document.getElementById('art-player-fill').style.width = '0%';
+          document.getElementById('art-player-cur').textContent = '0:00';
+        });
+      }
+    }
+</script>
+
+<!-- PLAYER FIXE -->
+<div class="art-player" id="art-player">
+<div class="art-player-avatar">
+<img alt="" id="art-player-img" src=""/>
+</div>
+<div class="art-player-info">
+<div class="art-player-name" id="art-player-name">—</div>
+<div class="art-player-desc" id="art-player-desc">Under Bordeaux · Interview</div>
+</div>
+<button class="art-player-btn" id="art-player-btn" onclick="toggleFromPlayer()">
+<svg id="art-player-icon" viewBox="0 0 10 12"><polygon points="1,0 10,6 1,12"></polygon></svg>
+</button>
+<div class="art-player-prog">
+<div class="art-player-bar" onclick="seekPlayer(event)">
+<div class="art-player-fill" id="art-player-fill"></div>
+</div>
+<div class="art-player-times">
+<span id="art-player-cur">0:00</span>
+<span id="art-player-dur">0:00</span>
+</div>
+</div>
+<button class="art-player-close" onclick="closePlayer()">✕</button>
+</div>
+
+<script>
+    const profilData = {
+      antonio: { name: 'Antonio', desc: 'Chef · Restaurant Boccaccia' },
+      lucho:   { name: 'Lucho',   desc: 'Habitué du quartier · Devant le Marché des Capucins' },
+      karine: { name: 'Karine', desc: 'Habitante du quartier · Terrasse du café des Capucins' },
+      mila:   { name: 'Mila',   desc: 'Barwoman · Café des Capucins' },
+      ben:    { name: 'Ben',    desc: 'Habitué du marché · Devant l\'entrée' },
+      unai:   { name: 'Unai',   desc: 'Passant · Côté marché des Capucins' },
+    };
+
+    function updatePlayer(id, playing) {
+      const img = document.querySelector('#profil-' + id + ' .profil-avatar img');
+      document.getElementById('art-player-img').src = img ? img.src : '';
+      document.getElementById('art-player-name').textContent = profilData[id].name;
+      document.getElementById('art-player-desc').textContent = profilData[id].desc;
+      document.getElementById('art-player').classList.add('visible');
+      updatePlayerIcon(playing);
     }
 
-    function filter(tag, btn) {
-      document.querySelectorAll('.ub-filter').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      renderGrid(tag === 'all' ? articles : articles.filter(a => a.tag === tag));
+    function updatePlayerIcon(playing) {
+      document.getElementById('art-player-icon').innerHTML = playing
+        ? '<rect x="1" y="0" width="3" height="12"/><rect x="6" y="0" width="3" height="12"/>'
+        : '<polygon points="1,0 10,6 1,12"/>';
     }
 
-    function openModal(id) {
-      const a = articles.find(x => x.id === id);
-      current = a;
-      document.getElementById('m-tag').textContent = a.label;
-      document.getElementById('m-title').textContent = a.title;
-      document.getElementById('m-meta').textContent = a.date + ' · ' + a.auteur;
-      document.getElementById('m-desc').textContent = a.desc;
-      document.getElementById('m-img').innerHTML = a.img
-        ? `<img src="${a.img}" alt="${a.title}" style="width:100%;height:180px;object-fit:cover;display:block;" />`
-        : `<div style="width:100%;height:180px;background:#1a1a1a;display:flex;align-items:center;justify-content:center;font-size:48px;">📁</div>`;
-      document.getElementById('m-open-btn').onclick = () => { window.location.href = a.href; };
-      document.getElementById('overlay').classList.remove('hidden');
+    function toggleFromPlayer() {
+      if (!curProfil) return;
+      const aud = document.getElementById('aud-' + curProfil);
+      if (aud.paused) {
+        aud.play(); updatePlayerIcon(true);
+        document.getElementById('btn-' + curProfil).innerHTML = '<svg viewBox="0 0 8 10"><rect x="0" y="0" width="3" height="10"/><rect x="5" y="0" width="3" height="10"/></svg>';
+      } else {
+        aud.pause(); updatePlayerIcon(false);
+        document.getElementById('btn-' + curProfil).innerHTML = '<svg viewBox="0 0 10 12"><polygon points="1,0 10,6 1,12"/></svg>';
+      }
     }
 
-    function closeModal() {
-      document.getElementById('overlay').classList.add('hidden');
-      current = null;
+    function seekPlayer(e) {
+      if (!curProfil) return;
+      const aud = document.getElementById('aud-' + curProfil);
+      if (!aud.duration) return;
+      const rect = e.currentTarget.getBoundingClientRect();
+      const ratio = (e.clientX - rect.left) / rect.width;
+      aud.currentTime = Math.max(0, Math.min(1, ratio)) * aud.duration;
     }
 
-    document.getElementById('overlay').addEventListener('click', e => {
-      if (e.target.id === 'overlay') closeModal();
-    });
+    function closePlayer() {
+      if (curProfil) {
+        const aud = document.getElementById('aud-' + curProfil);
+        aud.pause(); aud.currentTime = 0;
+        document.getElementById('profil-' + curProfil).classList.remove('active');
+        document.getElementById('btn-' + curProfil).innerHTML = '<svg viewBox="0 0 10 12"><polygon points="1,0 10,6 1,12"/></svg>';
+        document.getElementById('fill-' + curProfil).style.width = '0%';
+        curProfil = null;
+      }
+      document.getElementById('art-player').classList.remove('visible');
+    }
 
-    renderGrid(articles);
-  </script>
-
+    function seekProfil(e, id) {
+      const aud = document.getElementById('aud-' + id);
+      if (!aud.duration) return;
+      const rect = e.currentTarget.getBoundingClientRect();
+      const ratio = (e.clientX - rect.left) / rect.width;
+      aud.currentTime = Math.max(0, Math.min(1, ratio)) * aud.duration;
+    }
+    function fmtTime(s) { return Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0'); }
+</script>
 </body>
 </html>
+
