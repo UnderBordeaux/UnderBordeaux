@@ -260,9 +260,9 @@
 
     const miniMap = L.map('mini-map', { center: [44.8378, -0.5792], zoom: 13, zoomControl: false, scrollWheelZoom: false, attributionControl: false });
 
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-      subdomains: 'abcd', maxZoom: 20
-    }).addTo(miniMap);
+    // Fond de carte sombre gratuit, sans clé (Esri)
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', { maxZoom: 16 }).addTo(miniMap);
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}', { maxZoom: 16 }).addTo(miniMap);
 
     // Contour de Bordeaux
     fetch('https://geo.api.gouv.fr/communes/33063?fields=contour&format=json&geometry=contour')

@@ -28,7 +28,7 @@
   .hamburger span { display: block; width: 22px; height: 1.5px; background: #fff; transition: all 0.2s; }
 
   /* Menu mobile overlay */
-  .mobile-menu { display: none; position: fixed; inset: 0; background: rgba(14,14,14,0.98); z-index: 200; flex-direction: column; align-items: center; justify-content: center; gap: 32px; }
+  .mobile-menu { display: none; position: fixed; inset: 0; background: rgba(14,14,14,0.98); z-index: 3000; flex-direction: column; align-items: center; justify-content: center; gap: 32px; }
   .mobile-menu.open { display: flex; }
   .mobile-menu a { font-family: 'Bebas Neue', Impact, sans-serif; font-size: 36px; letter-spacing: 4px; color: #fff; text-decoration: none; transition: color 0.15s; }
   .mobile-menu a:hover, .mobile-menu a.active { color: var(--red); }
@@ -131,7 +131,7 @@
       display: block;
       position: fixed;
       bottom: 0; left: 0; right: 0;
-      z-index: 100;
+      z-index: 1500; /* au-dessus des punaises, de la légende et du zoom */
       background: var(--bg);
       border-top: 1px solid var(--red);
       transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
@@ -192,6 +192,16 @@
     <span></span><span></span><span></span>
   </button>
 </nav>
+
+<!-- MENU MOBILE -->
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-menu-close" id="menu-close" aria-label="Fermer">✕</button>
+  <a href="index.html">Accueil</a>
+  <a href="articles.html">Articles</a>
+  <a href="podcasts.html">Multimédia</a>
+  <a href="undermap.html" class="active">Under Map</a>
+  <a href="index.html#contact">Contact</a>
+</div>
 
 <!-- HEADER -->
 <div class="header">
@@ -291,10 +301,12 @@ const articles = [
 // ── CARTE ──
 const map = L.map('map', { center: [44.8378, -0.5792], zoom: 14, zoomControl: false });
 
-L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-  attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> © <a href="https://carto.com/">CARTO</a>',
-  subdomains: 'abcd', maxZoom: 19
+// Fond de carte sombre gratuit, sans clé (Esri)
+L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+  attribution: 'Tiles © Esri — Esri, HERE, Garmin, © OpenStreetMap contributors',
+  maxZoom: 16
 }).addTo(map);
+L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}', { maxZoom: 16 }).addTo(map);
 
 L.control.zoom({ position: 'bottomright' }).addTo(map);
 
