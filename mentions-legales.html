@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mentions légales — Under Bordeaux</title>
+  <meta name="description" content="Mentions légales du média indépendant Under Bordeaux, édité par l'association Âmes Croisées." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* Fond sombre garanti, même si css/style.css ne charge pas */
+    html, body { background: #0e0e0e; }
+    body { margin: 0; color: #fff; }
+
+    .ml-wrap { max-width: 760px; margin: 0 auto; padding: 64px 24px 96px; font-family: 'Inter', sans-serif; color: #fff; }
+
+    .ml-eyebrow { display: flex; align-items: center; gap: 10px; font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #E8000F; margin-bottom: 14px; }
+    .ml-eyebrow::before { content: ''; width: 14px; height: 1.5px; background: #E8000F; }
+
+    .ml-title { font-family: Impact, 'Arial Black', sans-serif; font-size: clamp(40px, 7vw, 64px); line-height: 0.95; text-transform: uppercase; margin: 0 0 18px; }
+    .ml-title span { color: #E8000F; }
+
+    .ml-intro { font-size: 14px; color: #888; line-height: 1.7; margin: 0 0 48px; max-width: 600px; }
+
+    .ml-block { border-top: 0.5px solid #222; padding: 32px 0; }
+    .ml-block h2 { display: flex; align-items: baseline; gap: 14px; font-family: Impact, 'Arial Black', sans-serif; font-size: 22px; font-weight: 400; letter-spacing: 0.03em; text-transform: uppercase; margin: 0 0 16px; }
+    .ml-num { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700; color: #E8000F; letter-spacing: 0.1em; }
+    .ml-block p, .ml-block li { font-size: 14px; color: #bbb; line-height: 1.75; }
+    .ml-block p { margin: 0 0 12px; }
+    .ml-block ul { margin: 0 0 12px; padding-left: 18px; }
+    .ml-block li { margin-bottom: 6px; }
+    .ml-block strong { color: #fff; font-weight: 600; }
+    .ml-block a { color: #E8000F; text-decoration: none; border-bottom: 0.5px solid rgba(232,0,15,0.4); }
+    .ml-block a:hover { border-bottom-color: #E8000F; }
+
+    .ml-card { background: #141414; border: 0.5px solid #222; border-left: 2px solid #E8000F; padding: 18px 20px; margin: 4px 0 12px; }
+    .ml-card p { margin: 0 0 4px; }
+    .ml-card p:last-child { margin: 0; }
+    .ml-label { display: inline-block; min-width: 150px; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #666; }
+
+    /* À compléter une fois l'association déclarée */
+    .ml-todo { color: #E8000F; font-weight: 600; }
+
+    .ml-update { font-size: 11px; color: #555; letter-spacing: 0.08em; text-transform: uppercase; border-top: 0.5px solid #222; padding-top: 24px; margin-top: 8px; }
+
+    @media (max-width: 600px) {
+      .ml-wrap { padding: 44px 16px 72px; }
+      .ml-label { display: block; min-width: 0; margin-bottom: 2px; }
+      .ml-card p { margin-bottom: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="ub-redline"></div>
+
+  <!-- NAV -->
+  <nav class="ub-nav">
+    <div class="ub-logo"><a href="index.html"><img src="images/logo.png" alt="Under Bordeaux" style="height: 52px; width: auto;" /></a></div>
+    <div class="ub-nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="articles.html">Articles</a>
+      <a href="podcasts.html">Multimédia</a>
+      <a href="undermap.html">Under Map</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <button class="ub-hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <main class="ml-wrap">
+
+    <div class="ml-eyebrow">Informations légales</div>
+    <h1 class="ml-title">Mentions <span>légales</span></h1>
+    <p class="ml-intro">Qui publie Under Bordeaux, qui en est responsable, où le site est hébergé et ce qu'on fait de vos données. Tout est ici, en clair.</p>
+
+    <!-- 1. ÉDITEUR -->
+    <section class="ml-block">
+      <h2><span class="ml-num">01</span>Éditeur du site</h2>
+      <p>Under Bordeaux est un média indépendant édité par l'association <strong>Âmes Croisées</strong>, association régie par la loi du 1<sup>er</sup> juillet 1901.</p>
+      <div class="ml-card">
+        <p><span class="ml-label">Association</span>Âmes Croisées</p>
+        <p><span class="ml-label">Siège social</span><span class="ml-todo">[adresse du siège]</span>, Bordeaux</p>
+        <p><span class="ml-label">N° RNA</span><span class="ml-todo">[en cours de déclaration]</span></p>
+        <p><span class="ml-label">Contact</span><a href="mailto:underbordeaux@gmail.com">underbordeaux@gmail.com</a></p>
+      </div>
+    </section>
+
+    <!-- 2. DIRECTEUR DE LA PUBLICATION -->
+    <section class="ml-block">
+      <h2><span class="ml-num">02</span>Directeur de la publication</h2>
+      <p><strong>Matthias Salin</strong>, président de l'association Âmes Croisées.</p>
+      <p>Pour le joindre : <a href="mailto:underbordeaux@gmail.com">underbordeaux@gmail.com</a></p>
+    </section>
+
+    <!-- 3. HÉBERGEMENT -->
+    <section class="ml-block">
+      <h2><span class="ml-num">03</span>Hébergement</h2>
+      <p>Le site est hébergé par le service GitHub Pages.</p>
+      <div class="ml-card">
+        <p><span class="ml-label">Hébergeur</span>GitHub, Inc.</p>
+        <p><span class="ml-label">Adresse</span>88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis</p>
+        <p><span class="ml-label">Téléphone</span>+1 (877) 448-4820</p>
+        <p><span class="ml-label">Site</span><a href="https://pages.github.com" target="_blank" rel="noopener">pages.github.com</a></p>
+      </div>
+    </section>
+
+    <!-- 4. INDÉPENDANCE -->
+    <section class="ml-block">
+      <h2><span class="ml-num">04</span>Indépendance</h2>
+      <p>Under Bordeaux ne diffuse aucune publicité, n'a aucun sponsor et n'est lié à aucun parti politique ni à aucune organisation religieuse. On parle de politique, on n'en fait pas.</p>
+    </section>
+
+    <!-- 5. PROPRIÉTÉ INTELLECTUELLE -->
+    <section class="ml-block">
+      <h2><span class="ml-num">05</span>Propriété intellectuelle</h2>
+      <p>Les contenus publiés sur ce site (textes, photos, illustrations, enregistrements audio, vidéos, logo) appartiennent à Under Bordeaux ou à leurs auteurs. Ils sont protégés par le Code de la propriété intellectuelle.</p>
+      <p>Toute reproduction, totale ou partielle, sans autorisation écrite est interdite. Une courte citation reste possible, à condition de mentionner clairement « Under Bordeaux » et de mettre un lien vers l'article d'origine.</p>
+      <p>Les témoignages et les interviews sont publiés avec l'accord des personnes concernées.</p>
+    </section>
+
+    <!-- 6. DROIT DE RÉPONSE -->
+    <section class="ml-block">
+      <h2><span class="ml-num">06</span>Droit de réponse</h2>
+      <p>Toute personne nommée ou désignée dans un contenu d'Under Bordeaux peut exercer son droit de réponse, conformément à l'article 6 de la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique.</p>
+      <p>La demande est à adresser au directeur de la publication, par mail à <a href="mailto:underbordeaux@gmail.com">underbordeaux@gmail.com</a>, dans les trois mois suivant la mise en ligne du contenu concerné. Pour une erreur factuelle, écrivez-nous aussi : on corrige.</p>
+    </section>
+
+    <!-- 7. DONNÉES PERSONNELLES -->
+    <section class="ml-block">
+      <h2><span class="ml-num">07</span>Données personnelles</h2>
+      <p><strong>Formulaire de contact.</strong> Quand vous nous écrivez via le formulaire, votre nom, votre adresse mail et votre message nous sont transmis par le service Formspree. Ces informations servent uniquement à vous répondre. Elles ne sont jamais vendues ni partagées, et nous les supprimons une fois l'échange terminé.</p>
+      <p><strong>Services tiers.</strong> Pour afficher le site, votre navigateur se connecte à quelques services extérieurs, qui peuvent recevoir votre adresse IP :</p>
+      <ul>
+        <li>GitHub Pages, pour l'hébergement ;</li>
+        <li>Google Fonts, pour les polices d'écriture ;</li>
+        <li>CARTO et OpenStreetMap, pour les fonds de carte de la Under Map ;</li>
+        <li>unpkg, pour la bibliothèque de carte Leaflet.</li>
+      </ul>
+      <p><strong>Vos droits.</strong> Vous pouvez demander à accéder à vos données, à les corriger ou à les faire supprimer en écrivant à <a href="mailto:underbordeaux@gmail.com">underbordeaux@gmail.com</a>. Si vous estimez que vos droits ne sont pas respectés, vous pouvez saisir la <a href="https://www.cnil.fr" target="_blank" rel="noopener">CNIL</a>.</p>
+    </section>
+
+    <!-- 8. COOKIES -->
+    <section class="ml-block">
+      <h2><span class="ml-num">08</span>Cookies</h2>
+      <p>Under Bordeaux n'utilise aucun cookie publicitaire et aucun outil de mesure d'audience. On ne vous suit pas d'une page à l'autre.</p>
+    </section>
+
+    <p class="ml-update">Dernière mise à jour : septembre 2026</p>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="ub-footer">
+    <div class="ub-footer-logo">UNDER BORDEAUX</div>
+    <p>Média indépendant · Bordeaux · 2026</p>
+  </footer>
+
+  <div class="ub-redline"></div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
